@@ -1,0 +1,342 @@
+[
+  [
+    {
+      "eser": "İlyada",
+      "yazar": "Homeros"
+    },
+    {
+      "eser": "Odysseia",
+      "yazar": "Homeros"
+    },
+    {
+      "eser": "Oidipus Kral",
+      "yazar": "Sophokles"
+    },
+    {
+      "eser": "Antigone",
+      "yazar": "Sophokles"
+    },
+    {
+      "eser": "Medea",
+      "yazar": "Euripides"
+    },
+    {
+      "eser": "Kral Oidipus Kolonos'ta",
+      "yazar": "Sophokles"
+    },
+    {
+      "eser": "Altın Eşek",
+      "yazar": "Apuleius"
+    },
+    {
+      "eser": "Satyricon",
+      "yazar": "Petronius"
+    }
+  ],
+  [
+    {
+      "eser": "Ben, Claudius",
+      "yazar": "Robert Graves"
+    },
+    {
+      "eser": "Augustus",
+      "yazar": "John Williams"
+    },
+    {
+      "eser": "Hadrianus'un Anıları",
+      "yazar": "Marguerite Yourcenar"
+    },
+    {
+      "eser": "Julius Caesar",
+      "yazar": "William Shakespeare"
+    },
+    {
+      "eser": "Antonius ve Kleopatra",
+      "yazar": "William Shakespeare"
+    },
+    {
+      "eser": "Coriolanus",
+      "yazar": "William Shakespeare"
+    },
+    {
+      "eser": "Spartaküs",
+      "yazar": "Howard Fast"
+    },
+    {
+      "eser": "Ben-Hur",
+      "yazar": "Lew Wallace"
+    }
+  ],
+  [
+    {
+      "eser": "Gülün Adı",
+      "yazar": "Umberto Eco"
+    },
+    {
+      "eser": "Decameron",
+      "yazar": "Giovanni Boccaccio"
+    },
+    {
+      "eser": "İlahi Komedya",
+      "yazar": "Dante Alighieri"
+    },
+    {
+      "eser": "Quo Vadis",
+      "yazar": "Henryk Sienkiewicz"
+    },
+    {
+      "eser": "Canterbury Hikâyeleri",
+      "yazar": "Geoffrey Chaucer"
+    },
+    {
+      "eser": "Baudolino",
+      "yazar": "Umberto Eco"
+    },
+    {
+      "eser": "İvanhoe",
+      "yazar": "Walter Scott"
+    },
+    {
+      "eser": "Tristan ve Isolde",
+      "yazar": "Joseph Bédier"
+    }
+  ],
+  [
+    {
+      "eser": "Wolf Hall",
+      "yazar": "Hilary Mantel"
+    },
+    {
+      "eser": "Bring Up the Bodies",
+      "yazar": "Hilary Mantel"
+    },
+    {
+      "eser": "The Mirror and the Light",
+      "yazar": "Hilary Mantel"
+    },
+    {
+      "eser": "Hamlet",
+      "yazar": "William Shakespeare"
+    },
+    {
+      "eser": "Kral Lear",
+      "yazar": "William Shakespeare"
+    },
+    {
+      "eser": "Otello",
+      "yazar": "William Shakespeare"
+    },
+    {
+      "eser": "Romeo ve Juliet",
+      "yazar": "William Shakespeare"
+    },
+    {
+      "eser": "Doktor Faustus",
+      "yazar": "Christopher Marlowe"
+    }
+  ],
+  [
+    {
+      "eser": "Gulliver'in Gezileri",
+      "yazar": "Jonathan Swift"
+    },
+    {
+      "eser": "Robinson Crusoe",
+      "yazar": "Daniel Defoe"
+    },
+    {
+      "eser": "Candide",
+      "yazar": "Voltaire"
+    },
+    {
+      "eser": "İki Şehrin Hikâyesi",
+      "yazar": "Charles Dickens"
+    },
+    {
+      "eser": "Tehlikeli İlişkiler",
+      "yazar": "Choderlos de Laclos"
+    },
+    {
+      "eser": "Moll Flanders",
+      "yazar": "Daniel Defoe"
+    },
+    {
+      "eser": "İkna",
+      "yazar": "Jane Austen"
+    },
+    {
+      "eser": "Faust",
+      "yazar": "Johann Wolfgang von Goethe"
+    }
+  ],
+  [
+    {
+      "eser": "Germinal",
+      "yazar": "Émile Zola"
+    },
+    {
+      "eser": "Sefiller",
+      "yazar": "Victor Hugo"
+    },
+    {
+      "eser": "Zor Zamanlar",
+      "yazar": "Charles Dickens"
+    },
+    {
+      "eser": "Kuzey ve Güney",
+      "yazar": "Elizabeth Gaskell"
+    },
+    {
+      "eser": "Oliver Twist",
+      "yazar": "Charles Dickens"
+    },
+    {
+      "eser": "Middlemarch",
+      "yazar": "George Eliot"
+    },
+    {
+      "eser": "Gurur Dünyası",
+      "yazar": "William Makepeace Thackeray"
+    },
+    {
+      "eser": "Nana",
+      "yazar": "Émile Zola"
+    }
+  ],
+  [
+    {
+      "eser": "Suç ve Ceza",
+      "yazar": "Fyodor Dostoyevski"
+    },
+    {
+      "eser": "Karamazov Kardeşler",
+      "yazar": "Fyodor Dostoyevski"
+    },
+    {
+      "eser": "Anna Karenina",
+      "yazar": "Lev Tolstoy"
+    },
+    {
+      "eser": "Dava",
+      "yazar": "Franz Kafka"
+    },
+    {
+      "eser": "Buddenbrooklar",
+      "yazar": "Thomas Mann"
+    },
+    {
+      "eser": "Niteliksiz Adam",
+      "yazar": "Robert Musil"
+    },
+    {
+      "eser": "Venedik'te Ölüm",
+      "yazar": "Thomas Mann"
+    },
+    {
+      "eser": "Dönüşüm",
+      "yazar": "Franz Kafka"
+    }
+  ],
+  [
+    {
+      "eser": "Yabancı",
+      "yazar": "Albert Camus"
+    },
+    {
+      "eser": "Veba",
+      "yazar": "Albert Camus"
+    },
+    {
+      "eser": "Bulantı",
+      "yazar": "Jean-Paul Sartre"
+    },
+    {
+      "eser": "1984",
+      "yazar": "George Orwell"
+    },
+    {
+      "eser": "Hayvan Çiftliği",
+      "yazar": "George Orwell"
+    },
+    {
+      "eser": "Gün Ortasında Karanlık",
+      "yazar": "Arthur Koestler"
+    },
+    {
+      "eser": "İvan Denisoviç'in Hayatında Bir Gün",
+      "yazar": "Aleksandr Soljenitsin"
+    },
+    {
+      "eser": "Kadersizlik",
+      "yazar": "Imre Kertész"
+    }
+  ],
+  [
+    {
+      "eser": "Solaris",
+      "yazar": "Stanisław Lem"
+    },
+    {
+      "eser": "Dövüş Kulübü",
+      "yazar": "Chuck Palahniuk"
+    },
+    {
+      "eser": "Beni Asla Bırakma",
+      "yazar": "Kazuo Ishiguro"
+    },
+    {
+      "eser": "Klara ve Güneş",
+      "yazar": "Kazuo Ishiguro"
+    },
+    {
+      "eser": "Beyaz Gürültü",
+      "yazar": "Don DeLillo"
+    },
+    {
+      "eser": "Amerikan Sapığı",
+      "yazar": "Bret Easton Ellis"
+    },
+    {
+      "eser": "Körlük",
+      "yazar": "José Saramago"
+    },
+    {
+      "eser": "Çember",
+      "yazar": "Dave Eggers"
+    }
+  ],
+  [
+    {
+      "eser": "Dorian Gray'in Portresi",
+      "yazar": "Oscar Wilde"
+    },
+    {
+      "eser": "Benim Adım Kırmızı",
+      "yazar": "Orhan Pamuk"
+    },
+    {
+      "eser": "Sanatçının Genç Bir Adam Olarak Portresi",
+      "yazar": "James Joyce"
+    },
+    {
+      "eser": "İnci Küpeli Kız",
+      "yazar": "Tracy Chevalier"
+    },
+    {
+      "eser": "Saka Kuşu",
+      "yazar": "Donna Tartt"
+    },
+    {
+      "eser": "Sevdiğim Şey",
+      "yazar": "Siri Hustvedt"
+    },
+    {
+      "eser": "Istırap ve Vecd",
+      "yazar": "Irving Stone"
+    },
+    {
+      "eser": "Deniz",
+      "yazar": "John Banville"
+    }
+  ]
+]
