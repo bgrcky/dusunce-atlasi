@@ -1,0 +1,587 @@
+[
+  {
+    "donem": "I. İnsanı Anlamak",
+    "altbaslik": "Antik Yunan-Roma · MÖ 5.–MS 2.yy",
+    "eserler": [
+      {
+        "eser": "Sokrates'in Savunması",
+        "yazar": "Platon",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "-",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Nikomakhos'a Etik",
+        "yazar": "Aristoteles",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Sokrates'in Savunması",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Menoikeus'a Mektup",
+        "yazar": "Epikuros",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Nikomakhos'a Etik",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "El Kitabı",
+        "yazar": "Epiktetos",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "-",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Ahlak Mektupları",
+        "yazar": "Seneca",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "El Kitabı",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Kendime Düşünceler",
+        "yazar": "Marcus Aurelius",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Ahlak Mektupları",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Peloponez Savaşı Tarihi",
+        "yazar": "Thukydides",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Tarihler",
+        "kategori": "tarih"
+      },
+      {
+        "eser": "Kriton",
+        "yazar": "Platon",
+        "oncelik": "Önerilir",
+        "onkosul": "Sokrates'in Savunması",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Söylevler",
+        "yazar": "Epiktetos",
+        "oncelik": "Önerilir",
+        "onkosul": "El Kitabı",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Tarihler",
+        "yazar": "Herodotos",
+        "oncelik": "Önerilir",
+        "onkosul": "-",
+        "kategori": "tarih"
+      },
+      {
+        "eser": "Phaidon",
+        "yazar": "Platon",
+        "oncelik": "Derinleşme",
+        "onkosul": "Kriton",
+        "kategori": "felsefe"
+      }
+    ]
+  },
+  {
+    "donem": "II. Devlet ve Toplum",
+    "altbaslik": "Antik Yunan-Roma · MÖ 4.–MS 2.yy",
+    "eserler": [
+      {
+        "eser": "Devlet",
+        "yazar": "Platon",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Phaidon",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Politika",
+        "yazar": "Aristoteles",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Nikomakhos'a Etik",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Devlet Üzerine",
+        "yazar": "Marcus Tullius Cicero",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Politika",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Yıllıklar",
+        "yazar": "Tacitus",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Roma Tarihi",
+        "kategori": "tarih"
+      },
+      {
+        "eser": "On İki Caesar'ın Yaşamı",
+        "yazar": "Suetonius",
+        "oncelik": "Önerilir",
+        "onkosul": "-",
+        "kategori": "tarih"
+      },
+      {
+        "eser": "Yasalar",
+        "yazar": "Platon",
+        "oncelik": "Derinleşme",
+        "onkosul": "Devlet",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Roma Tarihi",
+        "yazar": "Titus Livius",
+        "oncelik": "Derinleşme",
+        "onkosul": "-",
+        "kategori": "tarih"
+      }
+    ]
+  },
+  {
+    "donem": "III. İnanç ve Orta Çağ",
+    "altbaslik": "Orta Çağ · MS 4.–15.yy",
+    "eserler": [
+      {
+        "eser": "İtiraflar",
+        "yazar": "Augustinus",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Kendime Düşünceler",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Felsefenin Tesellisi",
+        "yazar": "Boethius",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "İtiraflar",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Summa Theologica",
+        "yazar": "Thomas Aquinas",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Aristoteles",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Tanrı Devleti",
+        "yazar": "Augustinus",
+        "oncelik": "Derinleşme",
+        "onkosul": "İtiraflar",
+        "kategori": "felsefe"
+      }
+    ]
+  },
+  {
+    "donem": "IV. Rönesans ve Güç",
+    "altbaslik": "Rönesans-Reform · 15.–16.yy",
+    "eserler": [
+      {
+        "eser": "Deliliğe Övgü",
+        "yazar": "Erasmus",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "-",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Prens",
+        "yazar": "Niccolò Machiavelli",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Politika",
+        "kategori": "siyaset"
+      },
+      {
+        "eser": "Ütopya",
+        "yazar": "Thomas More",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Devlet",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Denemeler",
+        "yazar": "Michel de Montaigne",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "İtiraflar",
+        "kategori": "sanat"
+      },
+      {
+        "eser": "Söylevler (Machiavelli)",
+        "yazar": "Niccolò Machiavelli",
+        "oncelik": "Önerilir",
+        "onkosul": "Prens",
+        "kategori": "siyaset"
+      }
+    ]
+  },
+  {
+    "donem": "V. Toplum Sözleşmesi",
+    "altbaslik": "Aydınlanma · 17.–18.yy",
+    "eserler": [
+      {
+        "eser": "Leviathan",
+        "yazar": "Thomas Hobbes",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Prens",
+        "kategori": "siyaset"
+      },
+      {
+        "eser": "Yönetim Üzerine İki İnceleme",
+        "yazar": "John Locke",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Leviathan",
+        "kategori": "siyaset"
+      },
+      {
+        "eser": "Etika",
+        "yazar": "Baruch Spinoza",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Leviathan",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Kanunların Ruhu",
+        "yazar": "Montesquieu",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Locke",
+        "kategori": "siyaset"
+      },
+      {
+        "eser": "Toplum Sözleşmesi",
+        "yazar": "Jean-Jacques Rousseau",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Locke",
+        "kategori": "siyaset"
+      },
+      {
+        "eser": "Aydınlanma Nedir?",
+        "yazar": "Immanuel Kant",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Rousseau",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Yöntem Üzerine Konuşma",
+        "yazar": "René Descartes",
+        "oncelik": "Önerilir",
+        "onkosul": "Montaigne",
+        "kategori": "felsefe"
+      }
+    ]
+  },
+  {
+    "donem": "VI. Kapitalizm ve Sanayi",
+    "altbaslik": "Kapitalizm/Sanayi · 18.–19.yy",
+    "eserler": [
+      {
+        "eser": "Ulusların Zenginliği",
+        "yazar": "Adam Smith",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Locke",
+        "kategori": "siyaset"
+      },
+      {
+        "eser": "Amerika'da Demokrasi",
+        "yazar": "Alexis de Tocqueville",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Rousseau",
+        "kategori": "siyaset"
+      },
+      {
+        "eser": "Özgürlük Üzerine",
+        "yazar": "John Stuart Mill",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Tocqueville",
+        "kategori": "siyaset"
+      },
+      {
+        "eser": "Tinin Görüngübilimi",
+        "yazar": "Georg W. F. Hegel",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Kant",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Komünist Manifesto",
+        "yazar": "Karl Marx & Friedrich Engels",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Adam Smith, Hegel",
+        "kategori": "siyaset"
+      },
+      {
+        "eser": "Protestan Ahlakı",
+        "yazar": "Max Weber",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Marx",
+        "kategori": "siyaset"
+      },
+      {
+        "eser": "Kapital",
+        "yazar": "Karl Marx",
+        "oncelik": "Derinleşme",
+        "onkosul": "Komünist Manifesto",
+        "kategori": "siyaset"
+      }
+    ]
+  },
+  {
+    "donem": "VII. Modern İnsan Krizi",
+    "altbaslik": "Modern Kriz · 1850–1939",
+    "eserler": [
+      {
+        "eser": "İstenç ve Tasavvur Olarak Dünya",
+        "yazar": "Arthur Schopenhauer",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Kant",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Korku ve Titreme",
+        "yazar": "Søren Kierkegaard",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Hegel",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Ahlakın Soykütüğü",
+        "yazar": "Friedrich Nietzsche",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Mill, Kierkegaard, Schopenhauer",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Böyle Buyurdu Zerdüşt",
+        "yazar": "Friedrich Nietzsche",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Ahlakın Soykütüğü",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Düşlerin Yorumu",
+        "yazar": "Sigmund Freud",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Nietzsche",
+        "kategori": "davranis"
+      },
+      {
+        "eser": "Uygarlığın Huzursuzluğu",
+        "yazar": "Sigmund Freud",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Düşlerin Yorumu",
+        "kategori": "davranis"
+      }
+    ]
+  },
+  {
+    "donem": "VIII. Totalitarizm ve Varoluş",
+    "altbaslik": "Totalitarizm/Varoluş · 1914–1989",
+    "eserler": [
+      {
+        "eser": "Totalitarizmin Kaynakları",
+        "yazar": "Hannah Arendt",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Tocqueville",
+        "kategori": "siyaset"
+      },
+      {
+        "eser": "Eichmann Kudüs'te",
+        "yazar": "Hannah Arendt",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Totalitarizmin Kaynakları",
+        "kategori": "siyaset"
+      },
+      {
+        "eser": "İki Özgürlük Kavramı",
+        "yazar": "Isaiah Berlin",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Mill",
+        "kategori": "siyaset"
+      },
+      {
+        "eser": "Varlık ve Zaman",
+        "yazar": "Martin Heidegger",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Nietzsche",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Sisifos Söyleni",
+        "yazar": "Albert Camus",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Nietzsche",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "İkinci Cinsiyet",
+        "yazar": "Simone de Beauvoir",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Heidegger",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Açık Toplum ve Düşmanları",
+        "yazar": "Karl Popper",
+        "oncelik": "Önerilir",
+        "onkosul": "Platon",
+        "kategori": "siyaset"
+      },
+      {
+        "eser": "Aydınlanmanın Diyalektiği",
+        "yazar": "Theodor Adorno & Max Horkheimer",
+        "oncelik": "Önerilir",
+        "onkosul": "Weber, Freud",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Gulag Takımadaları",
+        "yazar": "Aleksandr Soljenitsin",
+        "oncelik": "Derinleşme",
+        "onkosul": "Eichmann Kudüs'te",
+        "kategori": "tarih"
+      },
+      {
+        "eser": "Varlık ve Hiçlik",
+        "yazar": "Jean-Paul Sartre",
+        "oncelik": "Derinleşme",
+        "onkosul": "Heidegger",
+        "kategori": "felsefe"
+      }
+    ]
+  },
+  {
+    "donem": "IX. Karar ve Belirsizlik",
+    "altbaslik": "Çağdaş Dünya · 1950–günümüz",
+    "eserler": [
+      {
+        "eser": "Yönetsel Davranış",
+        "yazar": "Herbert A. Simon",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "-",
+        "kategori": "davranis"
+      },
+      {
+        "eser": "Bir Adalet Teorisi",
+        "yazar": "John Rawls",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Toplum Sözleşmesi, Kant",
+        "kategori": "siyaset"
+      },
+      {
+        "eser": "Hapishanenin Doğuşu",
+        "yazar": "Michel Foucault",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Nietzsche",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Hızlı ve Yavaş Düşünme",
+        "yazar": "Daniel Kahneman",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Freud, Simon",
+        "kategori": "davranis"
+      },
+      {
+        "eser": "Dürtme",
+        "yazar": "Richard H. Thaler & Cass R. Sunstein",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Kahneman",
+        "kategori": "davranis"
+      },
+      {
+        "eser": "Siyah Kuğu",
+        "yazar": "Nassim Nicholas Taleb",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Kahneman",
+        "kategori": "davranis"
+      },
+      {
+        "eser": "Antikırılgan",
+        "yazar": "Nassim Nicholas Taleb",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Siyah Kuğu",
+        "kategori": "davranis"
+      },
+      {
+        "eser": "Akıldışı Ama Öngörülebilir",
+        "yazar": "Dan Ariely",
+        "oncelik": "Önerilir",
+        "onkosul": "Kahneman",
+        "kategori": "davranis"
+      },
+      {
+        "eser": "Skin in the Game",
+        "yazar": "Nassim Nicholas Taleb",
+        "oncelik": "Önerilir",
+        "onkosul": "Antikırılgan",
+        "kategori": "davranis"
+      },
+      {
+        "eser": "Noise",
+        "yazar": "Kahneman, Sibony, Sunstein",
+        "oncelik": "Önerilir",
+        "onkosul": "Kahneman",
+        "kategori": "davranis"
+      },
+      {
+        "eser": "Thinking in Bets",
+        "yazar": "Annie Duke",
+        "oncelik": "Önerilir",
+        "onkosul": "Noise",
+        "kategori": "davranis"
+      },
+      {
+        "eser": "The Undoing Project",
+        "yazar": "Michael Lewis",
+        "oncelik": "Önerilir",
+        "onkosul": "Kahneman",
+        "kategori": "davranis"
+      }
+    ]
+  },
+  {
+    "donem": "X. Estetik ve Sanat",
+    "altbaslik": "Estetik/Sanat · 1400–günümüz",
+    "eserler": [
+      {
+        "eser": "Sanatın Öyküsü",
+        "yazar": "E. H. Gombrich",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "-",
+        "kategori": "sanat"
+      },
+      {
+        "eser": "Görme Biçimleri",
+        "yazar": "John Berger",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Sanatın Öyküsü",
+        "kategori": "sanat"
+      },
+      {
+        "eser": "Fotoğraf Üzerine",
+        "yazar": "Susan Sontag",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Berger",
+        "kategori": "sanat"
+      },
+      {
+        "eser": "Sanat Yapıtı",
+        "yazar": "Walter Benjamin",
+        "oncelik": "Mutlaka Oku",
+        "onkosul": "Berger",
+        "kategori": "felsefe"
+      },
+      {
+        "eser": "Başkasının Acısına Bakmak",
+        "yazar": "Susan Sontag",
+        "oncelik": "Önerilir",
+        "onkosul": "Fotoğraf Üzerine",
+        "kategori": "sanat"
+      },
+      {
+        "eser": "Simulakrlar ve Simülasyon",
+        "yazar": "Jean Baudrillard",
+        "oncelik": "Derinleşme",
+        "onkosul": "Benjamin",
+        "kategori": "felsefe"
+      }
+    ]
+  }
+]
