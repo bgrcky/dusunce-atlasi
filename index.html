@@ -140,6 +140,10 @@
   .nav-panel.collapsed{padding:6px;border-radius:50%}
   .nav-panel.collapsed .nav-toggle{display:flex}
   .nav-row-label{font-family:var(--font-mono);font-size:9.5px;font-weight:500;color:var(--gold);text-transform:uppercase;letter-spacing:1.2px;margin:4px 0 4px}
+  .sync-row{display:flex;align-items:center;gap:5px}
+  .sync-code{flex:1;font-family:var(--font-mono);font-size:10.5px;background:var(--bg);border:0.5px solid var(--border);
+        border-radius:3px;padding:5px 7px;cursor:pointer;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .sync-status{font-family:var(--font-mono);font-size:9.5px;color:var(--text-sec);margin-top:5px;min-height:12px}
   .nav-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px}
   .nav-btn{min-width:26px;height:26px;padding:0 6px;border-radius:3px;border:0.5px solid var(--border);
         background:var(--bg);color:var(--text);font-family:var(--font-mono);font-size:11px;font-weight:500;cursor:pointer}
@@ -232,6 +236,13 @@
     <div class="nav-row" id="navEras"></div>
     <div class="nav-row-label">Katman</div>
     <div class="nav-row" id="navLayers"></div>
+    <div class="nav-row-label">Senkron kodu</div>
+    <div class="sync-row">
+      <code id="syncCode" class="sync-code" title="Kopyalamak için tıkla">…</code>
+      <button id="syncCopy" class="nav-btn" title="Kopyala">⧉</button>
+    </div>
+    <button id="syncRestore" class="nav-btn nav-btn-wide" style="margin-top:5px;width:100%">Başka koddan yükle</button>
+    <div id="syncStatus" class="sync-status"></div>
   </div>
 </div>
 <script>
@@ -322,23 +333,48 @@ function westPos(item){
 }
 
 let readState = {};
+const SUPABASE_URL = 'https://vtyaktxbcudjopbankdj.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_N8PhQal2eSK742Q5s2ARJQ_YgnS96HO';
+function genSyncCode(){
+  const chars = 'abcdefghjkmnpqrstuvwxyz23456789';
+  const part = ()=>Array.from({length:4},()=>chars[Math.floor(Math.random()*chars.length)]).join('');
+  return 'atlas-'+part()+'-'+part();
+}
+function getSyncCode(){
+  let code = localStorage.getItem('atlas-sync-code');
+  if(!code){ code = genSyncCode(); localStorage.setItem('atlas-sync-code', code); }
+  return code;
+}
+async function cloudFetch(code){
+  const res = await fetch(SUPABASE_URL+'/rest/v1/progress?code=eq.'+encodeURIComponent(code)+'&select=data', {
+    headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer '+SUPABASE_KEY }
+  });
+  if(!res.ok) throw new Error('fetch failed');
+  const rows = await res.json();
+  return rows.length ? rows[0].data : null;
+}
+async function cloudSave(code, data){
+  await fetch(SUPABASE_URL+'/rest/v1/progress', {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_KEY, 'Authorization':'Bearer '+SUPABASE_KEY, 'Content-Type':'application/json', 'Prefer':'resolution=merge-duplicates' },
+    body: JSON.stringify({ code, data, updated_at: new Date().toISOString() })
+  });
+}
+let syncCode = getSyncCode();
 async function loadState(){
   try{
-    if(window.storage){
-      const res = await window.storage.get('okuma-durumu', false);
-      if(res && res.value){ readState = JSON.parse(res.value); return; }
-    }
+    const cloudData = await cloudFetch(syncCode);
+    if(cloudData){ readState = cloudData; localStorage.setItem('okuma-durumu', JSON.stringify(readState)); return; }
   }catch(e){}
   try{
     const raw = localStorage.getItem('okuma-durumu');
     if(raw) readState = JSON.parse(raw);
   }catch(e){ readState = {}; }
+  cloudSave(syncCode, readState).catch(()=>{});
 }
 async function saveState(){
-  try{
-    if(window.storage){ await window.storage.set('okuma-durumu', JSON.stringify(readState), false); return; }
-  }catch(e){}
   try{ localStorage.setItem('okuma-durumu', JSON.stringify(readState)); }catch(e){}
+  cloudSave(syncCode, readState).catch(()=>{});
 }
 
 function resolvePrereq(name, currentIdx){
@@ -646,6 +682,40 @@ document.getElementById('navToggle').addEventListener('click', ()=>{
   window.addEventListener('keydown', (e)=>{
     if(e.key==='/' && document.activeElement!==input){ e.preventDefault(); input.focus(); }
     if(e.key==='Escape' && document.activeElement===input){ input.value=''; input.dispatchEvent(new Event('input')); input.blur(); }
+  });
+})();
+
+// --- Sync UI ---
+(function(){
+  const codeEl = document.getElementById('syncCode');
+  const statusEl = document.getElementById('syncStatus');
+  codeEl.textContent = syncCode;
+  document.getElementById('syncCopy').addEventListener('click', ()=>{
+    navigator.clipboard.writeText(syncCode).then(()=>{ statusEl.textContent = 'Kopyalandı ✓'; setTimeout(()=>statusEl.textContent='',1800); });
+  });
+  codeEl.addEventListener('click', ()=>{ document.getElementById('syncCopy').click(); });
+  document.getElementById('syncRestore').addEventListener('click', async ()=>{
+    const input = prompt('Başka bir cihazdaki senkron kodunu gir:');
+    if(!input) return;
+    const code = input.trim();
+    statusEl.textContent = 'Yükleniyor…';
+    try{
+      const data = await cloudFetch(code);
+      if(data===null){ statusEl.textContent = 'Bu kod bulunamadı'; return; }
+      syncCode = code;
+      localStorage.setItem('atlas-sync-code', code);
+      readState = data;
+      localStorage.setItem('okuma-durumu', JSON.stringify(readState));
+      codeEl.textContent = syncCode;
+      document.querySelectorAll('.node').forEach(n=>{
+        const key = n.dataset.eser;
+        const isRead = !!readState[key];
+        n.classList.toggle('read', isRead);
+        const c = n.querySelector('.chk'); if(c) c.checked = isRead;
+      });
+      updateProgress();
+      statusEl.textContent = 'Yüklendi ✓';
+    }catch(e){ statusEl.textContent = 'Bağlantı hatası'; }
   });
 })();
 
