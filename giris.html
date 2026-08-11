@@ -28,14 +28,24 @@
     radial-gradient(ellipse at 15% 8%, color-mix(in srgb, var(--gold) 7%, transparent), transparent 45%),
     var(--bg);
     font-family:var(--font-body);color:var(--text);line-height:1.6}
-  .wrap{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+  .grain{position:fixed;inset:0;pointer-events:none;opacity:.35;mix-blend-mode:multiply;z-index:0}
+  .wrap{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:48px 24px 80px}
+  .hero-route{width:100%;height:auto;margin-bottom:8px}
+  .hero-route path{fill:none;stroke:var(--border);stroke-width:1.2;stroke-dasharray:1 5;stroke-linecap:round}
+  .hero-route .wp circle{fill:var(--card);stroke:var(--gold);stroke-width:1.3}
+  .hero-route .wp text{font-family:var(--font-display);font-size:12px;font-weight:600;fill:var(--gold)}
   .back-link{font-family:var(--font-mono);font-size:11.5px;color:var(--gold);text-decoration:none;letter-spacing:.3px}
   .back-link:hover{text-decoration:underline}
   h1{font-family:var(--font-display);font-size:30px;font-weight:600;margin:18px 0 6px;letter-spacing:.2px}
   .intro{font-family:var(--font-display);font-style:italic;font-size:15px;color:var(--text-sec);margin-bottom:44px;max-width:560px}
-  .donem{margin-bottom:46px;padding-bottom:40px;border-bottom:0.5px dashed var(--border)}
-  .donem:last-child{border-bottom:none}
-  .donem-no{font-family:var(--font-mono);font-size:11px;color:var(--gold);letter-spacing:1.6px;text-transform:uppercase;margin-bottom:4px}
+  .donem{margin-bottom:0px;padding-bottom:36px}
+  .donem-row{display:flex;gap:16px;align-items:flex-start}
+  .seal{flex-shrink:0;width:44px;height:44px;border-radius:50%;border:1.3px solid var(--gold);
+        display:flex;align-items:center;justify-content:center;font-family:var(--font-display);
+        font-size:15px;font-weight:600;color:var(--gold);margin-top:2px}
+  .donem-body{flex:1;min-width:0}
+  .divider-orn{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 0 36px;color:var(--gold);opacity:.6}
+  .divider-orn::before,.divider-orn::after{content:'';flex:1;height:0.5px;background:var(--border);max-width:120px}
   .donem h2{font-family:var(--font-display);font-size:22px;font-weight:600;margin:0 0 3px}
   .donem-sub{font-family:var(--font-mono);font-size:11.5px;color:var(--text-sec);margin-bottom:16px}
   .donem-baglam{font-size:15px;margin-bottom:18px}
@@ -51,10 +61,24 @@
 </style>
 </head>
 <body>
+<svg class="grain" xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
 <div class="wrap">
   <a href="./" class="back-link">← Haritaya dön</a>
   <h1>Dönemler Üzerine</h1>
   <div class="intro">Düşünce Atlası, kitapları rastgele bir liste olarak değil, birbirini besleyen on dönem halinde sunar. Her dönem kendinden öncekine bir cevap, kendinden sonrakine bir zemin. Aşağıda her dönemin neden bu sırada durduğunu ve o dönemi şekillendiren büyük olayları bulacaksın.</div>
+  <svg class="hero-route" viewBox="0 0 674 110" xmlns="http://www.w3.org/2000/svg">
+    <path d="M40,62 C62,62 84,90 106,90 C128,90 150,48 172,48 C194,48 216,82 238,82 C260,82 282,54 304,54 C326,54 348,88 370,88 C392,88 414,50 436,50 C458,50 480,80 502,80 C524,80 546,56 568,56 C590,56 612,74 634,74"/>
+    <g class="wp"><circle cx="40" cy="62" r="16"/><text x="40" y="62" text-anchor="middle" dominant-baseline="central">I</text></g>
+    <g class="wp"><circle cx="106" cy="90" r="16"/><text x="106" y="90" text-anchor="middle" dominant-baseline="central">II</text></g>
+    <g class="wp"><circle cx="172" cy="48" r="16"/><text x="172" y="48" text-anchor="middle" dominant-baseline="central">III</text></g>
+    <g class="wp"><circle cx="238" cy="82" r="16"/><text x="238" y="82" text-anchor="middle" dominant-baseline="central">IV</text></g>
+    <g class="wp"><circle cx="304" cy="54" r="16"/><text x="304" y="54" text-anchor="middle" dominant-baseline="central">V</text></g>
+    <g class="wp"><circle cx="370" cy="88" r="16"/><text x="370" y="88" text-anchor="middle" dominant-baseline="central">VI</text></g>
+    <g class="wp"><circle cx="436" cy="50" r="16"/><text x="436" y="50" text-anchor="middle" dominant-baseline="central">VII</text></g>
+    <g class="wp"><circle cx="502" cy="80" r="16"/><text x="502" y="80" text-anchor="middle" dominant-baseline="central">VIII</text></g>
+    <g class="wp"><circle cx="568" cy="56" r="16"/><text x="568" y="56" text-anchor="middle" dominant-baseline="central">IX</text></g>
+    <g class="wp"><circle cx="634" cy="74" r="16"/><text x="634" y="74" text-anchor="middle" dominant-baseline="central">X</text></g>
+  </svg>
   <div id="content"><div class="loading">Yükleniyor…</div></div>
   <footer>
     <a href="./" class="cta">Haritayı Keşfet →</a>
@@ -73,13 +97,18 @@
   western.forEach((donem, i)=>{
     const olayListHtml = (olaylar[i]||[]).map(o=>'<li>'+o+'</li>').join('');
     html += '<div class="donem">'+
-      '<div class="donem-no">Bölüm '+romanNumerals[i]+'</div>'+
-      '<h2>'+donem.donem.replace(/^[IVXLCDM]+\.\s*/,'')+'</h2>'+
-      '<div class="donem-sub">'+donem.altbaslik+'</div>'+
-      '<div class="donem-baglam">'+(baglam[i]||'')+'</div>'+
-      '<div class="olaylar-label">Dönemi Etkileyen Büyük Olaylar</div>'+
-      '<ul class="olaylar-list">'+olayListHtml+'</ul>'+
+      '<div class="donem-row">'+
+        '<div class="seal">'+romanNumerals[i]+'</div>'+
+        '<div class="donem-body">'+
+          '<h2>'+donem.donem.replace(/^[IVXLCDM]+\.\s*/,'')+'</h2>'+
+          '<div class="donem-sub">'+donem.altbaslik+'</div>'+
+          '<div class="donem-baglam">'+(baglam[i]||'')+'</div>'+
+          '<div class="olaylar-label">Dönemi Etkileyen Büyük Olaylar</div>'+
+          '<ul class="olaylar-list">'+olayListHtml+'</ul>'+
+        '</div>'+
+      '</div>'+
     '</div>';
+    if(i < western.length-1) html += '<div class="divider-orn">◆</div>';
   });
   contentEl.innerHTML = html;
 })();
