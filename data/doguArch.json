@@ -1,0 +1,202 @@
+{
+  "0": [
+    {
+      "eser": "Konfüçyüs Tapınağı",
+      "konum": "Qufu",
+      "uslup": "Çin Tapınak Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Temple_of_Confucius,_Qufu"
+    },
+    {
+      "eser": "Cennet Tapınağı",
+      "konum": "Pekin",
+      "uslup": "Çin İmparatorluk Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Temple_of_Heaven"
+    },
+    {
+      "eser": "Yasak Şehir",
+      "konum": "Pekin",
+      "uslup": "Çin Saray Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Forbidden_City"
+    },
+    {
+      "eser": "Konfüçyüs Malikanesi",
+      "konum": "Qufu",
+      "uslup": "Çin Konut Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Kong_Family_Mansion"
+    },
+    {
+      "eser": "Çin Seddi (erken kısımlar)",
+      "konum": "Çin",
+      "uslup": "Askeri Mimari",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Great_Wall_of_China"
+    },
+    {
+      "eser": "Ritüel tapınaklar",
+      "konum": "Zhou Hanedanlığı",
+      "uslup": "Çin Tapınak Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Zhou_dynasty"
+    },
+    {
+      "eser": "Geleneksel tapınaklar",
+      "konum": "Shandong",
+      "uslup": "Çin Tapınak Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Shandong"
+    },
+    {
+      "eser": "Ecdat tapınakları (zumiao)",
+      "konum": "Antik Çin",
+      "uslup": "Çin Tapınak Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Ancestral_shrine"
+    }
+  ],
+  "1": [
+    {
+      "eser": "Wudang Dağı manastırları",
+      "konum": "Çin",
+      "uslup": "Taoist Dağ Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Wudang_Mountains"
+    },
+    {
+      "eser": "Baiyun Guan",
+      "konum": "Pekin",
+      "uslup": "Taoist Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Baiyun_Guan"
+    },
+    {
+      "eser": "Qingyang Gong",
+      "konum": "Chengdu",
+      "uslup": "Taoist Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Qingyang_Palace"
+    },
+    {
+      "eser": "Louguantai",
+      "konum": "Shaanxi",
+      "uslup": "Taoist Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Louguantai"
+    },
+    {
+      "eser": "Mağara tapınakları",
+      "konum": "Çin",
+      "uslup": "Taoist Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Chinese_temple_architecture"
+    },
+    {
+      "eser": "Longhu Dağı tapınakları",
+      "konum": "Çin",
+      "uslup": "Taoist Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Longhu_Mountain"
+    },
+    {
+      "eser": "Bahçe mimarisi",
+      "konum": "Çin",
+      "uslup": "Taoist Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Chinese_garden"
+    },
+    {
+      "eser": "Yin-yang planlı tapınaklar",
+      "konum": "Çin",
+      "uslup": "Taoist Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Yin_and_yang"
+    }
+  ],
+  "2": [
+    {
+      "eser": "Elhamra Sarayı",
+      "konum": "Endülüs",
+      "uslup": "Endülüs / Mağrib Üslubu",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Alhambra"
+    },
+    {
+      "eser": "Kurtuba Ulu Camii",
+      "konum": "İspanya",
+      "uslup": "Endülüs Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Mezquita-Catedral_de_Córdoba"
+    },
+    {
+      "eser": "Mevlana Türbesi",
+      "konum": "Konya",
+      "uslup": "Selçuklu Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Mevlâna_Museum"
+    },
+    {
+      "eser": "İnce Minareli Medrese",
+      "konum": "Konya",
+      "uslup": "Selçuklu Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/İnce_Minaret_Medrese"
+    },
+    {
+      "eser": "Mir-i Arab Medresesi",
+      "konum": "Buhara",
+      "uslup": "Orta Asya İslam Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Miri_Arab_Madrasah"
+    },
+    {
+      "eser": "Kayrevan Ulu Camii",
+      "konum": "Tunus",
+      "uslup": "Erken İslam Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Great_Mosque_of_Kairouan"
+    },
+    {
+      "eser": "Nizamiye Medresesi",
+      "konum": "Bağdat",
+      "uslup": "Selçuklu Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Nizamiyya"
+    },
+    {
+      "eser": "Gırnata Medresesi",
+      "konum": "Endülüs",
+      "uslup": "Endülüs Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Madrasa"
+    }
+  ],
+  "3": [
+    {
+      "eser": "Sultan Hasan Camii",
+      "konum": "Kahire",
+      "uslup": "Memlük Üslubu",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Mosque-Madrassa_of_Sultan_Hassan"
+    },
+    {
+      "eser": "İbn Tolun Camii",
+      "konum": "Kahire",
+      "uslup": "Erken İslam Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Mosque_of_Ibn_Tulun"
+    },
+    {
+      "eser": "Tunus Medinesi",
+      "konum": "Tunus",
+      "uslup": "Mağrib Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Medina_of_Tunis"
+    },
+    {
+      "eser": "Kalavun Külliyesi",
+      "konum": "Kahire",
+      "uslup": "Memlük Üslubu",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Complex_of_Qalawun"
+    },
+    {
+      "eser": "Karaviyyin Camii",
+      "konum": "Fas",
+      "uslup": "Mağrib Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/University_of_al-Qarawiyyin"
+    },
+    {
+      "eser": "Medreseler",
+      "konum": "Bijaya",
+      "uslup": "Mağrib Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Béjaïa"
+    },
+    {
+      "eser": "Ulu Cami",
+      "konum": "Tlemcen",
+      "uslup": "Mağrib Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Great_Mosque_of_Tlemcen"
+    },
+    {
+      "eser": "Ezher Camii çevresi",
+      "konum": "Kahire",
+      "uslup": "Memlük Üslubu",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Al-Azhar_Mosque"
+    }
+  ]
+}
