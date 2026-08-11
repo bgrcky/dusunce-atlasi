@@ -1,0 +1,502 @@
+[
+  [
+    {
+      "eser": "Parthenon",
+      "konum": "Atina",
+      "uslup": "Antik Yunan (Dor Düzeni)",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Parthenon"
+    },
+    {
+      "eser": "Delphi Apollon Tapınağı",
+      "konum": "Delphi",
+      "uslup": "Antik Yunan (Dor Düzeni)",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Temple_of_Apollo_(Delphi)"
+    },
+    {
+      "eser": "Epidauros Tiyatrosu",
+      "konum": "Epidauros",
+      "uslup": "Antik Yunan",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Theatre_of_Epidaurus"
+    },
+    {
+      "eser": "Erechtheion",
+      "konum": "Atina",
+      "uslup": "Antik Yunan (İon Düzeni)",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Erechtheion"
+    },
+    {
+      "eser": "Zeus Tapınağı",
+      "konum": "Olympia",
+      "uslup": "Antik Yunan (Dor Düzeni)",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Temple_of_Zeus,_Olympia"
+    },
+    {
+      "eser": "Poseidon Tapınağı",
+      "konum": "Sounion",
+      "uslup": "Antik Yunan",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Temple_of_Poseidon,_Sounion"
+    },
+    {
+      "eser": "Agora",
+      "konum": "Atina",
+      "uslup": "Antik Yunan Kentsel Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Agora_of_Athens"
+    },
+    {
+      "eser": "Knossos Sarayı",
+      "konum": "Girit",
+      "uslup": "Minos Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Knossos"
+    }
+  ],
+  [
+    {
+      "eser": "Roma Pantheon",
+      "konum": "Roma",
+      "uslup": "Antik Roma",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Pantheon,_Rome"
+    },
+    {
+      "eser": "Kolezyum",
+      "konum": "Roma",
+      "uslup": "Antik Roma",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Colosseum"
+    },
+    {
+      "eser": "Forum Romanum",
+      "konum": "Roma",
+      "uslup": "Antik Roma",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Roman_Forum"
+    },
+    {
+      "eser": "Pont du Gard",
+      "konum": "Fransa",
+      "uslup": "Antik Roma Mühendisliği",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Pont_du_Gard"
+    },
+    {
+      "eser": "Diocletianus Sarayı",
+      "konum": "Split",
+      "uslup": "Geç Roma",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Diocletian%27s_Palace"
+    },
+    {
+      "eser": "Hadrianus Villası",
+      "konum": "Tivoli",
+      "uslup": "Antik Roma",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Hadrian%27s_Villa"
+    },
+    {
+      "eser": "Celsus Kütüphanesi",
+      "konum": "Efes",
+      "uslup": "Antik Roma",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Library_of_Celsus"
+    },
+    {
+      "eser": "Baalbek Tapınağı",
+      "konum": "Lübnan",
+      "uslup": "Antik Roma",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Baalbek"
+    }
+  ],
+  [
+    {
+      "eser": "Chartres Katedrali",
+      "konum": "Fransa",
+      "uslup": "Gotik",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Chartres_Cathedral"
+    },
+    {
+      "eser": "Notre-Dame de Paris",
+      "konum": "Fransa",
+      "uslup": "Gotik",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Notre-Dame_de_Paris"
+    },
+    {
+      "eser": "Köln Katedrali",
+      "konum": "Almanya",
+      "uslup": "Gotik",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Cologne_Cathedral"
+    },
+    {
+      "eser": "Canterbury Katedrali",
+      "konum": "İngiltere",
+      "uslup": "Gotik",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Canterbury_Cathedral"
+    },
+    {
+      "eser": "Milano Katedrali",
+      "konum": "İtalya",
+      "uslup": "Gotik",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Milan_Cathedral"
+    },
+    {
+      "eser": "Ayasofya",
+      "konum": "İstanbul",
+      "uslup": "Bizans",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Hagia_Sophia"
+    },
+    {
+      "eser": "San Marco Bazilikası",
+      "konum": "Venedik",
+      "uslup": "Bizans-Roman",
+      "wikiUrl": "https://en.wikipedia.org/wiki/St_Mark%27s_Basilica"
+    },
+    {
+      "eser": "Mont Saint-Michel",
+      "konum": "Fransa",
+      "uslup": "Gotik-Roman",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Mont-Saint-Michel"
+    }
+  ],
+  [
+    {
+      "eser": "Floransa Katedrali Kubbesi",
+      "konum": "Brunelleschi",
+      "uslup": "Rönesans",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Florence_Cathedral"
+    },
+    {
+      "eser": "San Pietro Bazilikası",
+      "konum": "Vatikan",
+      "uslup": "Rönesans-Barok Geçişi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/St._Peter%27s_Basilica"
+    },
+    {
+      "eser": "Palazzo Medici Riccardi",
+      "konum": "Floransa",
+      "uslup": "Rönesans",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Palazzo_Medici_Riccardi"
+    },
+    {
+      "eser": "Tempietto",
+      "konum": "Bramante",
+      "uslup": "Rönesans",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Tempietto"
+    },
+    {
+      "eser": "Villa Rotonda",
+      "konum": "Palladio",
+      "uslup": "Rönesans",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Villa_Rotonda"
+    },
+    {
+      "eser": "Uffizi Sarayı",
+      "konum": "Floransa",
+      "uslup": "Rönesans",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Uffizi_Gallery"
+    },
+    {
+      "eser": "Château de Chambord",
+      "konum": "Fransa",
+      "uslup": "Fransız Rönesansı",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Château_de_Chambord"
+    },
+    {
+      "eser": "El Escorial",
+      "konum": "İspanya",
+      "uslup": "Rönesans",
+      "wikiUrl": "https://en.wikipedia.org/wiki/El_Escorial"
+    }
+  ],
+  [
+    {
+      "eser": "Sanssouci Sarayı",
+      "konum": "Potsdam — Friedrich & Voltaire",
+      "uslup": "Rokoko",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Sanssouci"
+    },
+    {
+      "eser": "Versay Sarayı",
+      "konum": "Fransa",
+      "uslup": "Barok",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Palace_of_Versailles"
+    },
+    {
+      "eser": "Zwinger Sarayı",
+      "konum": "Dresden",
+      "uslup": "Barok-Rokoko",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Zwinger_(Dresden)"
+    },
+    {
+      "eser": "Würzburg Sarayı",
+      "konum": "Almanya",
+      "uslup": "Rokoko",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Würzburg_Residence"
+    },
+    {
+      "eser": "Peterhof Sarayı",
+      "konum": "Rusya",
+      "uslup": "Barok",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Peterhof_Palace"
+    },
+    {
+      "eser": "Schönbrunn Sarayı",
+      "konum": "Viyana",
+      "uslup": "Rokoko",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Schönbrunn_Palace"
+    },
+    {
+      "eser": "St. Paul Katedrali",
+      "konum": "Londra",
+      "uslup": "İngiliz Barok",
+      "wikiUrl": "https://en.wikipedia.org/wiki/St_Paul%27s_Cathedral"
+    },
+    {
+      "eser": "Karlskirche",
+      "konum": "Viyana",
+      "uslup": "Barok",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Karlskirche"
+    }
+  ],
+  [
+    {
+      "eser": "Kristal Saray",
+      "konum": "Londra, 1851",
+      "uslup": "Sanayi Dönemi Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Crystal_Palace"
+    },
+    {
+      "eser": "Eyfel Kulesi",
+      "konum": "Paris",
+      "uslup": "Demir Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Eiffel_Tower"
+    },
+    {
+      "eser": "Brooklyn Köprüsü",
+      "konum": "New York",
+      "uslup": "Sanayi Mühendisliği",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Brooklyn_Bridge"
+    },
+    {
+      "eser": "St. Pancras İstasyonu",
+      "konum": "Londra",
+      "uslup": "Viktorya Gotiği",
+      "wikiUrl": "https://en.wikipedia.org/wiki/St_Pancras_railway_station"
+    },
+    {
+      "eser": "Galleria Vittorio Emanuele II",
+      "konum": "Milano",
+      "uslup": "Demir-Cam Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Galleria_Vittorio_Emanuele_II"
+    },
+    {
+      "eser": "Fabrika mimarisi",
+      "konum": "Manchester",
+      "uslup": "Sanayi Devrimi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Cotton_mill"
+    },
+    {
+      "eser": "Palais Garnier",
+      "konum": "Paris",
+      "uslup": "Beaux-Arts",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Palais_Garnier"
+    },
+    {
+      "eser": "Bibliothèque Sainte-Geneviève",
+      "konum": "Paris",
+      "uslup": "Demir-Kütüphane Mimarisi",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Bibliothèque_Sainte-Geneviève"
+    }
+  ],
+  [
+    {
+      "eser": "Sagrada Família",
+      "konum": "Gaudí",
+      "uslup": "Art Nouveau",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Sagrada_Família"
+    },
+    {
+      "eser": "Casa Batlló",
+      "konum": "Gaudí",
+      "uslup": "Art Nouveau",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Casa_Batlló"
+    },
+    {
+      "eser": "Secession Binası",
+      "konum": "Viyana",
+      "uslup": "Viyana Secession",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Secession_Building"
+    },
+    {
+      "eser": "Metro Paris girişleri",
+      "konum": "Hector Guimard",
+      "uslup": "Art Nouveau",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Hector_Guimard"
+    },
+    {
+      "eser": "Majolikahaus",
+      "konum": "Otto Wagner",
+      "uslup": "Viyana Secession",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Majolikahaus"
+    },
+    {
+      "eser": "Glasgow Sanat Okulu",
+      "konum": "Mackintosh",
+      "uslup": "Art Nouveau",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Glasgow_School_of_Art"
+    },
+    {
+      "eser": "Hôtel Tassel",
+      "konum": "Victor Horta",
+      "uslup": "Art Nouveau",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Hôtel_Tassel"
+    },
+    {
+      "eser": "Park Güell",
+      "konum": "Gaudí",
+      "uslup": "Art Nouveau",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Park_Güell"
+    }
+  ],
+  [
+    {
+      "eser": "Bauhaus binası",
+      "konum": "Dessau",
+      "uslup": "Modernizm",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Bauhaus-Dessau"
+    },
+    {
+      "eser": "Villa Savoye",
+      "konum": "Le Corbusier",
+      "uslup": "Modernizm",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Villa_Savoye"
+    },
+    {
+      "eser": "Barcelona Pavyonu",
+      "konum": "Mies van der Rohe",
+      "uslup": "Modernizm",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Barcelona_Pavilion"
+    },
+    {
+      "eser": "Fallingwater",
+      "konum": "Frank Lloyd Wright",
+      "uslup": "Organik Modernizm",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Fallingwater"
+    },
+    {
+      "eser": "Seagram Binası",
+      "konum": "Mies van der Rohe",
+      "uslup": "Uluslararası Üslup",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Seagram_Building"
+    },
+    {
+      "eser": "Chandigarh",
+      "konum": "Le Corbusier",
+      "uslup": "Brütalizm",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Chandigarh_Capitol_Complex"
+    },
+    {
+      "eser": "Sidney Opera Binası",
+      "konum": "Utzon",
+      "uslup": "Modernist Ekspresyonizm",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Sydney_Opera_House"
+    },
+    {
+      "eser": "Habitat 67",
+      "konum": "Montreal",
+      "uslup": "Brütalizm",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Habitat_67"
+    }
+  ],
+  [
+    {
+      "eser": "Guggenheim Müzesi",
+      "konum": "Bilbao, Gehry",
+      "uslup": "Dekonstrüktivizm",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Guggenheim_Museum_Bilbao"
+    },
+    {
+      "eser": "Walt Disney Concert Hall",
+      "konum": "Los Angeles, Gehry",
+      "uslup": "Dekonstrüktivizm",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Walt_Disney_Concert_Hall"
+    },
+    {
+      "eser": "Vitra Design Müzesi",
+      "konum": "Frank Gehry",
+      "uslup": "Dekonstrüktivizm",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Vitra_Design_Museum"
+    },
+    {
+      "eser": "Jewish Museum",
+      "konum": "Berlin, Libeskind",
+      "uslup": "Dekonstrüktivizm",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Jewish_Museum_Berlin"
+    },
+    {
+      "eser": "Dancing House",
+      "konum": "Prag, Gehry",
+      "uslup": "Dekonstrüktivizm",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Dancing_House"
+    },
+    {
+      "eser": "MAXXI Müzesi",
+      "konum": "Roma, Zaha Hadid",
+      "uslup": "Parametrik Mimari",
+      "wikiUrl": "https://en.wikipedia.org/wiki/MAXXI"
+    },
+    {
+      "eser": "Heydar Aliyev Merkezi",
+      "konum": "Bakü, Zaha Hadid",
+      "uslup": "Parametrik Mimari",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Heydar_Aliyev_Center"
+    },
+    {
+      "eser": "CCTV Binası",
+      "konum": "Pekin, Koolhaas",
+      "uslup": "Dekonstrüktivizm",
+      "wikiUrl": "https://en.wikipedia.org/wiki/CCTV_Headquarters"
+    }
+  ],
+  [
+    {
+      "eser": "Centre Pompidou",
+      "konum": "Piano & Rogers",
+      "uslup": "Yüksek Teknoloji",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Centre_Pompidou"
+    },
+    {
+      "eser": "Lloyd's Binası",
+      "konum": "Londra, Rogers",
+      "uslup": "Yüksek Teknoloji",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Lloyd%27s_building"
+    },
+    {
+      "eser": "HSBC Binası",
+      "konum": "Hong Kong, Foster",
+      "uslup": "Yüksek Teknoloji",
+      "wikiUrl": "https://en.wikipedia.org/wiki/HSBC_Main_Building_(Hong_Kong)"
+    },
+    {
+      "eser": "Millau Viyadüğü",
+      "konum": "Fransa, Foster",
+      "uslup": "Yüksek Teknoloji Mühendisliği",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Millau_Viaduct"
+    },
+    {
+      "eser": "Şangay Kulesi",
+      "konum": "Çin",
+      "uslup": "Çağdaş Gökdelen",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Shanghai_Tower"
+    },
+    {
+      "eser": "30 St Mary Axe",
+      "konum": "Londra, Foster",
+      "uslup": "Yüksek Teknoloji",
+      "wikiUrl": "https://en.wikipedia.org/wiki/30_St_Mary_Axe"
+    },
+    {
+      "eser": "Ulusal Stadyum (Kuş Yuvası)",
+      "konum": "Pekin, Herzog & de Meuron",
+      "uslup": "Çağdaş",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Beijing_National_Stadium"
+    },
+    {
+      "eser": "Louvre Abu Dabi",
+      "konum": "Jean Nouvel",
+      "uslup": "Çağdaş",
+      "wikiUrl": "https://en.wikipedia.org/wiki/Louvre_Abu_Dhabi"
+    }
+  ]
+]
