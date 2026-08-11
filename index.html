@@ -152,6 +152,14 @@
   }
   .hint-mobile{display:none;font-family:var(--font-mono);font-size:10.5px;color:var(--text-sec);margin-top:4px}
   .epigraph{font-family:var(--font-display);font-style:italic;font-size:12.5px;color:var(--text-sec);margin-bottom:8px}
+  .search-wrap{position:relative;display:flex;align-items:center;max-width:340px;margin-bottom:9px}
+  .search-icon{position:absolute;left:10px;color:var(--text-sec);pointer-events:none}
+  #searchInput{width:100%;padding:7px 10px 7px 30px;border-radius:3px;border:0.5px solid var(--border);
+        background:var(--card);color:var(--text);font-family:var(--font-body);font-size:12.5px}
+  #searchInput:focus{outline:none;border-color:var(--gold)}
+  .search-count{position:absolute;right:10px;font-family:var(--font-mono);font-size:10px;color:var(--text-sec)}
+  .node.search-dim{opacity:.15}
+  .node.search-hit{box-shadow:0 0 0 2px var(--gold)!important;z-index:8}
   .legend-toggle{margin-top:2px}
   .legend-toggle summary{font-family:var(--font-mono);font-size:10.5px;color:var(--gold);cursor:pointer;letter-spacing:.3px;list-style:none;display:inline-block}
   .legend-toggle summary::-webkit-details-marker{display:none}
@@ -164,6 +172,11 @@
 <header>
   <h1>Düşünce Atlası — okuma haritası</h1>
   <div class="epigraph">10 dönem · 194 eser · MÖ 5. yüzyıldan günümüze — felsefe, tarih, müzik, mimari ve roman bir arada</div>
+  <div class="search-wrap">
+    <svg class="search-icon" viewBox="0 0 24 24" width="13" height="13" fill="none"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.6"/><path d="M20 20l-4.5-4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    <input type="text" id="searchInput" placeholder="Eser veya yazar ara…" autocomplete="off">
+    <span id="searchCount" class="search-count"></span>
+  </div>
   <div class="progress" id="progressText">Harita hazırlanıyor</div>
   <div class="hint-mobile">👉 Haritayı keşfetmek için yatay kaydır</div>
   <div id="nextupWrap"></div>
@@ -589,6 +602,40 @@ layerTargets.forEach(([label,y])=>{
 document.getElementById('navToggle').addEventListener('click', ()=>{
   document.getElementById('navPanel').classList.toggle('collapsed');
 });
+
+// --- Search ---
+(function(){
+  const input = document.getElementById('searchInput');
+  const countEl = document.getElementById('searchCount');
+  let firstHit = null;
+  input.addEventListener('input', ()=>{
+    const q = input.value.trim().toLocaleLowerCase('tr-TR');
+    const nodes = document.querySelectorAll('.node');
+    firstHit = null;
+    let hitCount = 0;
+    if(!q){
+      nodes.forEach(n=>{ n.classList.remove('search-dim','search-hit'); });
+      countEl.textContent = '';
+      return;
+    }
+    nodes.forEach(n=>{
+      const t = n.querySelector('.t');
+      const s = n.querySelector('.s');
+      const text = ((t?t.textContent:'')+' '+(s?s.textContent:'')).toLocaleLowerCase('tr-TR');
+      const match = text.includes(q);
+      n.classList.toggle('search-dim', !match);
+      n.classList.toggle('search-hit', match);
+      if(match){ hitCount++; if(!firstHit) firstHit = n; }
+    });
+    countEl.textContent = hitCount ? hitCount+' sonuç' : 'sonuç yok';
+    if(firstHit) firstHit.scrollIntoView({behavior:'smooth', block:'center', inline:'center'});
+  });
+  window.addEventListener('keydown', (e)=>{
+    if(e.key==='/' && document.activeElement!==input){ e.preventDefault(); input.focus(); }
+    if(e.key==='Escape' && document.activeElement===input){ input.value=''; input.dispatchEvent(new Event('input')); input.blur(); }
+  });
+})();
+
 </script>
 </body>
 </html>
