@@ -58,8 +58,15 @@
         border:0.5px solid var(--text-sec);color:var(--text-sec);margin-right:5px;vertical-align:1px;letter-spacing:.3px}
   .legend .lineinfo{display:flex;align-items:center;gap:6px}
   .legend svg.mini{width:28px;height:10px;flex-shrink:0}
-  .scroll{overflow-x:auto;overflow-y:hidden;padding:24px 28px 60px}
-  #map{position:relative}
+  .scroll{overflow-x:auto;overflow-y:visible;padding:24px 28px 60px;position:relative}
+  #mapSpacer{position:relative}
+  #map{position:absolute;top:0;left:0;transform-origin:0 0}
+  .zoom-panel{position:fixed;left:20px;bottom:20px;z-index:20;background:var(--card);border:0.5px solid var(--border);
+        border-radius:4px;box-shadow:0 6px 24px rgba(20,14,4,.22);padding:5px;display:flex;flex-direction:column;gap:3px}
+  .zoom-btn{width:30px;height:30px;border-radius:3px;border:0.5px solid var(--border);background:var(--bg);
+        color:var(--text);font-family:var(--font-mono);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+  .zoom-btn:hover{background:var(--amber-bg);border-color:var(--gold);color:var(--gold)}
+  .zoom-level{font-family:var(--font-mono);font-size:9px;color:var(--text-sec);text-align:center;padding:2px 0}
   .col-title{font-family:var(--font-display);font-size:14px;font-weight:600;color:var(--text)}
   .col-sub{font-family:var(--font-mono);font-size:10.5px;color:var(--text-sec);margin-top:2px}
   .col-sub-rep{position:absolute;font-size:10.5px;color:var(--text-sec);font-weight:500}
@@ -204,7 +211,13 @@
     </div>
   </details>
 </header>
-<div class="scroll"><div id="map"></div></div>
+<div class="scroll"><div id="mapSpacer"></div><div id="map"></div></div>
+<div class="zoom-panel">
+  <button id="zoomIn" class="zoom-btn" aria-label="Yakınlaştır">+</button>
+  <div class="zoom-level" id="zoomLevel">100%</div>
+  <button id="zoomOut" class="zoom-btn" aria-label="Uzaklaştır">−</button>
+  <button id="zoomReset" class="zoom-btn" aria-label="Sıfırla" style="font-size:11px">⤾</button>
+</div>
 <div id="navPanel" class="nav-panel">
   <button id="navToggle" class="nav-toggle" aria-label="Gezinme panelini aç">
     <svg viewBox="0 0 24 24" width="19" height="19" fill="none">
@@ -635,6 +648,38 @@ document.getElementById('navToggle').addEventListener('click', ()=>{
     if(e.key==='Escape' && document.activeElement===input){ input.value=''; input.dispatchEvent(new Event('input')); input.blur(); }
   });
 })();
+
+// --- Zoom ---
+(function(){
+  const spacer = document.getElementById('mapSpacer');
+  const zoomLevelEl = document.getElementById('zoomLevel');
+  const MIN = 0.4, MAX = 2.2, STEP = 0.15;
+  let zoom = 1;
+  function applyZoom(){
+    zoom = Math.min(MAX, Math.max(MIN, zoom));
+    mapEl.style.transform = 'scale('+zoom+')';
+    spacer.style.width = (mapW*zoom)+'px';
+    spacer.style.height = (cursorY*zoom)+'px';
+    zoomLevelEl.textContent = Math.round(zoom*100)+'%';
+  }
+  applyZoom();
+  document.getElementById('zoomIn').addEventListener('click', ()=>{ zoom+=STEP; applyZoom(); });
+  document.getElementById('zoomOut').addEventListener('click', ()=>{ zoom-=STEP; applyZoom(); });
+  document.getElementById('zoomReset').addEventListener('click', ()=>{ zoom=1; applyZoom(); });
+  scrollEl.addEventListener('wheel', (e)=>{
+    if(!e.ctrlKey && !e.metaKey) return;
+    e.preventDefault();
+    zoom += (e.deltaY < 0 ? STEP : -STEP);
+    applyZoom();
+  }, {passive:false});
+  window.addEventListener('keydown', (e)=>{
+    if(document.activeElement===document.getElementById('searchInput')) return;
+    if(e.key==='+' || e.key==='='){ zoom+=STEP; applyZoom(); }
+    if(e.key==='-' || e.key==='_'){ zoom-=STEP; applyZoom(); }
+    if(e.key==='0'){ zoom=1; applyZoom(); }
+  });
+})();
+
 
 </script>
 </body>
