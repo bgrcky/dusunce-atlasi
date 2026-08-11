@@ -49,7 +49,11 @@
   header{padding:22px 28px 14px;position:sticky;top:0;background:var(--bg);z-index:5;border-bottom:1px solid var(--border)}
   h1{font-family:var(--font-display);font-size:23px;font-weight:600;letter-spacing:.2px;margin:0 0 5px;color:var(--text)}
   h1::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold);margin-right:9px;vertical-align:middle}
-  .progress{font-family:var(--font-mono);font-size:11px;color:var(--text-sec);margin-bottom:7px;letter-spacing:.2px}
+  .progress-row{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+  .progress{font-family:var(--font-mono);font-size:11px;color:var(--text-sec);letter-spacing:.2px}
+  .dashboard-btn{font-family:var(--font-mono);font-size:10px;color:var(--gold);background:none;border:0.5px solid var(--gold);
+        border-radius:3px;padding:2px 8px;cursor:pointer;letter-spacing:.3px}
+  .dashboard-btn:hover{background:var(--amber-bg)}
   .nextup{font-size:12.5px;margin-bottom:10px;padding:7px 11px;border-radius:3px;background:var(--teal-bg);color:var(--teal-tx);
           display:inline-block;cursor:pointer;border:0.5px solid var(--teal-bd);border-left:2.5px solid var(--teal-bd)}
   .legend{display:flex;gap:16px;font-size:12px;color:var(--text-sec);flex-wrap:wrap;align-items:center;margin-bottom:8px}
@@ -132,6 +136,32 @@
   .ozet-link{font-size:9px;color:var(--teal-tx);text-decoration:none;font-weight:600;margin-left:auto}
   .ozet-link:hover{text-decoration:underline}
   .ozet-link + .wiki{margin-left:8px}
+  .note-btn{border:none;background:none;color:var(--text-sec);cursor:pointer;font-size:11px;padding:0 2px;line-height:1}
+  .note-btn:hover{color:var(--gold)}
+  .note-btn.has-note{color:var(--gold)}
+  .note-btn.has-note::after{content:'';display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--gold);margin-left:2px;vertical-align:top}
+  .modal-overlay{position:fixed;inset:0;background:rgba(20,14,4,.45);z-index:50;display:flex;align-items:center;justify-content:center;padding:20px}
+  .modal-box{background:var(--card);border:0.5px solid var(--border);border-radius:6px;max-width:480px;width:100%;padding:20px;box-shadow:0 12px 40px rgba(20,14,4,.3)}
+  .modal-box h3{font-family:var(--font-display);font-size:16px;margin:0 0 4px;color:var(--text)}
+  .modal-box .modal-sub{font-family:var(--font-mono);font-size:10.5px;color:var(--text-sec);margin-bottom:12px}
+  .modal-box textarea{width:100%;min-height:120px;border-radius:4px;border:0.5px solid var(--border);background:var(--bg);
+        color:var(--text);font-family:var(--font-body);font-size:13px;padding:10px;resize:vertical}
+  .modal-box textarea:focus{outline:none;border-color:var(--gold)}
+  .modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}
+  .modal-btn{padding:7px 14px;border-radius:4px;border:0.5px solid var(--border);background:var(--bg);color:var(--text);
+        font-family:var(--font-body);font-size:12.5px;cursor:pointer}
+  .modal-btn.primary{background:var(--gold);border-color:var(--gold);color:var(--card)}
+  .modal-btn:hover{opacity:.85}
+  .modal-box.wide{max-width:560px}
+  .dash-stat-row{display:flex;gap:16px;margin-bottom:16px}
+  .dash-stat{flex:1;text-align:center;padding:10px;border:0.5px solid var(--border);border-radius:4px;background:var(--bg)}
+  .dash-stat .num{font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--gold)}
+  .dash-stat .lbl{font-family:var(--font-mono);font-size:9.5px;color:var(--text-sec);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+  .dash-bar-row{margin-bottom:9px}
+  .dash-bar-label{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10px;color:var(--text-sec);margin-bottom:3px}
+  .dash-bar-track{height:6px;border-radius:3px;background:var(--border);overflow:hidden}
+  .dash-bar-fill{height:100%;background:var(--gold);border-radius:3px;transition:width .3s}
+  .dash-scroll{max-height:340px;overflow-y:auto;padding-right:4px}
   .nav-panel{position:fixed;right:20px;bottom:20px;z-index:20;background:var(--card);border:0.5px solid var(--border);
         border-radius:4px;box-shadow:0 6px 24px rgba(20,14,4,.22);padding:12px;max-width:220px}
   .nav-toggle{display:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--border);
@@ -188,7 +218,10 @@
     <input type="text" id="searchInput" placeholder="Eser veya yazar ara…" autocomplete="off">
     <span id="searchCount" class="search-count"></span>
   </div>
-  <div class="progress" id="progressText">Harita hazırlanıyor</div>
+  <div class="progress-row">
+    <div class="progress" id="progressText">Harita hazırlanıyor</div>
+    <button id="dashboardBtn" class="dashboard-btn">İlerlemem</button>
+  </div>
   <div class="hint-mobile">👉 Haritayı keşfetmek için yatay kaydır</div>
   <div id="nextupWrap"></div>
   <details class="legend-toggle">
@@ -333,6 +366,13 @@ function westPos(item){
 }
 
 let readState = {};
+let notesState = {};
+function unpackCloudData(raw){
+  if(raw && typeof raw==='object' && ('read' in raw || 'notes' in raw)){
+    return { read: raw.read||{}, notes: raw.notes||{} };
+  }
+  return { read: raw||{}, notes: {} };
+}
 const SUPABASE_URL = 'https://vtyaktxbcudjopbankdj.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_N8PhQal2eSK742Q5s2ARJQ_YgnS96HO';
 function genSyncCode(){
@@ -364,17 +404,28 @@ let syncCode = getSyncCode();
 async function loadState(){
   try{
     const cloudData = await cloudFetch(syncCode);
-    if(cloudData){ readState = cloudData; localStorage.setItem('okuma-durumu', JSON.stringify(readState)); return; }
+    if(cloudData){
+      const unpacked = unpackCloudData(cloudData);
+      readState = unpacked.read; notesState = unpacked.notes;
+      localStorage.setItem('okuma-durumu', JSON.stringify(readState));
+      localStorage.setItem('notlar', JSON.stringify(notesState));
+      return;
+    }
   }catch(e){}
   try{
     const raw = localStorage.getItem('okuma-durumu');
     if(raw) readState = JSON.parse(raw);
-  }catch(e){ readState = {}; }
-  cloudSave(syncCode, readState).catch(()=>{});
+    const rawNotes = localStorage.getItem('notlar');
+    if(rawNotes) notesState = JSON.parse(rawNotes);
+  }catch(e){ readState = {}; notesState = {}; }
+  cloudSave(syncCode, {read:readState, notes:notesState}).catch(()=>{});
 }
 async function saveState(){
-  try{ localStorage.setItem('okuma-durumu', JSON.stringify(readState)); }catch(e){}
-  cloudSave(syncCode, readState).catch(()=>{});
+  try{
+    localStorage.setItem('okuma-durumu', JSON.stringify(readState));
+    localStorage.setItem('notlar', JSON.stringify(notesState));
+  }catch(e){}
+  cloudSave(syncCode, {read:readState, notes:notesState}).catch(()=>{});
 }
 
 function resolvePrereq(name, currentIdx){
@@ -431,6 +482,71 @@ function updateProgress(){
   renderNextUp();
 }
 
+function openNoteModal(key, titleTxt){
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-overlay';
+  overlay.innerHTML = '<div class="modal-box">'+
+    '<h3>'+titleTxt+'</h3>'+
+    '<div class="modal-sub">Kişisel notun — sadece sende, senkron koduna bağlı</div>'+
+    '<textarea id="noteTextarea" placeholder="Bu eserle ilgili aklında kalanlar, alıntılar, düşünceler…"></textarea>'+
+    '<div class="modal-actions">'+
+      '<button class="modal-btn" id="noteCancel">Kapat</button>'+
+      '<button class="modal-btn primary" id="noteSave">Kaydet</button>'+
+    '</div>'+
+  '</div>';
+  document.body.appendChild(overlay);
+  const ta = overlay.querySelector('#noteTextarea');
+  ta.value = notesState[key] || '';
+  ta.focus();
+  function close(){ overlay.remove(); }
+  overlay.addEventListener('click', e=>{ if(e.target===overlay) close(); });
+  overlay.querySelector('#noteCancel').addEventListener('click', close);
+  overlay.querySelector('#noteSave').addEventListener('click', async ()=>{
+    notesState[key] = ta.value;
+    await saveState();
+    const btn = document.querySelector('.note-btn[data-eser="'+CSS.escape(key)+'"]');
+    if(btn) btn.classList.toggle('has-note', !!ta.value.trim());
+    close();
+  });
+}
+
+function renderDashboard(){
+  const totalW = flat.length, totalE = dflat.length;
+  let readW=0, readE=0;
+  flat.forEach(f=>{ if(readState[f.eser]) readW++; });
+  dflat.forEach(f=>{ if(readState[f.eser]) readE++; });
+  const totalAll = totalW+totalE;
+  const readAll = readW+readE;
+  const pct = totalAll ? Math.round(100*readAll/totalAll) : 0;
+  const noteCount = Object.values(notesState).filter(v=>v && v.trim()).length;
+
+  const barsHtml = western.map((col,ci)=>{
+    const total = col[2].length;
+    const read = col[2].filter(b=>readState[b[0]]).length;
+    const p = total ? Math.round(100*read/total) : 0;
+    return '<div class="dash-bar-row"><div class="dash-bar-label"><span>'+col[0]+'</span><span>'+read+'/'+total+'</span></div>'+
+      '<div class="dash-bar-track"><div class="dash-bar-fill" style="width:'+p+'%"></div></div></div>';
+  }).join('');
+
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-overlay';
+  overlay.innerHTML = '<div class="modal-box wide">'+
+    '<h3>İlerlemem</h3>'+
+    '<div class="modal-sub">Senkron kodu: '+syncCode+'</div>'+
+    '<div class="dash-stat-row">'+
+      '<div class="dash-stat"><div class="num">'+pct+'%</div><div class="lbl">Genel</div></div>'+
+      '<div class="dash-stat"><div class="num">'+readAll+'</div><div class="lbl">Okunan</div></div>'+
+      '<div class="dash-stat"><div class="num">'+noteCount+'</div><div class="lbl">Not</div></div>'+
+    '</div>'+
+    '<div class="dash-scroll">'+barsHtml+'</div>'+
+    '<div class="modal-actions"><button class="modal-btn primary" id="dashClose">Kapat</button></div>'+
+  '</div>';
+  document.body.appendChild(overlay);
+  function close(){ overlay.remove(); }
+  overlay.addEventListener('click', e=>{ if(e.target===overlay) close(); });
+  overlay.querySelector('#dashClose').addEventListener('click', close);
+}
+
 function renderNode(key, titleTxt, subTxt, pos, tierClass, tagHtml, promptTxt, wikiUrl, ozetUrl){
   const el = document.createElement('div');
   el.className = 'node '+tierClass+(readState[key]?' read':'');
@@ -440,9 +556,11 @@ function renderNode(key, titleTxt, subTxt, pos, tierClass, tagHtml, promptTxt, w
   const ozetHtml = ozetUrl ? '<a href="'+ozetUrl+'" target="_blank" rel="noopener" class="ozet-link">Atlas ↗</a>' : '';
   const nk = nedenKavram[titleTxt];
   const whyHtml = nk ? '<div class="why">'+nk.neden+'</div><div class="kw">'+nk.kw.join(' · ')+'</div>' : '';
+  const hasNote = notesState[key] && notesState[key].trim();
+  const noteBtnHtml = '<button class="note-btn'+(hasNote?' has-note':'')+'" title="Not al" data-eser="'+key.replace(/"/g,'&quot;')+'">✎</button>';
   el.innerHTML = '<div class="row1"><div class="titlewrap"><div class="t">'+titleTxt+'</div><div class="s">'+subTxt+'</div></div>'+(tagHtml||'')+'</div>'+
     whyHtml+
-    '<div class="row2"><input type="checkbox" class="chk" '+(readState[key]?'checked':'')+'>'+ozetHtml+wikiHtml+'</div>';
+    '<div class="row2"><input type="checkbox" class="chk" '+(readState[key]?'checked':'')+'>'+noteBtnHtml+ozetHtml+wikiHtml+'</div>';
   const chk = el.querySelector('.chk');
   chk.addEventListener('click', e=>e.stopPropagation());
   chk.addEventListener('change', async ()=>{
@@ -451,6 +569,8 @@ function renderNode(key, titleTxt, subTxt, pos, tierClass, tagHtml, promptTxt, w
     await saveState();
     updateProgress();
   });
+  const noteBtn = el.querySelector('.note-btn');
+  noteBtn.addEventListener('click', e=>{ e.stopPropagation(); openNoteModal(key, titleTxt); });
   if(wikiUrl){ const a = el.querySelector('.wiki'); a.addEventListener('click', e=>e.stopPropagation()); }
   if(ozetUrl){ const a = el.querySelector('.ozet-link'); a.addEventListener('click', e=>e.stopPropagation()); }
   el.querySelector('.t').addEventListener('click', ()=>{ if(window.sendPrompt) sendPrompt(promptTxt); });
@@ -651,6 +771,7 @@ layerTargets.forEach(([label,y])=>{
 document.getElementById('navToggle').addEventListener('click', ()=>{
   document.getElementById('navPanel').classList.toggle('collapsed');
 });
+document.getElementById('dashboardBtn').addEventListener('click', renderDashboard);
 
 // --- Search ---
 (function(){
@@ -704,14 +825,18 @@ document.getElementById('navToggle').addEventListener('click', ()=>{
       if(data===null){ statusEl.textContent = 'Bu kod bulunamadı'; return; }
       syncCode = code;
       localStorage.setItem('atlas-sync-code', code);
-      readState = data;
+      const unpacked = unpackCloudData(data);
+      readState = unpacked.read; notesState = unpacked.notes;
       localStorage.setItem('okuma-durumu', JSON.stringify(readState));
+      localStorage.setItem('notlar', JSON.stringify(notesState));
       codeEl.textContent = syncCode;
       document.querySelectorAll('.node').forEach(n=>{
         const key = n.dataset.eser;
         const isRead = !!readState[key];
         n.classList.toggle('read', isRead);
         const c = n.querySelector('.chk'); if(c) c.checked = isRead;
+        const nb = n.querySelector('.note-btn');
+        if(nb) nb.classList.toggle('has-note', !!(notesState[key] && notesState[key].trim()));
       });
       updateProgress();
       statusEl.textContent = 'Yüklendi ✓';
