@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Batı Düşünce Atlası — Okuma Haritası</title>
+<style>
+  :root{
+    --bg:#faf9f6; --card:#ffffff; --text:#26221c; --text-sec:#6b6558; --border:#e4e0d6;
+    --teal-bg:#e1f5ee; --teal-bd:#5dcaa5; --teal-tx:#085041;
+    --gray-bg:#f1efe8; --gray-bd:#b4b2a9; --gray-tx:#444441;
+    --purple-bg:#eeedfe; --purple-bd:#afa9ec; --purple-tx:#3c3489;
+    --amber-bg:#fbf0dd; --amber-bd:#e0a940; --amber-tx:#6b4d10;
+    --music-bg:#fbe9ef; --music-bd:#dd7fa0; --music-tx:#7a1d3d;
+    --arch-bg:#e6eef8; --arch-bd:#7fa3d6; --arch-tx:#1c3d6b;
+    --roman-bg:#fbece2; --roman-bd:#d98a5e; --roman-tx:#7a3413;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#1c1b18; --card:#26241f; --text:#e8e5db; --text-sec:#9c9a90; --border:#3a382f;
+      --teal-bg:#085041; --teal-bd:#1d9e75; --teal-tx:#9fe1cb;
+      --gray-bg:#444441; --gray-bd:#888780; --gray-tx:#d3d1c7;
+      --purple-bg:#3c3489; --purple-bd:#7f77dd; --purple-tx:#cecbf6;
+      --amber-bg:#4a3510; --amber-bd:#caa044; --amber-tx:#f3d896;
+      --music-bg:#5c2338; --music-bd:#e08bab; --music-tx:#f6c8da;
+      --arch-bg:#1f3355; --arch-bd:#8fb3e6; --arch-tx:#cfe0f7;
+      --roman-bg:#5a3218; --roman-bd:#e0a173; --roman-tx:#f5d3ba;
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);font-family:-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--text)}
+  header{padding:20px 28px 12px;position:sticky;top:0;background:var(--bg);z-index:5;border-bottom:0.5px solid var(--border)}
+  h1{font-size:18px;font-weight:500;margin:0 0 4px}
+  .progress{font-size:12px;color:var(--text-sec);margin-bottom:6px}
+  .nextup{font-size:12.5px;margin-bottom:10px;padding:7px 11px;border-radius:8px;background:var(--teal-bg);color:var(--teal-tx);
+          display:inline-block;cursor:pointer;border:0.5px solid var(--teal-bd)}
+  .legend{display:flex;gap:16px;font-size:12px;color:var(--text-sec);flex-wrap:wrap;align-items:center;margin-bottom:8px}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:middle}
+  .legend .tag{display:inline-block;font-size:9.5px;font-weight:500;padding:1.5px 6px;border-radius:8px;
+        border:0.5px solid var(--text-sec);color:var(--text-sec);margin-right:5px;vertical-align:1px;letter-spacing:.3px}
+  .legend .lineinfo{display:flex;align-items:center;gap:6px}
+  .legend svg.mini{width:28px;height:10px;flex-shrink:0}
+  .scroll{overflow-x:auto;overflow-y:hidden;padding:24px 28px 60px}
+  #map{position:relative}
+  .col-title{font-size:13px;font-weight:500;color:var(--text)}
+  .col-sub{font-size:11px;color:var(--text-sec);margin-top:2px}
+  .col-sub-rep{position:absolute;font-size:10.5px;color:var(--text-sec);font-weight:500}
+  .col-akim{font-size:10px;color:var(--purple-tx);font-style:italic;margin-top:3px;line-height:1.3}
+  .akim-rep{font-size:9.5px;color:var(--purple-tx);font-style:italic;margin-top:2px;line-height:1.3}
+  .col-olay{font-size:9.5px;color:var(--arch-tx);margin-top:3px;line-height:1.3}
+  .olay-rep{font-size:9px;color:var(--arch-tx);margin-top:2px;line-height:1.3}
+  .col-progress{font-size:10.5px;color:var(--text-sec);margin-top:2px}
+  .section-title{position:absolute;font-size:13px;font-weight:600;color:var(--text-sec);text-transform:uppercase;letter-spacing:.5px}
+  .divider{position:absolute;left:0;right:0;border-top:0.5px dashed var(--border)}
+  .node{position:absolute;border-radius:8px;padding:8px 10px;border:0.5px solid var(--border);
+        background:var(--card);transition:transform .12s,box-shadow .12s;overflow:hidden}
+  .node:hover{transform:scale(1.03);z-index:10}
+  .node.read{opacity:.5}
+  .node.read .t{text-decoration:line-through}
+  .node.nextup-highlight{box-shadow:0 0 0 2px var(--teal-bd);z-index:6}
+  .node .row1{display:flex;align-items:flex-start;justify-content:space-between;gap:6px}
+  .node .tag{flex-shrink:0;display:inline-block;font-size:9px;font-weight:500;padding:1.5px 5px;
+        border-radius:7px;letter-spacing:.3px;margin-top:1px;white-space:nowrap;max-width:100%;box-sizing:border-box}
+  .node .row2{display:flex;align-items:center;gap:6px;margin-top:6px}
+  .node .chk{width:12px;height:12px;flex-shrink:0;cursor:pointer;accent-color:var(--teal-bd)}
+  .node .t{font-size:12px;font-weight:500;line-height:1.25;color:var(--text);cursor:pointer;
+        display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .node .s{font-size:10px;color:var(--text-sec);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;margin-top:2px}
+  .node .why{font-size:10px;color:var(--text-sec);font-style:italic;line-height:1.35;margin-top:6px;
+        display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .node .kw{font-size:9px;color:var(--teal-tx);font-weight:600;letter-spacing:.2px;margin-top:5px;
+        white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .node .titlewrap{min-width:0;flex:1}
+  .node:has(.tag-uslup) .row1{flex-direction:column;align-items:flex-start;gap:4px}
+  .node:has(.tag-uslup) .titlewrap{width:100%}
+  .tag-uslup{display:inline-block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;box-sizing:border-box}
+  .tier-Mutlaka{border-left:3px solid var(--teal-bd);background:var(--teal-bg)}
+  .tier-Mutlaka .t{color:var(--teal-tx)}
+  .tier-Onerilir{border-left:3px solid var(--gray-bd);background:var(--gray-bg)}
+  .tier-Onerilir .t{color:var(--gray-tx)}
+  .tier-Derinlesme{border-left:3px solid var(--purple-bd);background:var(--purple-bg)}
+  .tier-Derinlesme .t{color:var(--purple-tx)}
+  .tier-Dogu{border-left:3px solid var(--amber-bd);background:var(--amber-bg)}
+  .tier-Dogu .t{color:var(--amber-tx)}
+  .tier-Muzik{border-left:3px solid var(--music-bd);background:var(--music-bg)}
+  .tier-Muzik .t{color:var(--music-tx)}
+  .tier-Mimari{border-left:3px solid var(--arch-bd);background:var(--arch-bg)}
+  .tier-Mimari .t{color:var(--arch-tx)}
+  .tier-Roman{border-left:3px solid var(--roman-bd);background:var(--roman-bg)}
+  .tier-Roman .t{color:var(--roman-tx)}
+  .tag-felsefe{border:0.5px solid #BA7517;color:#BA7517}
+  .tag-tarih{border:0.5px solid #185FA5;color:#185FA5}
+  .tag-siyaset{border:0.5px solid #A32D2D;color:#A32D2D}
+  .tag-davranis{border:0.5px solid #3B6D11;color:#3B6D11}
+  .tag-sanat{border:0.5px solid #993556;color:#993556}
+  @media (prefers-color-scheme: dark){
+    .tag-felsefe{border-color:#FAC775;color:#FAC775}
+    .tag-tarih{border-color:#85B7EB;color:#85B7EB}
+    .tag-siyaset{border-color:#F09595;color:#F09595}
+    .tag-davranis{border-color:#97C459;color:#97C459}
+    .tag-sanat{border-color:#ED93B1;color:#ED93B1}
+  }
+  .wiki{font-size:9px;color:var(--arch-tx);text-decoration:none;margin-left:auto}
+  .wiki:hover{text-decoration:underline}
+  .ozet-link{font-size:9px;color:var(--teal-tx);text-decoration:none;font-weight:600;margin-left:auto}
+  .ozet-link:hover{text-decoration:underline}
+  .ozet-link + .wiki{margin-left:8px}
+  .nav-panel{position:fixed;right:20px;bottom:20px;z-index:20;background:var(--card);border:0.5px solid var(--border);
+        border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.25);padding:10px;max-width:220px}
+  .nav-toggle{display:none;width:40px;height:40px;border-radius:10px;border:0.5px solid var(--border);
+        background:var(--card);font-size:18px;cursor:pointer}
+  .nav-panel.collapsed .nav-body{display:none}
+  .nav-panel.collapsed{padding:6px}
+  .nav-panel.collapsed .nav-toggle{display:block}
+  .nav-row-label{font-size:10px;font-weight:600;color:var(--text-sec);text-transform:uppercase;letter-spacing:.4px;margin:4px 0 4px}
+  .nav-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px}
+  .nav-btn{min-width:26px;height:26px;padding:0 6px;border-radius:6px;border:0.5px solid var(--border);
+        background:var(--bg);color:var(--text);font-size:11px;font-weight:500;cursor:pointer}
+  .nav-btn:hover{background:var(--teal-bg);border-color:var(--teal-bd);color:var(--teal-tx)}
+  .nav-btn-wide{min-width:52px}
+  svg.overlay{position:absolute;top:0;left:0;pointer-events:none}
+  path.edge-short{fill:none;stroke:var(--border);stroke-width:1.2;opacity:.55}
+  path.edge-long{fill:none;stroke:var(--purple-bd);stroke-width:1.3;opacity:.5;stroke-dasharray:5 4}
+  path.hi{stroke:var(--teal-bd)!important;opacity:.95!important;stroke-width:2px!important;stroke-dasharray:none!important}
+</style>
+</head>
+<body>
+<header>
+  <h1>Batı Düşünce Atlası — okuma haritası</h1>
+  <div class="progress" id="progressText">Yükleniyor...</div>
+  <div id="nextupWrap"></div>
+  <div class="legend">
+    <span><span class="dot" style="background:#5dcaa5"></span>Mutlaka oku</span>
+    <span><span class="dot" style="background:#b4b2a9"></span>Önerilir</span>
+    <span><span class="dot" style="background:#afa9ec"></span>Derinleşme</span>
+    <span><span class="dot" style="background:#e0a940"></span>Doğu</span>
+    <span><span class="dot" style="background:#dd7fa0"></span>Müzik</span>
+    <span><span class="dot" style="background:#7fa3d6"></span>Mimari</span>
+    <span><span class="dot" style="background:#d98a5e"></span>Roman</span>
+  </div>
+  <div class="legend">
+    <span><span class="tag tag-felsefe">FEL</span>Felsefe</span>
+    <span><span class="tag tag-tarih">TAR</span>Tarih</span>
+    <span><span class="tag tag-siyaset">SİY</span>Siyaset &amp; ekonomi</span>
+    <span><span class="tag tag-davranis">PSİ</span>Psikoloji &amp; davranış</span>
+    <span><span class="tag tag-sanat">SAN</span>Sanat &amp; deneme</span>
+  </div>
+  <div class="legend">
+    <span class="lineinfo"><svg class="mini"><line x1="0" y1="5" x2="28" y2="5" stroke="var(--border)" stroke-width="1.2"/></svg>Aynı/komşu bölüm etkisi</span>
+    <span class="lineinfo"><svg class="mini"><line x1="0" y1="5" x2="28" y2="5" stroke="var(--purple-bd)" stroke-width="1.3" stroke-dasharray="5 4"/></svg>Bölümler arası uzun yankı</span>
+  </div>
+</header>
+<div class="scroll"><div id="map"></div></div>
+<div id="navPanel" class="nav-panel">
+  <button id="navToggle" class="nav-toggle">🧭</button>
+  <div id="navBody" class="nav-body">
+    <div class="nav-row-label">Bölüm</div>
+    <div class="nav-row" id="navEras"></div>
+    <div class="nav-row-label">Katman</div>
+    <div class="nav-row" id="navLayers"></div>
+  </div>
+</div>
+<script>
+const western = [["I. İnsanı Anlamak", "Antik Yunan-Roma · MÖ 5.–MS 2.yy", [["Sokrates'in Savunması", "Platon", "Mutlaka Oku", "-", "felsefe"], ["Nikomakhos'a Etik", "Aristoteles", "Mutlaka Oku", "Sokrates'in Savunması", "felsefe"], ["Menoikeus'a Mektup", "Epikuros", "Mutlaka Oku", "Nikomakhos'a Etik", "felsefe"], ["El Kitabı", "Epiktetos", "Mutlaka Oku", "-", "felsefe"], ["Ahlak Mektupları", "Seneca", "Mutlaka Oku", "El Kitabı", "felsefe"], ["Kendime Düşünceler", "Marcus Aurelius", "Mutlaka Oku", "Ahlak Mektupları", "felsefe"], ["Peloponez Savaşı Tarihi", "Thukydides", "Mutlaka Oku", "Tarihler", "tarih"], ["Kriton", "Platon", "Önerilir", "Sokrates'in Savunması", "felsefe"], ["Söylevler", "Epiktetos", "Önerilir", "El Kitabı", "felsefe"], ["Tarihler", "Herodotos", "Önerilir", "-", "tarih"], ["Phaidon", "Platon", "Derinleşme", "Kriton", "felsefe"]]], ["II. Devlet ve Toplum", "Antik Yunan-Roma · MÖ 4.–MS 2.yy", [["Devlet", "Platon", "Mutlaka Oku", "Phaidon", "felsefe"], ["Politika", "Aristoteles", "Mutlaka Oku", "Nikomakhos'a Etik", "felsefe"], ["Devlet Üzerine", "Marcus Tullius Cicero", "Mutlaka Oku", "Politika", "felsefe"], ["Yıllıklar", "Tacitus", "Mutlaka Oku", "Roma Tarihi", "tarih"], ["On İki Caesar'ın Yaşamı", "Suetonius", "Önerilir", "-", "tarih"], ["Yasalar", "Platon", "Derinleşme", "Devlet", "felsefe"], ["Roma Tarihi", "Titus Livius", "Derinleşme", "-", "tarih"]]], ["III. İnanç ve Orta Çağ", "Orta Çağ · MS 4.–15.yy", [["İtiraflar", "Augustinus", "Mutlaka Oku", "Kendime Düşünceler", "felsefe"], ["Felsefenin Tesellisi", "Boethius", "Mutlaka Oku", "İtiraflar", "felsefe"], ["Summa Theologica", "Thomas Aquinas", "Mutlaka Oku", "Aristoteles", "felsefe"], ["Tanrı Devleti", "Augustinus", "Derinleşme", "İtiraflar", "felsefe"]]], ["IV. Rönesans ve Güç", "Rönesans-Reform · 15.–16.yy", [["Deliliğe Övgü", "Erasmus", "Mutlaka Oku", "-", "felsefe"], ["Prens", "Niccolò Machiavelli", "Mutlaka Oku", "Politika", "siyaset"], ["Ütopya", "Thomas More", "Mutlaka Oku", "Devlet", "felsefe"], ["Denemeler", "Michel de Montaigne", "Mutlaka Oku", "İtiraflar", "sanat"], ["Söylevler (Machiavelli)", "Niccolò Machiavelli", "Önerilir", "Prens", "siyaset"]]], ["V. Toplum Sözleşmesi", "Aydınlanma · 17.–18.yy", [["Leviathan", "Thomas Hobbes", "Mutlaka Oku", "Prens", "siyaset"], ["Yönetim Üzerine İki İnceleme", "John Locke", "Mutlaka Oku", "Leviathan", "siyaset"], ["Etika", "Baruch Spinoza", "Mutlaka Oku", "Leviathan", "felsefe"], ["Kanunların Ruhu", "Montesquieu", "Mutlaka Oku", "Locke", "siyaset"], ["Toplum Sözleşmesi", "Jean-Jacques Rousseau", "Mutlaka Oku", "Locke", "siyaset"], ["Aydınlanma Nedir?", "Immanuel Kant", "Mutlaka Oku", "Rousseau", "felsefe"], ["Yöntem Üzerine Konuşma", "René Descartes", "Önerilir", "Montaigne", "felsefe"]]], ["VI. Kapitalizm ve Sanayi", "Kapitalizm/Sanayi · 18.–19.yy", [["Ulusların Zenginliği", "Adam Smith", "Mutlaka Oku", "Locke", "siyaset"], ["Amerika'da Demokrasi", "Alexis de Tocqueville", "Mutlaka Oku", "Rousseau", "siyaset"], ["Özgürlük Üzerine", "John Stuart Mill", "Mutlaka Oku", "Tocqueville", "siyaset"], ["Tinin Görüngübilimi", "Georg W. F. Hegel", "Mutlaka Oku", "Kant", "felsefe"], ["Komünist Manifesto", "Karl Marx & Friedrich Engels", "Mutlaka Oku", "Adam Smith, Hegel", "siyaset"], ["Protestan Ahlakı", "Max Weber", "Mutlaka Oku", "Marx", "siyaset"], ["Kapital", "Karl Marx", "Derinleşme", "Komünist Manifesto", "siyaset"]]], ["VII. Modern İnsan Krizi", "Modern Kriz · 1850–1939", [["İstenç ve Tasavvur Olarak Dünya", "Arthur Schopenhauer", "Mutlaka Oku", "Kant", "felsefe"], ["Korku ve Titreme", "Søren Kierkegaard", "Mutlaka Oku", "Hegel", "felsefe"], ["Ahlakın Soykütüğü", "Friedrich Nietzsche", "Mutlaka Oku", "Mill, Kierkegaard, Schopenhauer", "felsefe"], ["Böyle Buyurdu Zerdüşt", "Friedrich Nietzsche", "Mutlaka Oku", "Ahlakın Soykütüğü", "felsefe"], ["Düşlerin Yorumu", "Sigmund Freud", "Mutlaka Oku", "Nietzsche", "davranis"], ["Uygarlığın Huzursuzluğu", "Sigmund Freud", "Mutlaka Oku", "Düşlerin Yorumu", "davranis"]]], ["VIII. Totalitarizm ve Varoluş", "Totalitarizm/Varoluş · 1914–1989", [["Totalitarizmin Kaynakları", "Hannah Arendt", "Mutlaka Oku", "Tocqueville", "siyaset"], ["Eichmann Kudüs'te", "Hannah Arendt", "Mutlaka Oku", "Totalitarizmin Kaynakları", "siyaset"], ["İki Özgürlük Kavramı", "Isaiah Berlin", "Mutlaka Oku", "Mill", "siyaset"], ["Varlık ve Zaman", "Martin Heidegger", "Mutlaka Oku", "Nietzsche", "felsefe"], ["Sisifos Söyleni", "Albert Camus", "Mutlaka Oku", "Nietzsche", "felsefe"], ["İkinci Cinsiyet", "Simone de Beauvoir", "Mutlaka Oku", "Heidegger", "felsefe"], ["Açık Toplum ve Düşmanları", "Karl Popper", "Önerilir", "Platon", "siyaset"], ["Aydınlanmanın Diyalektiği", "Theodor Adorno & Max Horkheimer", "Önerilir", "Weber, Freud", "felsefe"], ["Gulag Takımadaları", "Aleksandr Soljenitsin", "Derinleşme", "Eichmann Kudüs'te", "tarih"], ["Varlık ve Hiçlik", "Jean-Paul Sartre", "Derinleşme", "Heidegger", "felsefe"]]], ["IX. Karar ve Belirsizlik", "Çağdaş Dünya · 1950–günümüz", [["Yönetsel Davranış", "Herbert A. Simon", "Mutlaka Oku", "-", "davranis"], ["Bir Adalet Teorisi", "John Rawls", "Mutlaka Oku", "Toplum Sözleşmesi, Kant", "siyaset"], ["Hapishanenin Doğuşu", "Michel Foucault", "Mutlaka Oku", "Nietzsche", "felsefe"], ["Hızlı ve Yavaş Düşünme", "Daniel Kahneman", "Mutlaka Oku", "Freud, Simon", "davranis"], ["Dürtme", "Richard H. Thaler & Cass R. Sunstein", "Mutlaka Oku", "Kahneman", "davranis"], ["Siyah Kuğu", "Nassim Nicholas Taleb", "Mutlaka Oku", "Kahneman", "davranis"], ["Antikırılgan", "Nassim Nicholas Taleb", "Mutlaka Oku", "Siyah Kuğu", "davranis"], ["Akıldışı Ama Öngörülebilir", "Dan Ariely", "Önerilir", "Kahneman", "davranis"], ["Skin in the Game", "Nassim Nicholas Taleb", "Önerilir", "Antikırılgan", "davranis"], ["Noise", "Kahneman, Sibony, Sunstein", "Önerilir", "Kahneman", "davranis"], ["Thinking in Bets", "Annie Duke", "Önerilir", "Noise", "davranis"], ["The Undoing Project", "Michael Lewis", "Önerilir", "Kahneman", "davranis"]]], ["X. Estetik ve Sanat", "Estetik/Sanat · 1400–günümüz", [["Sanatın Öyküsü", "E. H. Gombrich", "Mutlaka Oku", "-", "sanat"], ["Görme Biçimleri", "John Berger", "Mutlaka Oku", "Sanatın Öyküsü", "sanat"], ["Fotoğraf Üzerine", "Susan Sontag", "Mutlaka Oku", "Berger", "sanat"], ["Sanat Yapıtı", "Walter Benjamin", "Mutlaka Oku", "Berger", "felsefe"], ["Başkasının Acısına Bakmak", "Susan Sontag", "Önerilir", "Fotoğraf Üzerine", "sanat"], ["Simulakrlar ve Simülasyon", "Jean Baudrillard", "Derinleşme", "Benjamin", "felsefe"]]]];
+const akim = ["Stoacılık, Epikürosçuluk, Kynisizm", "Siyasi Realizm, Cumhuriyetçilik", "Skolastisizm, Augustinusçuluk", "Hümanizm, Siyasi Realizm (Machiavellizm)", "Rasyonalizm, Empirizm, Toplumsal Sözleşme Kuramı", "Liberalizm, Ütilitarizm, Marksizm", "Nihilizm, Psikanaliz, Edebi Realizm", "Varoluşçuluk, Eleştirel Teori (Frankfurt Okulu)", "Davranışsal İktisat, Karar Teorisi", "Modernizm, Postmodernizm"];
+const doguAkim = {"0": "Konfüçyüsçülük, Mohizm", "1": "Taoculuk (Daoculuk)", "2": "Meşşailik, İşrakilik, Tasavvuf", "3": "Umran (Uygarlık) Kuramı — İbn Haldun", "4": "Neo-Sufizm, Osmanlı Ansiklopedizmi", "6": "Hint Rönesansı, İslam Modernizmi", "8": "Post-kolonyal Teori"};
+const olaylar = ["Sokrates'in idamı, MÖ 399", "Augustus İmparator oldu, MÖ 27", "İstanbul'un Fethi, 1453", "Reform başlar (95 Tez), 1517", "Amerikan Bağımsızlık Bildirgesi, 1776", "Fransız Devrimi, 1789", "Darwin — Türlerin Kökeni, 1859", "I. Dünya Savaşı, 1914 · Berlin Duvarı yıkılır, 1989", "Küresel Finansal Kriz, 2008", "Fotoğrafın icadı, 1839"];
+const dogu = [[0, "Analektler (Lunyu)", "Konfüçyüs", "MÖ 5. yy"], [0, "Mengzi", "Mengzi (Mencius)", "MÖ 4. yy"], [0, "Xunzi", "Xunzi", "MÖ 3. yy"], [0, "Mozi", "Mozi", "MÖ 5. yy"], [1, "Tao Te Ching", "Lao Tzu", "MÖ 4. yy"], [1, "Zhuangzi", "Zhuangzi", "MÖ 4. yy"], [1, "Liezi", "Liezi", "MÖ 4. yy"], [2, "Kitabu'ş-Şifa (Seçmeler)", "İbn Sina", "11. yy"], [2, "Filozofların Tutarsızlığı", "Gazali", "11. yy"], [2, "Tutarsızlığın Tutarsızlığı", "İbn Rüşd", "12. yy"], [2, "Mesnevi", "Mevlana Celaleddin Rumi", "13. yy"], [2, "El-Medinetü'l-Fazıla", "Farabi", "10. yy"], [2, "Felsefe Üzerine", "Kindi", "9. yy"], [2, "Hikmetü'l-İşrak", "Sühreverdi", "12. yy"], [2, "Fusus al-Hikam", "İbn Arabi", "13. yy"], [2, "Rubailer", "Ömer Hayyam", "11-12. yy"], [2, "Siyasetname", "Nizamülmülk", "11. yy"], [3, "Mukaddime", "İbn Haldun", "14. yy"], [3, "Ahlak-ı Alai", "Kınalızade Ali Çelebi", "16. yy"], [4, "Huccetullahi'l-Baliğa", "Şah Veliyyullah Dihlevi", "18. yy"], [4, "Mizanü'l-Hakk", "Kâtip Çelebi", "17. yy"], [6, "Gitanjali", "Rabindranath Tagore", "1910"], [6, "İslam'da Dini Düşüncenin Yeniden İnşası", "Muhammed İkbal", "1930"], [8, "Şarkiyatçılık", "Edward Said", "1978"], [8, "Adaletin Fikri", "Amartya Sen", "2009"], [0, "Upanişadlar", "Anonim", "MÖ 8.-2. yy"], [0, "Bhagavad Gita", "Anonim (Vyasa'ya atfedilir)", "MÖ 2. yy"], [1, "Dhammapada", "Buda'nın öğretileri (derleme)", "MÖ 3. yy"], [1, "Mülamadhyamakakarika", "Nagarjuna", "MS 2. yy"]];
+const eraMusic = [[["Seikilos Epitaphı", "MÖ 1. yy"], ["Delphi Apollon İlahileri", "MÖ 2. yy"], ["Mesomedes — Nemesis İlahisi", "MS 2. yy"], ["Sappho'nun lir eşliğindeki şiirleri", "MÖ 7. yy"], ["Pindaros'un Zafer Odları", "MÖ 5. yy"], ["Orfik İlahiler", "Antik Yunan"], ["Terpandros'un kithara nomosları", "MÖ 7. yy"], ["Aristoksenos — Harmonik Öğeler", "MÖ 4. yy"]], [["Roma tuba ve cornu askeri müziği", "Antik Roma"], ["Hydraulis (su orgu) gösterileri", "Antik Roma"], ["Bacchanalia âyin müziği", "Antik Roma"], ["Roma tiyatrosu pandomim müziği", "Antik Roma"], ["Yunan tragedyalarının Roma icraları", "Antik Roma"], ["Klaudios Ptolemaios — Harmonika", "MS 2. yy"], ["Seneca tragedyalarının koro müziği", "MS 1. yy"], ["Roma zafer alayı marşları", "Antik Roma"]], [["O Frondens Virga", "Hildegard von Bingen"], ["Gregoryen ilahi geleneği", "Orta Çağ"], ["Notre Dame Okulu", "Léonin & Pérotin"], ["Carmina Burana (derleme)", "13. yy"], ["Messe de Nostre Dame", "Guillaume de Machaut"], ["Bernart de Ventadorn", "Truvadur geleneği"], ["Ambrosian ilahileri", "Erken Orta Çağ"], ["Codex Calixtinus", "12. yy çoksesliliği"]], [["Missa Pange Lingua", "Josquin des Prez"], ["Missa Papae Marcelli", "Palestrina"], ["Spem in Alium", "Thomas Tallis"], ["Motetler", "Orlando di Lasso"], ["Ein feste Burg", "Martin Luther"], ["Erken madrigaller", "Claudio Monteverdi"], ["Mass for Four Voices", "William Byrd"], ["Venedik okulu eserleri", "Giovanni Gabrieli"]], [["Brandenburg Konçertoları", "J.S. Bach"], ["Messiah", "Handel"], ["Dört Mevsim", "Vivaldi"], ["Hippolyte et Aricie", "Rameau"], ["Erken senfoniler", "C.P.E. Bach"], ["Erken senfoniler", "Haydn"], ["Stabat Mater", "Pergolesi"], ["Tafelmusik", "Telemann"]], [["9. Senfoni", "Beethoven"], ["Nabucco — Va, pensiero", "Verdi"], ["Ring döngüsü", "Wagner"], ["1. Senfoni", "Brahms"], ["Piyano eserleri", "Chopin"], ["Symphonie Fantastique", "Berlioz"], ["Yeni Dünyadan Senfoni", "Dvořák"], ["Erken senfoniler", "Mahler"]], [["Bahar Ayini", "Stravinsky, 1913"], ["Prélude à l'après-midi d'un faune", "Debussy"], ["Atonal dönem", "Schoenberg"], ["9. Senfoni", "Mahler"], ["Bolero", "Ravel"], ["Halk müziği derlemeleri", "Bartók"], ["Gymnopédies", "Satie"], ["Salome", "Richard Strauss"]], [["7. Senfoni \"Leningrad\"", "Şostakoviç"], ["Romeo ve Juliet balesi", "Prokofiev"], ["Üç Kuruşluk Opera", "Weill & Brecht"], ["Carmina Burana", "Carl Orff"], ["5. Senfoni", "Şostakoviç"], ["War Requiem", "Britten"], ["Hiroşima Kurbanlarına Ağıt", "Penderecki"], ["Sovyet dönemi eserleri", "Alfred Schnittke"]], [["Different Trains", "Steve Reich"], ["Minimalist eserler", "Philip Glass"], ["Music for Airports", "Brian Eno"], ["Nixon in China", "John Adams"], ["Spiegel im Spiegel", "Arvo Pärt"], ["OK Computer", "Radiohead"], ["Deneysel albümler", "Björk"], ["Sleep", "Max Richter"]], [["4'33\"", "John Cage"], ["Sanat çevresiyle ilişkisi", "Erik Satie"], ["Orkestra eserleri", "Pierre Boulez"], ["Trans-Europe Express", "Kraftwerk"], ["Görsel sanatla ilişkisi", "Brian Eno"], ["Ses sanatı", "Yoko Ono"], ["Performans müziği", "Meredith Monk"], ["O Superman", "Laurie Anderson"]]];
+const eraArch = [[["Parthenon", "Atina", "Antik Yunan (Dor Düzeni)", "https://en.wikipedia.org/wiki/Parthenon"], ["Delphi Apollon Tapınağı", "Delphi", "Antik Yunan (Dor Düzeni)", "https://en.wikipedia.org/wiki/Temple_of_Apollo_(Delphi)"], ["Epidauros Tiyatrosu", "Epidauros", "Antik Yunan", "https://en.wikipedia.org/wiki/Theatre_of_Epidaurus"], ["Erechtheion", "Atina", "Antik Yunan (İon Düzeni)", "https://en.wikipedia.org/wiki/Erechtheion"], ["Zeus Tapınağı", "Olympia", "Antik Yunan (Dor Düzeni)", "https://en.wikipedia.org/wiki/Temple_of_Zeus,_Olympia"], ["Poseidon Tapınağı", "Sounion", "Antik Yunan", "https://en.wikipedia.org/wiki/Temple_of_Poseidon,_Sounion"], ["Agora", "Atina", "Antik Yunan Kentsel Mimarisi", "https://en.wikipedia.org/wiki/Agora_of_Athens"], ["Knossos Sarayı", "Girit", "Minos Mimarisi", "https://en.wikipedia.org/wiki/Knossos"]], [["Roma Pantheon", "Roma", "Antik Roma", "https://en.wikipedia.org/wiki/Pantheon,_Rome"], ["Kolezyum", "Roma", "Antik Roma", "https://en.wikipedia.org/wiki/Colosseum"], ["Forum Romanum", "Roma", "Antik Roma", "https://en.wikipedia.org/wiki/Roman_Forum"], ["Pont du Gard", "Fransa", "Antik Roma Mühendisliği", "https://en.wikipedia.org/wiki/Pont_du_Gard"], ["Diocletianus Sarayı", "Split", "Geç Roma", "https://en.wikipedia.org/wiki/Diocletian%27s_Palace"], ["Hadrianus Villası", "Tivoli", "Antik Roma", "https://en.wikipedia.org/wiki/Hadrian%27s_Villa"], ["Celsus Kütüphanesi", "Efes", "Antik Roma", "https://en.wikipedia.org/wiki/Library_of_Celsus"], ["Baalbek Tapınağı", "Lübnan", "Antik Roma", "https://en.wikipedia.org/wiki/Baalbek"]], [["Chartres Katedrali", "Fransa", "Gotik", "https://en.wikipedia.org/wiki/Chartres_Cathedral"], ["Notre-Dame de Paris", "Fransa", "Gotik", "https://en.wikipedia.org/wiki/Notre-Dame_de_Paris"], ["Köln Katedrali", "Almanya", "Gotik", "https://en.wikipedia.org/wiki/Cologne_Cathedral"], ["Canterbury Katedrali", "İngiltere", "Gotik", "https://en.wikipedia.org/wiki/Canterbury_Cathedral"], ["Milano Katedrali", "İtalya", "Gotik", "https://en.wikipedia.org/wiki/Milan_Cathedral"], ["Ayasofya", "İstanbul", "Bizans", "https://en.wikipedia.org/wiki/Hagia_Sophia"], ["San Marco Bazilikası", "Venedik", "Bizans-Roman", "https://en.wikipedia.org/wiki/St_Mark%27s_Basilica"], ["Mont Saint-Michel", "Fransa", "Gotik-Roman", "https://en.wikipedia.org/wiki/Mont-Saint-Michel"]], [["Floransa Katedrali Kubbesi", "Brunelleschi", "Rönesans", "https://en.wikipedia.org/wiki/Florence_Cathedral"], ["San Pietro Bazilikası", "Vatikan", "Rönesans-Barok Geçişi", "https://en.wikipedia.org/wiki/St._Peter%27s_Basilica"], ["Palazzo Medici Riccardi", "Floransa", "Rönesans", "https://en.wikipedia.org/wiki/Palazzo_Medici_Riccardi"], ["Tempietto", "Bramante", "Rönesans", "https://en.wikipedia.org/wiki/Tempietto"], ["Villa Rotonda", "Palladio", "Rönesans", "https://en.wikipedia.org/wiki/Villa_Rotonda"], ["Uffizi Sarayı", "Floransa", "Rönesans", "https://en.wikipedia.org/wiki/Uffizi_Gallery"], ["Château de Chambord", "Fransa", "Fransız Rönesansı", "https://en.wikipedia.org/wiki/Château_de_Chambord"], ["El Escorial", "İspanya", "Rönesans", "https://en.wikipedia.org/wiki/El_Escorial"]], [["Sanssouci Sarayı", "Potsdam — Friedrich & Voltaire", "Rokoko", "https://en.wikipedia.org/wiki/Sanssouci"], ["Versay Sarayı", "Fransa", "Barok", "https://en.wikipedia.org/wiki/Palace_of_Versailles"], ["Zwinger Sarayı", "Dresden", "Barok-Rokoko", "https://en.wikipedia.org/wiki/Zwinger_(Dresden)"], ["Würzburg Sarayı", "Almanya", "Rokoko", "https://en.wikipedia.org/wiki/Würzburg_Residence"], ["Peterhof Sarayı", "Rusya", "Barok", "https://en.wikipedia.org/wiki/Peterhof_Palace"], ["Schönbrunn Sarayı", "Viyana", "Rokoko", "https://en.wikipedia.org/wiki/Schönbrunn_Palace"], ["St. Paul Katedrali", "Londra", "İngiliz Barok", "https://en.wikipedia.org/wiki/St_Paul%27s_Cathedral"], ["Karlskirche", "Viyana", "Barok", "https://en.wikipedia.org/wiki/Karlskirche"]], [["Kristal Saray", "Londra, 1851", "Sanayi Dönemi Mimarisi", "https://en.wikipedia.org/wiki/Crystal_Palace"], ["Eyfel Kulesi", "Paris", "Demir Mimarisi", "https://en.wikipedia.org/wiki/Eiffel_Tower"], ["Brooklyn Köprüsü", "New York", "Sanayi Mühendisliği", "https://en.wikipedia.org/wiki/Brooklyn_Bridge"], ["St. Pancras İstasyonu", "Londra", "Viktorya Gotiği", "https://en.wikipedia.org/wiki/St_Pancras_railway_station"], ["Galleria Vittorio Emanuele II", "Milano", "Demir-Cam Mimarisi", "https://en.wikipedia.org/wiki/Galleria_Vittorio_Emanuele_II"], ["Fabrika mimarisi", "Manchester", "Sanayi Devrimi", "https://en.wikipedia.org/wiki/Cotton_mill"], ["Palais Garnier", "Paris", "Beaux-Arts", "https://en.wikipedia.org/wiki/Palais_Garnier"], ["Bibliothèque Sainte-Geneviève", "Paris", "Demir-Kütüphane Mimarisi", "https://en.wikipedia.org/wiki/Bibliothèque_Sainte-Geneviève"]], [["Sagrada Família", "Gaudí", "Art Nouveau", "https://en.wikipedia.org/wiki/Sagrada_Família"], ["Casa Batlló", "Gaudí", "Art Nouveau", "https://en.wikipedia.org/wiki/Casa_Batlló"], ["Secession Binası", "Viyana", "Viyana Secession", "https://en.wikipedia.org/wiki/Secession_Building"], ["Metro Paris girişleri", "Hector Guimard", "Art Nouveau", "https://en.wikipedia.org/wiki/Hector_Guimard"], ["Majolikahaus", "Otto Wagner", "Viyana Secession", "https://en.wikipedia.org/wiki/Majolikahaus"], ["Glasgow Sanat Okulu", "Mackintosh", "Art Nouveau", "https://en.wikipedia.org/wiki/Glasgow_School_of_Art"], ["Hôtel Tassel", "Victor Horta", "Art Nouveau", "https://en.wikipedia.org/wiki/Hôtel_Tassel"], ["Park Güell", "Gaudí", "Art Nouveau", "https://en.wikipedia.org/wiki/Park_Güell"]], [["Bauhaus binası", "Dessau", "Modernizm", "https://en.wikipedia.org/wiki/Bauhaus-Dessau"], ["Villa Savoye", "Le Corbusier", "Modernizm", "https://en.wikipedia.org/wiki/Villa_Savoye"], ["Barcelona Pavyonu", "Mies van der Rohe", "Modernizm", "https://en.wikipedia.org/wiki/Barcelona_Pavilion"], ["Fallingwater", "Frank Lloyd Wright", "Organik Modernizm", "https://en.wikipedia.org/wiki/Fallingwater"], ["Seagram Binası", "Mies van der Rohe", "Uluslararası Üslup", "https://en.wikipedia.org/wiki/Seagram_Building"], ["Chandigarh", "Le Corbusier", "Brütalizm", "https://en.wikipedia.org/wiki/Chandigarh_Capitol_Complex"], ["Sidney Opera Binası", "Utzon", "Modernist Ekspresyonizm", "https://en.wikipedia.org/wiki/Sydney_Opera_House"], ["Habitat 67", "Montreal", "Brütalizm", "https://en.wikipedia.org/wiki/Habitat_67"]], [["Guggenheim Müzesi", "Bilbao, Gehry", "Dekonstrüktivizm", "https://en.wikipedia.org/wiki/Guggenheim_Museum_Bilbao"], ["Walt Disney Concert Hall", "Los Angeles, Gehry", "Dekonstrüktivizm", "https://en.wikipedia.org/wiki/Walt_Disney_Concert_Hall"], ["Vitra Design Müzesi", "Frank Gehry", "Dekonstrüktivizm", "https://en.wikipedia.org/wiki/Vitra_Design_Museum"], ["Jewish Museum", "Berlin, Libeskind", "Dekonstrüktivizm", "https://en.wikipedia.org/wiki/Jewish_Museum_Berlin"], ["Dancing House", "Prag, Gehry", "Dekonstrüktivizm", "https://en.wikipedia.org/wiki/Dancing_House"], ["MAXXI Müzesi", "Roma, Zaha Hadid", "Parametrik Mimari", "https://en.wikipedia.org/wiki/MAXXI"], ["Heydar Aliyev Merkezi", "Bakü, Zaha Hadid", "Parametrik Mimari", "https://en.wikipedia.org/wiki/Heydar_Aliyev_Center"], ["CCTV Binası", "Pekin, Koolhaas", "Dekonstrüktivizm", "https://en.wikipedia.org/wiki/CCTV_Headquarters"]], [["Centre Pompidou", "Piano & Rogers", "Yüksek Teknoloji", "https://en.wikipedia.org/wiki/Centre_Pompidou"], ["Lloyd's Binası", "Londra, Rogers", "Yüksek Teknoloji", "https://en.wikipedia.org/wiki/Lloyd%27s_building"], ["HSBC Binası", "Hong Kong, Foster", "Yüksek Teknoloji", "https://en.wikipedia.org/wiki/HSBC_Main_Building_(Hong_Kong)"], ["Millau Viyadüğü", "Fransa, Foster", "Yüksek Teknoloji Mühendisliği", "https://en.wikipedia.org/wiki/Millau_Viaduct"], ["Şangay Kulesi", "Çin", "Çağdaş Gökdelen", "https://en.wikipedia.org/wiki/Shanghai_Tower"], ["30 St Mary Axe", "Londra, Foster", "Yüksek Teknoloji", "https://en.wikipedia.org/wiki/30_St_Mary_Axe"], ["Ulusal Stadyum (Kuş Yuvası)", "Pekin, Herzog & de Meuron", "Çağdaş", "https://en.wikipedia.org/wiki/Beijing_National_Stadium"], ["Louvre Abu Dabi", "Jean Nouvel", "Çağdaş", "https://en.wikipedia.org/wiki/Louvre_Abu_Dhabi"]]];
+const doguMusic = {"0": [["Guqin müziği", "Konfüçyüsçü gelenek"], ["Yayue (ayin müziği)", "Zhou Hanedanlığı"], ["Shi Jing ezgileri", "Şiirler Kitabı"], ["Konfüçyüs'ün ritüel müzik öğretisi", "MÖ 5. yy"], ["Guzheng geleneği", "Antik Çin"], ["Saray müziği", "Zhou Hanedanlığı"], ["Bianzhong (bronz çan takımları)", "Antik Çin"], ["Xiao (dikey flüt) geleneği", "Antik Çin"]], "1": [["Guqin müziği", "Taoist bağlam"], ["Daoyue (âyin müziği)", "Taoist gelenek"], ["Zhuangzi'nin doğa temalı şiirleri", "MÖ 4. yy"], ["Meditasyon çanları", "Taoist gelenek"], ["Dizi (yatay flüt) geleneği", "Antik Çin"], ["Tapınak korosu", "Taoist gelenek"], ["Yin-yang temalı enstrümantal müzik", "Taoist gelenek"], ["Dağ manastırı sessizlik pratiği", "Taoist gelenek"]], "2": [["Ney taksimi", "Mevlevi gelenek"], ["Mevlevi âyini", "Konya"], ["Klasik Osmanlı tasavvuf müziği", "Osmanlı"], ["Endülüs Nuba geleneği", "Endülüs"], ["Kudüm ve rebap eşliği", "Mevlevi âyini"], ["Semazen müziği", "Mevlevi gelenek"], ["Endülüs Emevi saray müziği", "Endülüs"], ["Fars klasik müziği (Dastgah)", "İran"]], "3": [["Kuzey Afrika Mağrib müziği", "İbn Haldun dönemi"], ["Endülüs Nuba geleneği", "Mağrib'e taşınan"], ["Tunus klasik müziği (Ma'luf)", "Tunus"], ["Kahire Memlük saray müziği", "Kahire"], ["Sufî zikir müziği", "Mağrib"], ["Ud ve darbuka geleneği", "Mağrib"], ["Tekke müziği", "Kayrevan"], ["Memlük dönemi askeri müziği", "Kahire"]]};
+const doguArch = {"0": [["Konfüçyüs Tapınağı", "Qufu", "Çin Tapınak Mimarisi", "https://en.wikipedia.org/wiki/Temple_of_Confucius,_Qufu"], ["Cennet Tapınağı", "Pekin", "Çin İmparatorluk Mimarisi", "https://en.wikipedia.org/wiki/Temple_of_Heaven"], ["Yasak Şehir", "Pekin", "Çin Saray Mimarisi", "https://en.wikipedia.org/wiki/Forbidden_City"], ["Konfüçyüs Malikanesi", "Qufu", "Çin Konut Mimarisi", "https://en.wikipedia.org/wiki/Kong_Family_Mansion"], ["Çin Seddi (erken kısımlar)", "Çin", "Askeri Mimari", "https://en.wikipedia.org/wiki/Great_Wall_of_China"], ["Ritüel tapınaklar", "Zhou Hanedanlığı", "Çin Tapınak Mimarisi", "https://en.wikipedia.org/wiki/Zhou_dynasty"], ["Geleneksel tapınaklar", "Shandong", "Çin Tapınak Mimarisi", "https://en.wikipedia.org/wiki/Shandong"], ["Ecdat tapınakları (zumiao)", "Antik Çin", "Çin Tapınak Mimarisi", "https://en.wikipedia.org/wiki/Ancestral_shrine"]], "1": [["Wudang Dağı manastırları", "Çin", "Taoist Dağ Mimarisi", "https://en.wikipedia.org/wiki/Wudang_Mountains"], ["Baiyun Guan", "Pekin", "Taoist Mimarisi", "https://en.wikipedia.org/wiki/Baiyun_Guan"], ["Qingyang Gong", "Chengdu", "Taoist Mimarisi", "https://en.wikipedia.org/wiki/Qingyang_Palace"], ["Louguantai", "Shaanxi", "Taoist Mimarisi", "https://en.wikipedia.org/wiki/Louguantai"], ["Mağara tapınakları", "Çin", "Taoist Mimarisi", "https://en.wikipedia.org/wiki/Chinese_temple_architecture"], ["Longhu Dağı tapınakları", "Çin", "Taoist Mimarisi", "https://en.wikipedia.org/wiki/Longhu_Mountain"], ["Bahçe mimarisi", "Çin", "Taoist Mimarisi", "https://en.wikipedia.org/wiki/Chinese_garden"], ["Yin-yang planlı tapınaklar", "Çin", "Taoist Mimarisi", "https://en.wikipedia.org/wiki/Yin_and_yang"]], "2": [["Elhamra Sarayı", "Endülüs", "Endülüs / Mağrib Üslubu", "https://en.wikipedia.org/wiki/Alhambra"], ["Kurtuba Ulu Camii", "İspanya", "Endülüs Mimarisi", "https://en.wikipedia.org/wiki/Mezquita-Catedral_de_Córdoba"], ["Mevlana Türbesi", "Konya", "Selçuklu Mimarisi", "https://en.wikipedia.org/wiki/Mevlâna_Museum"], ["İnce Minareli Medrese", "Konya", "Selçuklu Mimarisi", "https://en.wikipedia.org/wiki/İnce_Minaret_Medrese"], ["Mir-i Arab Medresesi", "Buhara", "Orta Asya İslam Mimarisi", "https://en.wikipedia.org/wiki/Miri_Arab_Madrasah"], ["Kayrevan Ulu Camii", "Tunus", "Erken İslam Mimarisi", "https://en.wikipedia.org/wiki/Great_Mosque_of_Kairouan"], ["Nizamiye Medresesi", "Bağdat", "Selçuklu Mimarisi", "https://en.wikipedia.org/wiki/Nizamiyya"], ["Gırnata Medresesi", "Endülüs", "Endülüs Mimarisi", "https://en.wikipedia.org/wiki/Madrasa"]], "3": [["Sultan Hasan Camii", "Kahire", "Memlük Üslubu", "https://en.wikipedia.org/wiki/Mosque-Madrassa_of_Sultan_Hassan"], ["İbn Tolun Camii", "Kahire", "Erken İslam Mimarisi", "https://en.wikipedia.org/wiki/Mosque_of_Ibn_Tulun"], ["Tunus Medinesi", "Tunus", "Mağrib Mimarisi", "https://en.wikipedia.org/wiki/Medina_of_Tunis"], ["Kalavun Külliyesi", "Kahire", "Memlük Üslubu", "https://en.wikipedia.org/wiki/Complex_of_Qalawun"], ["Karaviyyin Camii", "Fas", "Mağrib Mimarisi", "https://en.wikipedia.org/wiki/University_of_al-Qarawiyyin"], ["Medreseler", "Bijaya", "Mağrib Mimarisi", "https://en.wikipedia.org/wiki/Béjaïa"], ["Ulu Cami", "Tlemcen", "Mağrib Mimarisi", "https://en.wikipedia.org/wiki/Great_Mosque_of_Tlemcen"], ["Ezher Camii çevresi", "Kahire", "Memlük Üslubu", "https://en.wikipedia.org/wiki/Al-Azhar_Mosque"]]};
+const romanLayer = [[["İlyada", "Homeros"], ["Odysseia", "Homeros"], ["Oidipus Kral", "Sophokles"], ["Antigone", "Sophokles"], ["Medea", "Euripides"], ["Kral Oidipus Kolonos'ta", "Sophokles"], ["Altın Eşek", "Apuleius"], ["Satyricon", "Petronius"]], [["Ben, Claudius", "Robert Graves"], ["Augustus", "John Williams"], ["Hadrianus'un Anıları", "Marguerite Yourcenar"], ["Julius Caesar", "William Shakespeare"], ["Antonius ve Kleopatra", "William Shakespeare"], ["Coriolanus", "William Shakespeare"], ["Spartaküs", "Howard Fast"], ["Ben-Hur", "Lew Wallace"]], [["Gülün Adı", "Umberto Eco"], ["Decameron", "Giovanni Boccaccio"], ["İlahi Komedya", "Dante Alighieri"], ["Quo Vadis", "Henryk Sienkiewicz"], ["Canterbury Hikâyeleri", "Geoffrey Chaucer"], ["Baudolino", "Umberto Eco"], ["İvanhoe", "Walter Scott"], ["Tristan ve Isolde", "Joseph Bédier"]], [["Wolf Hall", "Hilary Mantel"], ["Bring Up the Bodies", "Hilary Mantel"], ["The Mirror and the Light", "Hilary Mantel"], ["Hamlet", "William Shakespeare"], ["Kral Lear", "William Shakespeare"], ["Otello", "William Shakespeare"], ["Romeo ve Juliet", "William Shakespeare"], ["Doktor Faustus", "Christopher Marlowe"]], [["Gulliver'in Gezileri", "Jonathan Swift"], ["Robinson Crusoe", "Daniel Defoe"], ["Candide", "Voltaire"], ["İki Şehrin Hikâyesi", "Charles Dickens"], ["Tehlikeli İlişkiler", "Choderlos de Laclos"], ["Moll Flanders", "Daniel Defoe"], ["İkna", "Jane Austen"], ["Faust", "Johann Wolfgang von Goethe"]], [["Germinal", "Émile Zola"], ["Sefiller", "Victor Hugo"], ["Zor Zamanlar", "Charles Dickens"], ["Kuzey ve Güney", "Elizabeth Gaskell"], ["Oliver Twist", "Charles Dickens"], ["Middlemarch", "George Eliot"], ["Gurur Dünyası", "William Makepeace Thackeray"], ["Nana", "Émile Zola"]], [["Suç ve Ceza", "Fyodor Dostoyevski"], ["Karamazov Kardeşler", "Fyodor Dostoyevski"], ["Anna Karenina", "Lev Tolstoy"], ["Dava", "Franz Kafka"], ["Buddenbrooklar", "Thomas Mann"], ["Niteliksiz Adam", "Robert Musil"], ["Venedik'te Ölüm", "Thomas Mann"], ["Dönüşüm", "Franz Kafka"]], [["Yabancı", "Albert Camus"], ["Veba", "Albert Camus"], ["Bulantı", "Jean-Paul Sartre"], ["1984", "George Orwell"], ["Hayvan Çiftliği", "George Orwell"], ["Gün Ortasında Karanlık", "Arthur Koestler"], ["İvan Denisoviç'in Hayatında Bir Gün", "Aleksandr Soljenitsin"], ["Kadersizlik", "Imre Kertész"]], [["Solaris", "Stanisław Lem"], ["Dövüş Kulübü", "Chuck Palahniuk"], ["Beni Asla Bırakma", "Kazuo Ishiguro"], ["Klara ve Güneş", "Kazuo Ishiguro"], ["Beyaz Gürültü", "Don DeLillo"], ["Amerikan Sapığı", "Bret Easton Ellis"], ["Körlük", "José Saramago"], ["Çember", "Dave Eggers"]], [["Dorian Gray'in Portresi", "Oscar Wilde"], ["Benim Adım Kırmızı", "Orhan Pamuk"], ["Sanatçının Genç Bir Adam Olarak Portresi", "James Joyce"], ["İnci Küpeli Kız", "Tracy Chevalier"], ["Saka Kuşu", "Donna Tartt"], ["Sevdiğim Şey", "Siri Hustvedt"], ["Istırap ve Vecd", "Irving Stone"], ["Deniz", "John Banville"]]];
+const doguRoman = {"0": [["Kızıl Odanın Rüyası", "Cao Xueqin"]], "2": [["Binbir Gece Masalları", "Anonim"], ["Kelile ve Dimne", "Beydeba"], ["Hayy bin Yakzan", "İbn Tufeyl"], ["Mantıku't-Tayr", "Feridüddin Attar"]], "3": [["Leyla ile Mecnun", "Nizami Gencevi"]], "4": [["Muhayyelat", "Giritli Ali Aziz Efendi"]], "8": [["Uçurtma Avcısı", "Haled Hüseyni"], ["Bin Muhteşem Güneş", "Haled Hüseyni"], ["Kar", "Orhan Pamuk"]]};
+
+const ozetLinks = {
+  "Sokrates'in Savunması": "atlas_sokratesin_son_gunleri_atlas.html",
+  "Kriton": "atlas_sokratesin_son_gunleri_atlas.html",
+  "Phaidon": "atlas_sokratesin_son_gunleri_atlas.html",
+  "Nikomakhos'a Etik": "atlas_nikomakhosa_etik.html",
+  "El Kitabı": "atlas_epiktetos_el_kitabi.html",
+  "Oidipus Kral": "atlas_kral_oidipus.html",
+  "Antigone": "atlas_antigone.html"
+};
+const nedenKavram = {"Sokrates'in Savunması": {"neden": "Felsefi sorgulamanın bedelini göze alan bir hayatın savunması, felsefeyle tanışmanın en iyi yolu.", "kw": ["erdem", "sorgulanmamış hayat", "ölüm karşısında akıl"]}, "Nikomakhos'a Etik": {"neden": "İyi bir hayatın hazza değil, alışkanlıkla kazanılan erdeme dayandığını gösteren, Batı ahlak felsefesinin temel taşı.", "kw": ["eudaimonia", "erdem etiği", "altın orta"]}, "Menoikeus'a Mektup": {"neden": "Hazzı, kötü şöhretinin aksine ölçülü ve akılcı bir yaşam ilkesi olarak sunan metin.", "kw": ["haz", "ataraksia", "ölüm korkusu"]}, "El Kitabı": {"neden": "Elimizde olan ile olmayanı ayırmayı öğreten, pratik Stoacılığın en uygulanabilir el kitabı.", "kw": ["kontrol ikilemi", "kabullenme", "iç özgürlük"]}, "Ahlak Mektupları": {"neden": "Zenginlik, ölüm ve zaman üzerine, felsefeyi günlük hayata en çok yaklaştıran mektup formu.", "kw": ["zaman yönetimi", "ölüm meditasyonu", "erdem"]}, "Kendime Düşünceler": {"neden": "Mutlak güce sahip bir imparatorun iktidarı alçakgönüllülükle nasıl taşıdığını gösteren özel günlük.", "kw": ["iç disiplin", "kabullenme", "görev ahlakı"]}, "Peloponez Savaşı Tarihi": {"neden": "Gücün ve korkunun devletler arası ilişkileri nasıl belirlediğini anlatan, siyaset biliminin doğuş metni.", "kw": ["güç dengesi", "insan doğası", "siyasi realizm"]}, "Kriton": {"neden": "Yasaya itaatin bireysel çıkardan neden üstün tutulabileceğini, hapisten kaçmayı reddeden Sokrates üzerinden tartışan diyalog.", "kw": ["toplum sözleşmesi", "yasaya itaat", "vicdan"]}, "Söylevler": {"neden": "El Kitabı'nın arkasındaki ders notları, Stoacı pratiğin günlük tartışmalar içindeki hali.", "kw": ["özgür irade", "erdem", "kader"]}, "Tarihler": {"neden": "Tarih yazıcılığının doğuşunu, Doğu-Batı çatışmasının ilk büyük anlatısını gösteren eser.", "kw": ["kültürel karşılaştırma", "savaş", "merak"]}, "Phaidon": {"neden": "Ruhun ölümsüzlüğü tartışması, felsefenin ölüme verdiği en derin cevap.", "kw": ["ruh ölümsüzlüğü", "idealar kuramı", "ölüm"]}, "Devlet": {"neden": "Adil bir toplumun adil bir ruhla nasıl paralel kurulduğunu gösteren, felsefi ütopyanın ilk büyük tasarımı.", "kw": ["adalet", "filozof-kral", "ideal devlet"]}, "Politika": {"neden": "İnsanın 'doğası gereği siyasal bir hayvan' olduğu tezinden yola çıkan devlet biçimleri karşılaştırması.", "kw": ["polis", "anayasa türleri", "ortak iyi"]}, "Devlet Üzerine": {"neden": "Yunan siyaset felsefesini Roma cumhuriyetçiliğine tercüme eden, karma anayasa fikrinin klasik savunusu.", "kw": ["cumhuriyetçilik", "karma anayasa", "doğal hukuk"]}, "Yıllıklar": {"neden": "İktidarın yozlaşmasını soğukkanlı bir tarihçi gözüyle belgeleyen, güç eleştirisinin klasik örneği.", "kw": ["zorbalık", "tarih yazıcılığı", "iktidarın yozlaşması"]}, "On İki Caesar'ın Yaşamı": {"neden": "İmparatorları kamusal ve özel yaşamlarıyla anlatan, biyografi türünün en etkili erken örneği.", "kw": ["biyografi", "iktidar psikolojisi", "skandal"]}, "Yasalar": {"neden": "Devlet'teki ütopyadan sonra, gerçekçi ve uygulanabilir bir yasa sistemi arayışı.", "kw": ["yasa", "pratik siyaset", "erdem eğitimi"]}, "Roma Tarihi": {"neden": "Roma'nın kendi hakkında anlattığı kuruluş efsanesi ve erdem anlatısı.", "kw": ["kuruluş miti", "erdem", "Roma kimliği"]}, "İtiraflar": {"neden": "Öznelliğin, günahın ve dönüşümün ilk büyük iç dökümü, otobiyografi türünün doğuşu.", "kw": ["günah", "dönüşüm", "özbilinç"]}, "Felsefenin Tesellisi": {"neden": "İdam bekleyen bir filozofun felsefeyle nasıl teselli bulduğunu gösteren, Antik'ten Orta Çağ'a geçişin köprüsü.", "kw": ["talih", "teselli", "özgür irade"]}, "Summa Theologica": {"neden": "Aristoteles mantığıyla Hristiyan teolojisini uzlaştıran, Skolastik düşüncenin zirvesi.", "kw": ["akıl-inanç uyumu", "doğal hukuk", "Tanrı kanıtları"]}, "Tanrı Devleti": {"neden": "Roma'nın çöküşü karşısında dünyevi ve ilahi düzeni ayıran, siyasi teolojinin temel metni.", "kw": ["iki şehir", "ilahi takdir", "tarih felsefesi"]}, "Deliliğe Övgü": {"neden": "Kilise ve skolastik bilgiçliği ironiyle eleştiren, hümanist mizahın ustalık örneği.", "kw": ["hiciv", "hümanizm", "kilise eleştirisi"]}, "Prens": {"neden": "Siyaseti ahlaktan ayırıp gücün nasıl kazanılıp korunacağını çıplak biçimde anlatan, modern siyaset biliminin başlangıcı.", "kw": ["virtù", "siyasi realizm", "amaç-araç"]}, "Ütopya": {"neden": "Mükemmel bir toplum hayaliyle aslında kendi çağının adaletsizliklerini eleştiren metin.", "kw": ["ütopya", "mülkiyet eleştirisi", "ideal toplum"]}, "Denemeler": {"neden": "Kendi üzerine düşünmeyi bir felsefe yöntemine dönüştüren, deneme türünün kurucu metni.", "kw": ["şüphecilik", "özdüşünüm", "hoşgörü"]}, "Söylevler (Machiavelli)": {"neden": "Prens'in arkasındaki cumhuriyetçi Machiavelli, Roma tarihinden çıkardığı derslerle.", "kw": ["cumhuriyetçilik", "Roma örneği", "siyasi erdem"]}, "Leviathan": {"neden": "Doğa halinin 'herkesin herkesle savaşı' olduğu tezinden yola çıkarak mutlak egemenliği haklı çıkaran metin.", "kw": ["doğa hali", "toplum sözleşmesi", "mutlak egemenlik"]}, "Yönetim Üzerine İki İnceleme": {"neden": "Doğal haklar ve sınırlı hükümet fikrinin, liberal demokrasinin temel metni.", "kw": ["doğal haklar", "sınırlı hükümet", "mülkiyet"]}, "Etika": {"neden": "Tanrı, doğa ve insanı geometrik yöntemle birleştiren, rasyonalizmin en radikal sistemi.", "kw": ["panteizm", "determinizm", "akıl özgürlüğü"]}, "Kanunların Ruhu": {"neden": "Kuvvetler ayrılığı fikrinin doğduğu, iklim ve kültürün yasalarla ilişkisini inceleyen metin.", "kw": ["kuvvetler ayrılığı", "göreceli hukuk", "ılımlı yönetim"]}, "Toplum Sözleşmesi": {"neden": "Genel iradeyi ve halk egemenliğini merkeze koyan, modern demokrasi teorisinin köşe taşı.", "kw": ["genel irade", "halk egemenliği", "özgürlük paradoksu"]}, "Aydınlanma Nedir?": {"neden": "Aydınlanmayı 'kendi aklını kullanma cesareti' olarak tanımlayan kısa ama etkili manifesto.", "kw": ["özerklik", "akıl", "cesaret"]}, "Yöntem Üzerine Konuşma": {"neden": "Şüpheden yola çıkıp kesin bilgiye ulaşma yöntemini kuran, modern felsefenin başlangıç noktası.", "kw": ["metodik şüphe", "cogito", "akılcılık"]}, "Ulusların Zenginliği": {"neden": "Bireysel çıkarın 'görünmez el' aracılığıyla toplumsal refaha dönüştüğü fikrini kuran, modern iktisadın kurucu metni.", "kw": ["görünmez el", "işbölümü", "serbest piyasa"]}, "Amerika'da Demokrasi": {"neden": "Demokrasinin hem özgürleştirici hem de 'çoğunluğun tiranlığı'na yol açabilecek yönlerini gözlemleyen klasik inceleme.", "kw": ["çoğunluğun tiranlığı", "eşitlik", "sivil toplum"]}, "Özgürlük Üzerine": {"neden": "Bireysel özgürlüğün sınırını 'başkasına zarar vermeme' ilkesiyle çizen, liberalizmin klasik savunusu.", "kw": ["zarar ilkesi", "fikir özgürlüğü", "bireysellik"]}, "Tinin Görüngübilimi": {"neden": "Bilincin, tarihin diyalektik bir süreçle kendini gerçekleştirdiği iddiası, modern tarih felsefesinin temeli.", "kw": ["diyalektik", "efendi-köle", "tin"]}, "Komünist Manifesto": {"neden": "Tüm tarihi sınıf mücadelesi olarak okuyan, kapitalizme yönelik en etkili eleştiri ve çağrı.", "kw": ["sınıf mücadelesi", "yabancılaşma", "tarihsel materyalizm"]}, "Protestan Ahlakı": {"neden": "Dini bir etik anlayışının nasıl modern kapitalist zihniyeti doğurduğunu gösteren sosyolojik klasik.", "kw": ["çalışma ahlakı", "rasyonelleşme", "din-ekonomi ilişkisi"]}, "Kapital": {"neden": "Kapitalizmin iç işleyişini artı değer ve sömürü kavramlarıyla derinlemesine çözümleyen başyapıt.", "kw": ["artı değer", "meta fetişizmi", "sömürü"]}, "İstenç ve Tasavvur Olarak Dünya": {"neden": "Akıl yerine kör bir 'istenç'in dünyayı yönettiği karamsar metafizik, Nietzsche'nin çıkış noktası.", "kw": ["istenç", "kötümserlik", "estetik kurtuluş"]}, "Korku ve Titreme": {"neden": "İbrahim'in İshak'ı kurban etme emrini, akıl ile imanın çatıştığı 'imanın sıçrayışı' üzerinden tartışan, varoluşçuluğun başlangıcı.", "kw": ["imanın sıçrayışı", "tekil birey", "etik askıya alma"]}, "Ahlakın Soykütüğü": {"neden": "İyi ve kötü kavramlarının tarihsel kökenini sorgulayan, ahlak eleştirisinin en radikal metni.", "kw": ["efendi-köle ahlakı", "ressentiment", "değerlerin yeniden değerlendirilmesi"]}, "Böyle Buyurdu Zerdüşt": {"neden": "Üstinsan ve ebedi dönüş fikirlerini şiirsel bir peygamber diliyle anlatan başyapıt.", "kw": ["üstinsan", "ebedi dönüş", "Tanrı'nın ölümü"]}, "Düşlerin Yorumu": {"neden": "Bilinçdışının rüyalar aracılığıyla konuştuğu fikrini kuran, psikanalizin kurucu metni.", "kw": ["bilinçdışı", "rüya sembolizmi", "bastırma"]}, "Uygarlığın Huzursuzluğu": {"neden": "Uygarlığın bedelinin içgüdüsel bastırma olduğunu iddia eden yoğun deneme.", "kw": ["içgüdü bastırma", "suçluluk", "uygarlık bedeli"]}, "Totalitarizmin Kaynakları": {"neden": "Nazizm ve Stalinizmi ortak bir 'totalitarizm' kategorisinde çözümleyen, 20. yüzyılın en etkili eseri.", "kw": ["kitle toplumu", "ideoloji", "terör"]}, "Eichmann Kudüs'te": {"neden": "Kötülüğün canavarca değil sıradan ve düşüncesiz olabileceği fikrini bir yargılamadan çıkaran metin.", "kw": ["kötülüğün sıradanlığı", "düşüncesizlik", "itaat"]}, "İki Özgürlük Kavramı": {"neden": "Negatif ve pozitif özgürlüğü ayırt ederek özgürlük tartışmalarına kavramsal netlik getiren klasik deneme.", "kw": ["negatif özgürlük", "pozitif özgürlük", "değer çoğulculuğu"]}, "Varlık ve Zaman": {"neden": "'Varlık nedir' sorusunu insanın zamana ve ölüme fırlatılmışlığı üzerinden yeniden soran eser.", "kw": ["Dasein", "ölüme-doğru-varlık", "özgünlük"]}, "Sisifos Söyleni": {"neden": "Anlamsız bir evrende yaşamanın 'saçma'yı kabullenmekten geçtiğini savunan varoluşçu manifesto.", "kw": ["saçma", "intihar sorunu", "başkaldırı"]}, "İkinci Cinsiyet": {"neden": "'Kadın doğulmaz, kadın olunur' teziyle feminist felsefenin temelini atan başyapıt.", "kw": ["öteki", "toplumsal cinsiyet inşası", "kadın özgürleşmesi"]}, "Açık Toplum ve Düşmanları": {"neden": "Platon'dan Marx'a totaliter düşünce köklerini eleştirip açık, eleştirel toplumu savunan metin.", "kw": ["yanlışlanabilirlik", "tarihselcilik eleştirisi", "açık toplum"]}, "Aydınlanmanın Diyalektiği": {"neden": "Aklın kendisinin nasıl yeni bir baskı aracına dönüşebileceğini sorgulayan, Frankfurt Okulu'nun kurucu metni.", "kw": ["araçsal akıl", "kültür endüstrisi", "Aydınlanma eleştirisi"]}, "Gulag Takımadaları": {"neden": "Sovyet çalışma kamplarını içeriden belgeleyen, totalitarizmin insani bedelini gösteren tanıklık.", "kw": ["tanıklık edebiyatı", "devlet terörü", "hayatta kalma"]}, "Varlık ve Hiçlik": {"neden": "İnsanın 'özgürlüğe mahkûm' olduğu tezini sistematik biçimde geliştiren varoluşçu felsefenin ana eseri.", "kw": ["radikal özgürlük", "kötü niyet", "varoluş özden önce gelir"]}, "Yönetsel Davranış": {"neden": "İnsanların mükemmel değil 'yeterince iyi' kararlar aldığı sınırlı rasyonalite fikrini kuran metin.", "kw": ["sınırlı rasyonalite", "yeterince iyi", "karar teorisi"]}, "Bir Adalet Teorisi": {"neden": "'Bilgisizlik peçesi' düşünce deneyiyle adaletin ilkelerini yeniden temellendiren, 20. yüzyılın en etkili siyaset felsefesi eseri.", "kw": ["bilgisizlik peçesi", "fark ilkesi", "adil olarak adalet"]}, "Hapishanenin Doğuşu": {"neden": "İktidarın artık şiddetle değil gözetim ve disiplinle işlediğini gösteren, çığır açan metin.", "kw": ["panoptikon", "disiplin", "iktidar-bilgi"]}, "Hızlı ve Yavaş Düşünme": {"neden": "Zihnimizin iki farklı sistemle (hızlı sezgisel, yavaş analitik) çalıştığını gösteren temel taş.", "kw": ["Sistem 1/Sistem 2", "bilişsel önyargı", "sezgisel karar"]}, "Dürtme": {"neden": "İnsanları özgürlüğü kısıtlamadan daha iyi kararlara nasıl 'dürtebileceğimizi' gösteren metin.", "kw": ["liberter paternalizm", "varsayılan seçenek", "seçim mimarisi"]}, "Siyah Kuğu": {"neden": "Öngörülemeyen, aşırı etkili olayların tarihi nasıl şekillendirdiğini anlatan risk felsefesi.", "kw": ["öngörülemezlik", "aşırı olaylar", "geriye dönük mantık hatası"]}, "Antikırılgan": {"neden": "Bazı sistemlerin sadece dayanıklı değil, stres altında daha da güçlendiğini gösteren kavram.", "kw": ["antikırılganlık", "stres altında büyüme", "risk maruziyeti"]}, "Akıldışı Ama Öngörülebilir": {"neden": "İnsan irrasyonelliğinin rastgele değil öngörülebilir kalıplar izlediğini deneylerle gösteren metin.", "kw": ["öngörülebilir irrasyonellik", "davranışsal deney", "karar hataları"]}, "Skin in the Game": {"neden": "Risk almadan tavsiye verenlerin sistematik olarak yanılabileceği tez, etik ve risk arasındaki bağ.", "kw": ["risk paylaşımı", "asimetri", "sorumluluk"]}, "Noise": {"neden": "Yargılardaki tutarsızlığın önyargıdan bile az fark edilen ama az zararlı olmayan bir hata kaynağı olduğunu gösteren metin.", "kw": ["yargı gürültüsü", "tutarsızlık", "karar hijyeni"]}, "Thinking in Bets": {"neden": "Kararları sonuçlarına değil, karar anındaki bilgiye göre değerlendirmeyi öğreten poker temelli teori.", "kw": ["sonuç körlüğü", "olasılıksal düşünme", "bahis zihniyeti"]}, "The Undoing Project": {"neden": "Kahneman ve Tversky'nin dostluğunun davranışsal iktisadı nasıl doğurduğunu anlatan biyografi.", "kw": ["bilimsel işbirliği", "önyargı keşfi", "entelektüel tarih"]}, "Sanatın Öyküsü": {"neden": "Sanat tarihini mağara resimlerinden günümüze tek bir akıcı anlatıyla sunan klasik.", "kw": ["sanat tarihi", "üslup evrimi", "görsel okuryazarlık"]}, "Görme Biçimleri": {"neden": "Bakmanın hiçbir zaman masum olmadığını, iktidar ve cinsiyetin görüntüyü nasıl şekillendirdiğini gösteren metin.", "kw": ["bakış", "reklam eleştirisi", "görsel iktidar"]}, "Fotoğraf Üzerine": {"neden": "Fotoğrafın gerçekliği yansıtmadığını, onu yorumladığını ve bazen sömürdüğünü tartışan metin.", "kw": ["temsil", "fotoğrafik gerçeklik", "tüketim"]}, "Sanat Yapıtı": {"neden": "Teknik çoğaltmanın sanat eserinin 'aura'sını nasıl yok ettiğini tartışan, medya kuramının öncü metni.", "kw": ["aura", "teknik çoğaltma", "kitle sanatı"]}, "Başkasının Acısına Bakmak": {"neden": "Savaş fotoğraflarının izleyicide empati mi duyarsızlaşma mı yarattığını sorgulayan deneme.", "kw": ["acının temsili", "duyarsızlaşma", "tanıklık"]}, "Simulakrlar ve Simülasyon": {"neden": "Gerçekliğin yerini kopyaların kopyalarının aldığı 'hipergerçeklik' tezini işleyen, en radikal medya eleştirisi.", "kw": ["hipergerçeklik", "simülakr", "gerçeğin kaybı"]}, "Analektler (Lunyu)": {"neden": "Ahlaki özgelişimi ritüel, saygı ve toplumsal uyum üzerinden tanımlayan, Çin düşüncesinin kurucu metni.", "kw": ["ren (insanlık)", "li (ritüel)", "erdemli yönetim"]}, "Mengzi": {"neden": "İnsan doğasının özünde iyi olduğunu savunan, Konfüçyüsçülüğün en etkili yorumu.", "kw": ["insan doğasının iyiliği", "dört uç", "erdemli hükümdar"]}, "Xunzi": {"neden": "İnsan doğasının kötüye eğilimli olduğunu, erdemin ancak eğitimle kazanılabileceğini savunan karşıt görüş.", "kw": ["insan doğasının kötülüğü", "eğitim", "ritüelin gerekliliği"]}, "Mozi": {"neden": "Ayrım gözetmeyen evrensel sevgiyi ve faydacılığı savunan, Konfüçyüsçülüğe en güçlü erken itiraz.", "kw": ["evrensel sevgi", "faydacılık", "savaş karşıtlığı"]}, "Upanişadlar": {"neden": "Bireysel benlik (atman) ile evrensel gerçeklik (brahman) arasındaki birliği arayan Hint metafiziğinin temeli.", "kw": ["atman-brahman birliği", "moksha", "meditasyon"]}, "Bhagavad Gita": {"neden": "Görev (dharma) ile şiddetsizlik arasındaki çatışmayı bir savaş meydanında tartışan, en okunan Hint metni.", "kw": ["dharma", "eylemsiz eylem", "adanma yolu"]}, "Tao Te Ching": {"neden": "Eylemsizlik içinde eylemi (wu wei) ve doğayla uyumu öğütleyen, Taoculuğun kurucu metni.", "kw": ["wu wei", "doğayla uyum", "basitlik"]}, "Zhuangzi": {"neden": "Kelebek rüyası gibi paradokslarla gerçekliğin göreceliğini sorgulayan, en yaratıcı Taoist metin.", "kw": ["görecelik", "özgür dolaşım", "doğal kendiliğindenlik"]}, "Liezi": {"neden": "Şans, kader ve doğal akışı anlatan hikâyelerle Taoist yaşam felsefesini somutlaştıran metin.", "kw": ["kader", "doğal akış", "şüphecilik"]}, "Dhammapada": {"neden": "Buda'nın öğretilerini kısa, akılda kalıcı dizelerle özetleyen, en yaygın okunan Budist metin.", "kw": ["acı (dukkha)", "zihin disiplini", "orta yol"]}, "Mülamadhyamakakarika": {"neden": "'Boşluk' (śūnyatā) kavramıyla tüm kavramsal kategorileri sorgulayan, en derin Budist felsefe metni.", "kw": ["boşluk (śūnyatā)", "bağımlı köken", "orta yol mantığı"]}, "Kitabu'ş-Şifa (Seçmeler)": {"neden": "Aristoteles felsefesini İslam düşüncesiyle sistematik biçimde birleştiren Meşşai zirve.", "kw": ["varlık-öz ayrımı", "zorunlu varlık", "Meşşailik"]}, "Filozofların Tutarsızlığı": {"neden": "Felsefi akılcılığın nedensellik ve Tanrı anlayışına yönelik en güçlü eleştirisi, büyük kırılma.", "kw": ["nedensellik eleştirisi", "akıl-vahiy gerilimi", "felsefe eleştirisi"]}, "Tutarsızlığın Tutarsızlığı": {"neden": "Gazali'ye karşı felsefeyi savunan, Avrupa Skolastiğini derinden etkileyen cevap.", "kw": ["felsefe savunusu", "akıl-vahiy uzlaşımı", "Averroesçülük"]}, "Mesnevi": {"neden": "Aşk, ayrılık ve birleşmeyi hikâyelerle anlatan, tasavvufun en etkili şiirsel eseri.", "kw": ["ilahi aşk", "ney metaforu", "nefis terbiyesi"]}, "El-Medinetü'l-Fazıla": {"neden": "Platon'un ideal devletini İslam siyaset felsefesine uyarlayan, 'ikinci öğretmen'in ütopyası.", "kw": ["erdemli şehir", "filozof-imam", "mutluluk"]}, "Felsefe Üzerine": {"neden": "Yunan felsefesini İslam dünyasına tanıtan ilk sistematik girişim, öncü metin.", "kw": ["felsefe-din uzlaşımı", "ilk neden", "akıl"]}, "Hikmetü'l-İşrak": {"neden": "Aydınlanma (işrak) metaforuyla bilgiyi ışık ve karanlık üzerinden yeniden kuran mistik felsefe.", "kw": ["ışık metafiziği", "sezgisel bilgi", "İşrakilik"]}, "Fusus al-Hikam": {"neden": "Varlığın birliği (vahdet-i vücud) doktrinini peygamberler üzerinden anlatan tasavvuf zirvesi.", "kw": ["vahdet-i vücud", "insan-ı kâmil", "ilahi isimler"]}, "Rubailer": {"neden": "Anın tadını çıkarma, şüphecilik ve ölüm üzerine kısa dörtlüklerle düşünen şair-matematikçi.", "kw": ["anı yaşama", "şüphecilik", "ölüm meditasyonu"]}, "Siyasetname": {"neden": "Adil yönetimin ilkelerini pratik örneklerle anlatan, en etkili İslam siyaset el kitabı.", "kw": ["adil yönetim", "vezirlik", "devlet düzeni"]}, "Mukaddime": {"neden": "Uygarlıkların doğuş, yükseliş ve çöküşünü asabiyet kavramıyla açıklayan, sosyolojinin öncü metni.", "kw": ["asabiyet", "uygarlık döngüsü", "tarih metodolojisi"]}, "Ahlak-ı Alai": {"neden": "Osmanlı ahlak ve siyaset düşüncesini İslam felsefesiyle harmanlayan klasik el kitabı.", "kw": ["ahlak felsefesi", "aile düzeni", "devlet yönetimi"]}, "Huccetullahi'l-Baliğa": {"neden": "İslam hukukunun akılla temellendirilmesini savunan, Hint-İslam reform öncüsü metin.", "kw": ["akılcı fıkıh", "içtihat", "hukuk felsefesi"]}, "Mizanü'l-Hakk": {"neden": "Dini tartışmalarda aşırılıklardan kaçınmayı öğütleyen, Osmanlı entelektüel hoşgörüsü.", "kw": ["orta yol", "dini hoşgörü", "eleştirel akıl"]}, "Gitanjali": {"neden": "Doğu mistisizmini Batı'ya taşıyan, Nobel ödüllü şiir koleksiyonu.", "kw": ["ilahi birlik", "şiirsel mistisizm", "kültürlerarası köprü"]}, "İslam'da Dini Düşüncenin Yeniden İnşası": {"neden": "İslam düşüncesini modern felsefeyle yeniden yorumlayan, İslam modernizminin en etkili metni.", "kw": ["içtihat", "modernizm", "benlik (khudi)"]}, "Şarkiyatçılık": {"neden": "Batı'nın 'Doğu'yu nasıl kurguladığını ve bunun iktidarla iç içe geçtiğini gösteren post-kolonyal kurucu metin.", "kw": ["ötekileştirme", "kolonyal söylem", "temsil iktidarı"]}, "Adaletin Fikri": {"neden": "Mükemmel adalet arayışı yerine karşılaştırmalı iyileştirmeleri öneren, Rawls'a doğrudan cevap veren metin.", "kw": ["karşılaştırmalı adalet", "yetenekler yaklaşımı", "kamusal akıl yürütme"]}, "İlyada": {"neden": "Öfkenin ve kahramanlık onurunun savaşta yol açtığı yıkımı anlatan, Batı edebiyatının kurucu destanı.", "kw": ["kahramanlık", "öfke", "ölümlülük"]}, "Odysseia": {"neden": "Eve dönüş yolculuğunu bir hayatta kalma ve kimlik sınavına dönüştüren macera destanı.", "kw": ["yolculuk", "kurnazlık", "ev özlemi"]}, "Oidipus Kral": {"neden": "Kaderden kaçmanın imkânsızlığını, kendini bilmenin trajik bedeliyle anlatan tragedyanın zirvesi.", "kw": ["kader", "kendini bilme", "trajik ironi"]}, "Antigone": {"neden": "Devlet yasasına karşı vicdan yasasını savunan, siyasi itaatsizliğin ilk büyük edebi örneği.", "kw": ["vicdan", "devlete karşı direniş", "aile sadakati"]}, "Medea": {"neden": "İhanete uğrayan bir kadının intikamını hiçbir ahlaki sınır tanımadan anlatan, tutkunun karanlık yüzü.", "kw": ["intikam", "ihanet", "tutku"]}, "Kral Oidipus Kolonos'ta": {"neden": "Sürgündeki yaşlı Oidipus'un kendiyle barışmasını anlatan, Sophokles'in veda oyunu.", "kw": ["sürgün", "kefaret", "kabullenme"]}, "Altın Eşek": {"neden": "Bir adamın eşeğe dönüşüp yaşadığı gülünç ve mistik maceraları anlatan, hayatta kalan tek Latin roman.", "kw": ["dönüşüm", "mizah", "mistisizm"]}, "Satyricon": {"neden": "Roma'nın alt tabakalarını hicivli, müstehcen bir gerçekçilikle anlatan parçalı roman.", "kw": ["hiciv", "toplumsal gerçekçilik", "serseri roman"]}, "Ben, Claudius": {"neden": "Kekeme ve önemsenmeyen bir prensin nasıl imparator olduğunu, saray entrikalarıyla anlatan roman.", "kw": ["saray entrikası", "güç mücadelesi", "hayatta kalma"]}, "Augustus": {"neden": "İlk Roma imparatorunun iktidarını mektuplar ve belgelerle yeniden kuran, yalnızlığın imparatorluğu.", "kw": ["iktidarın bedeli", "yalnızlık", "miras"]}, "Hadrianus'un Anıları": {"neden": "Ölmekte olan bir imparatorun kendi hayatına dönüp baktığı, iktidar ve ölümlülük üzerine derin bir iç monolog.", "kw": ["ölümlülük", "bilgelik", "iktidar melankolisi"]}, "Julius Caesar": {"neden": "İktidarı korumak için işlenen bir cinayetin ahlaki ve siyasi sonuçlarını sorgulayan trajedi.", "kw": ["ihanet", "cumhuriyet-tiranlık", "siyasi şiddet"]}, "Antonius ve Kleopatra": {"neden": "Aşkın siyasi hırsla çatıştığında ikisinin de nasıl yıkıma sürüklendiğini anlatan trajedi.", "kw": ["aşk-siyaset çatışması", "tutku", "yıkım"]}, "Coriolanus": {"neden": "Gururun ve halktan kopukluğun bir kahramanı nasıl yok ettiğini anlatan siyasi trajedi.", "kw": ["gurur", "halk-seçkin gerilimi", "siyasi düşüş"]}, "Spartaküs": {"neden": "Roma'ya karşı ayaklanan kölelerin özgürlük mücadelesini anlatan, ezilenlerin destanı.", "kw": ["kölelik", "ayaklanma", "özgürlük"]}, "Ben-Hur": {"neden": "Haksız yere köleleştirilen bir prensin intikam ve affetme arasındaki yolculuğunu anlatan roman.", "kw": ["intikam", "af", "adalet"]}, "Gülün Adı": {"neden": "Bir manastırdaki gizemli cinayetleri çözerken akıl ile dogma arasındaki gerilimi işleyen felsefi polisiye.", "kw": ["akıl-dogma çatışması", "sansür", "gizem"]}, "Decameron": {"neden": "Vebadan kaçan on kişinin anlattığı yüz hikâyeyle Orta Çağ'ın insanlık halini gösteren roman.", "kw": ["veba", "mizah", "insan doğası"]}, "İlahi Komedya": {"neden": "Cehennem, araf ve cennetten geçen bir yolculukla ruhun kurtuluşunu anlatan Orta Çağ'ın zirve eseri.", "kw": ["ruhun yolculuğu", "günah-kefaret", "ilahi adalet"]}, "Quo Vadis": {"neden": "Erken Hristiyanların Roma zulmü altındaki direnişini anlatan, inanç ve iktidar çatışması.", "kw": ["inanç direnişi", "zulüm", "dönüşüm"]}, "Canterbury Hikâyeleri": {"neden": "Hacca giden farklı toplumsal sınıflardan insanların hikâyeleriyle Orta Çağ toplumunu resmeden eser.", "kw": ["toplumsal panorama", "mizah", "hac yolculuğu"]}, "Baudolino": {"neden": "Bir yalancının anlattığı tarihle gerçek tarih arasındaki sınırı bulanıklaştıran postmodern Orta Çağ romanı.", "kw": ["yalan-gerçek", "tarih kurgusu", "macera"]}, "İvanhoe": {"neden": "Sakson-Norman çatışmasını bir şövalyenin gözünden anlatan, tarihsel romanın kurucu örneklerinden.", "kw": ["şövalyelik", "etnik çatışma", "adalet"]}, "Tristan ve Isolde": {"neden": "Yasak aşkın ölümden bile güçlü olduğunu anlatan, Orta Çağ'ın en etkili aşk efsanesi.", "kw": ["yasak aşk", "kader", "ihanet"]}, "Wolf Hall": {"neden": "Thomas Cromwell'in gözünden Tudor sarayının acımasız iktidar oyunlarını anlatan roman.", "kw": ["iktidar oyunları", "sadakat", "dönüşen kimlik"]}, "Bring Up the Bodies": {"neden": "Anne Boleyn'in düşüşünü, iktidarın kimseyi bağışlamadığını gösteren üçlemenin ikinci kitabı.", "kw": ["düşüş", "manipülasyon", "güvensizlik"]}, "The Mirror and the Light": {"neden": "Cromwell'in kendi yükselişinin kurbanı olmasını anlatan üçlemenin final cildi.", "kw": ["yükseliş-düşüş", "güç yalnızlığı", "trajik son"]}, "Hamlet": {"neden": "İntikam, şüphe ve eylemsizlik arasında sıkışan bir prensin iç dünyasını anlatan en derin trajedi.", "kw": ["intikam", "kararsızlık", "varoluşsal şüphe"]}, "Kral Lear": {"neden": "Gücü paylaştıran bir kralın buna bağlı olarak akıl ve aile sevgisini kaybetmesini anlatan trajedi.", "kw": ["iktidar kaybı", "aile ihaneti", "delilik"]}, "Otello": {"neden": "Kıskançlığın manipülasyonla nasıl bir insanı yıkıma sürükleyebileceğini gösteren trajedi.", "kw": ["kıskançlık", "manipülasyon", "güven"]}, "Romeo ve Juliet": {"neden": "Aile düşmanlığının gençlerin aşkını nasıl yıkıma sürüklediğini anlatan, en bilinen aşk trajedisi.", "kw": ["yasak aşk", "aile düşmanlığı", "kader"]}, "Doktor Faustus": {"neden": "Bilgi ve güç uğruna ruhunu şeytana satan bir adamı anlatan, Rönesans hırsının trajedisi.", "kw": ["bilgi hırsı", "şeytanla anlaşma", "hübris"]}, "Gulliver'in Gezileri": {"neden": "Farklı toplumları gezen bir denizcinin gözünden insan doğasını ve siyaseti hicveden roman.", "kw": ["hiciv", "insan doğası eleştirisi", "toplum karşılaştırması"]}, "Robinson Crusoe": {"neden": "Issız bir adada hayatta kalma mücadelesiyle bireyin kendi kendine yetme idealini anlatan roman.", "kw": ["hayatta kalma", "bireycilik", "medeniyet inşası"]}, "Candide": {"neden": "Felsefi iyimserliği alaycı bir maceralar zinciriyle çürüten, Aydınlanma hicvinin şaheseri.", "kw": ["iyimserlik eleştirisi", "talihsizlik", "akılcı şüphecilik"]}, "İki Şehrin Hikâyesi": {"neden": "Fransız Devrimi'nin kaosunda fedakârlık ve kurtuluşu anlatan tarihsel roman.", "kw": ["devrim", "fedakârlık", "adalet-intikam"]}, "Tehlikeli İlişkiler": {"neden": "Aristokrat çevrelerde ahlaki yozlaşmayı mektuplarla anlatan, entrika ve baştan çıkarma romanı.", "kw": ["entrika", "baştan çıkarma", "ahlaki yozlaşma"]}, "Moll Flanders": {"neden": "Yoksulluktan zenginliğe uzanan, hayatta kalmak için her yolu deneyen bir kadının anlatısı.", "kw": ["hayatta kalma", "toplumsal sınıf", "kadın özerkliği"]}, "İkna": {"neden": "İkinci bir şansın, olgunlaşmış aşkın ve toplumsal beklentilerin çatışmasını anlatan roman.", "kw": ["ikinci şans", "toplumsal beklenti", "olgun aşk"]}, "Faust": {"neden": "Bilgi ve deneyim uğruna şeytanla anlaşma yapan bir adamın kurtuluş arayışını anlatan başyapıt.", "kw": ["bilgi hırsı", "kurtuluş", "şeytanla anlaşma"]}, "Germinal": {"neden": "Maden işçilerinin sömürüye karşı ayaklanmasını acımasız bir gerçekçilikle anlatan roman.", "kw": ["işçi sınıfı", "sömürü", "ayaklanma"]}, "Sefiller": {"neden": "Bir mahkumun kefaret ve adalet arayışını, toplumsal adaletsizliklerle iç içe anlatan başyapıt.", "kw": ["kefaret", "adaletsizlik", "merhamet"]}, "Zor Zamanlar": {"neden": "Sanayi kentinin katı faydacılığının insanları nasıl kuruttuğunu anlatan roman.", "kw": ["faydacılık eleştirisi", "sanayi kenti", "hayal gücü"]}, "Kuzey ve Güney": {"neden": "Sanayi kuzeyi ile tarım güneyi arasındaki sınıf ve kültür çatışmasını bir aşk hikâyesiyle anlatan roman.", "kw": ["sınıf çatışması", "sanayileşme", "önyargı"]}, "Oliver Twist": {"neden": "Bir yetimin Londra'nın yeraltı dünyasında hayatta kalma mücadelesini anlatan roman.", "kw": ["yoksulluk", "yetimlik", "toplumsal adaletsizlik"]}, "Middlemarch": {"neden": "Bir taşra kasabasındaki evlilikler ve hayal kırıklıkları üzerinden İngiliz toplumunu resmeden roman.", "kw": ["evlilik", "hayal kırıklığı", "toplumsal gözlem"]}, "Gurur Dünyası": {"neden": "Hırs ve toplumsal tırmanışı, ahlaki bir kahraman olmadan anlatan hicivli roman.", "kw": ["hırs", "toplumsal tırmanış", "hiciv"]}, "Nana": {"neden": "Bir kadının cazibesinin Paris'in seçkinlerini nasıl çürüttüğünü anlatan natüralist roman.", "kw": ["ahlaki çöküş", "cazibe", "natüralizm"]}, "Suç ve Ceza": {"neden": "Bir cinayetin ardından vicdan azabının psikolojik çöküşe dönüşmesini anlatan başyapıt.", "kw": ["vicdan azabı", "suç psikolojisi", "kefaret"]}, "Karamazov Kardeşler": {"neden": "İnanç, şüphe ve baba katli üzerinden insan ruhunun derinliklerini sorgulayan başyapıt.", "kw": ["inanç-şüphe", "aile çatışması", "özgür irade"]}, "Anna Karenina": {"neden": "Toplumsal kuralları çiğneyen bir aşkın bedelini geniş bir toplum panoramasıyla anlatan roman.", "kw": ["yasak aşk", "toplumsal yargı", "kişisel özgürlük"]}, "Dava": {"neden": "Suçlandığı şeyi hiç öğrenemeyen bir adamın bürokratik kâbusunu anlatan roman.", "kw": ["bürokrasi", "yabancılaşma", "anlamsız suçluluk"]}, "Buddenbrooklar": {"neden": "Bir tüccar ailesinin nesiller boyunca çöküşünü anlatan, burjuva gerilemesinin romanı.", "kw": ["aile çöküşü", "burjuva değerleri", "nesil çatışması"]}, "Niteliksiz Adam": {"neden": "Kesinliklerin çöktüğü bir çağda kimliksiz kalan bir adamı anlatan, bitmemiş modernist başyapıt.", "kw": ["kimliksizlik", "modernite krizi", "ironi"]}, "Venedik'te Ölüm": {"neden": "Yaşlı bir sanatçının güzelliğe duyduğu takıntının yıkıma dönüşmesini anlatan novella.", "kw": ["takıntı", "güzellik", "çöküş"]}, "Dönüşüm": {"neden": "Bir sabah böceğe dönüşen adamın ailesi tarafından yabancılaştırılmasını anlatan modernizmin ikonu.", "kw": ["yabancılaşma", "aile reddi", "absürt"]}, "Yabancı": {"neden": "Annesinin ölümüne bile duygusal tepki vermeyen bir adamın toplumdan kopuşunu anlatan roman.", "kw": ["kayıtsızlık", "saçma", "toplumsal yargı"]}, "Veba": {"neden": "Bir salgın karşısında insanların dayanışma ve çöküş arasındaki tepkilerini anlatan roman.", "kw": ["salgın", "dayanışma", "varoluşsal başkaldırı"]}, "Bulantı": {"neden": "Varoluşun çıplak anlamsızlığıyla yüzleşen bir adamın günlüğü, varoluşçu romanın öncüsü.", "kw": ["bulantı", "anlamsızlık", "özgürlük kaygısı"]}, "1984": {"neden": "Dilin ve gerçeğin devlet tarafından nasıl yeniden yazılabileceğini gösteren distopya.", "kw": ["totaliter gözetim", "dil ve iktidar", "gerçeğin çarpıtılması"]}, "Hayvan Çiftliği": {"neden": "Bir devrimin nasıl yeni bir tiranlığa dönüştüğünü hayvanlar üzerinden anlatan alegori.", "kw": ["devrim ihaneti", "propaganda", "eşitlik yanılsaması"]}, "Gün Ortasında Karanlık": {"neden": "Devrime sadık bir komünistin kendi partisi tarafından yargılanmasını anlatan roman.", "kw": ["ideolojik sadakat", "itiraf baskısı", "devrim ihaneti"]}, "İvan Denisoviç'in Hayatında Bir Gün": {"neden": "Bir çalışma kampı mahkûmunun sıradan bir gününü belgeleyen, sessiz bir direniş anlatısı.", "kw": ["hayatta kalma", "insanlık onuru", "gündelik direniş"]}, "Kadersizlik": {"neden": "Bir çocuğun toplama kampı deneyimini duygusuzca anlatan, dehşeti alışkanlığa çeviren roman.", "kw": ["travma", "kayıtsızlık anlatımı", "hayatta kalma"]}, "Solaris": {"neden": "İnsan aklının kendinden tamamen farklı bir zekâyı anlayamayışını anlatan bilim kurgu klasiği.", "kw": ["anlaşılmazlık", "yapay bellek", "insan-merkezcilik eleştirisi"]}, "Dövüş Kulübü": {"neden": "Tüketim toplumuna karşı şiddetli bir isyanın kimlik çözülmesine dönüşmesini anlatan roman.", "kw": ["tüketim eleştirisi", "erkeklik krizi", "kimlik çözülmesi"]}, "Beni Asla Bırakma": {"neden": "Organ bağışı için yetiştirilen klonların insanlığını sorgulayan, sessiz bir distopya.", "kw": ["insanlık tanımı", "kader kabullenişi", "biyoetik"]}, "Klara ve Güneş": {"neden": "Bir yapay zekânın gözünden insan sevgisini ve fedakârlığı yeniden düşündüren roman.", "kw": ["yapay zeka", "sevgi", "fedakârlık"]}, "Beyaz Gürültü": {"neden": "Ölüm korkusunun tüketim kültürü ve medya gürültüsü altında nasıl bastırıldığını anlatan roman.", "kw": ["ölüm korkusu", "tüketim kültürü", "medya doygunluğu"]}, "Amerikan Sapığı": {"neden": "1980'lerin yüzeysel lüks kültürünü bir seri katilin bakış açısından hicveden roman.", "kw": ["tüketim hicvi", "kimliksizlik", "şiddet"]}, "Körlük": {"neden": "Toplumun aniden kör kalmasıyla medeniyetin ince örtüsünün nasıl yırtıldığını anlatan alegori.", "kw": ["toplumsal çöküş", "kör itaat", "hayatta kalma ahlakı"]}, "Çember": {"neden": "Şeffaflığın bir özgürleşme değil gözetim aracına dönüşmesini anlatan teknoloji distopyası.", "kw": ["dijital gözetim", "mahremiyet kaybı", "teknoloji ütopyası eleştirisi"]}, "Dorian Gray'in Portresi": {"neden": "Bir adamın gençliğini korurken ruhunun çürümesini anlatan, estetizmin bedelini sorgulayan roman.", "kw": ["estetizm", "ahlaki çürüme", "görünüş-öz"]}, "Benim Adım Kırmızı": {"neden": "Osmanlı minyatür sanatı üzerinden Doğu-Batı görme biçimlerinin çatışmasını anlatan roman.", "kw": ["Doğu-Batı sanat çatışması", "bakış açısı", "gelenek-yenilik"]}, "Sanatçının Genç Bir Adam Olarak Portresi": {"neden": "Bir sanatçının din, aile ve ulustan kopup kendi sesini bulmasını anlatan roman.", "kw": ["sanatsal özgürleşme", "kimlik oluşumu", "din-sanat gerilimi"]}, "İnci Küpeli Kız": {"neden": "Vermeer'in ünlü tablosunun ardındaki hayali hizmetçi hikâyesiyle bakma-görülme ilişkisini anlatan roman.", "kw": ["bakma-görülme", "sanatçı-model ilişkisi", "toplumsal sınıf"]}, "Saka Kuşu": {"neden": "Bir patlamada annesini kaybeden çocuğun çalıntı bir tabloyla kurduğu bağ üzerinden yasla baş etmesini anlatan roman.", "kw": ["yas", "sanatın tesellisi", "kayıp"]}, "Sevdiğim Şey": {"neden": "Sanat, aile ve kayıp üzerine, bir tablonun etrafında dönen entelektüel bir roman.", "kw": ["sanat yorumu", "kayıp", "tanıklık"]}, "Istırap ve Vecd": {"neden": "Michelangelo'nun Sistine Şapeli'ni yaratma sürecindeki sanatsal ıstırabı anlatan biyografik roman.", "kw": ["yaratıcı ıstırap", "sanatsal takıntı", "mükemmeliyetçilik"]}, "Deniz": {"neden": "Bir adamın yasını çocukluk anılarına dönerek işlemesini anlatan, dil ustalığıyla öne çıkan roman.", "kw": ["yas", "bellek", "dil ustalığı"]}, "Kızıl Odanın Rüyası": {"neden": "Bir asil ailenin yükseliş ve çöküşünü, aşk ve Budist boşluk fikriyle iç içe anlatan Çin klasiği.", "kw": ["aile çöküşü", "aşk", "geçicilik"]}, "Binbir Gece Masalları": {"neden": "Ölümü ertelemek için anlatılan hikâyelerle, anlatının kendisinin hayatta kalma gücünü gösteren derleme.", "kw": ["anlatı gücü", "hayatta kalma", "iç içe hikâyeler"]}, "Kelile ve Dimne": {"neden": "Hayvan hikâyeleriyle güç, hile ve bilgelik dersleri veren, yönetici sınıf için yazılmış öğüt kitabı.", "kw": ["hayvan fabl", "güç dersleri", "hile ve bilgelik"]}, "Hayy bin Yakzan": {"neden": "Issız bir adada kendi kendine akıl yürüterek Tanrı'yı bulan bir çocuğu anlatan felsefi roman.", "kw": ["kendi kendine öğrenme", "akılla Tanrı'yı bulma", "yalıtılmış birey"]}, "Mantıku't-Tayr": {"neden": "Kuşların Simurg'u aramak için çıktığı yolculukla nefis terbiyesini anlatan tasavvufi alegori.", "kw": ["ruhsal yolculuk", "nefis terbiyesi", "birlik arayışı"]}, "Leyla ile Mecnun": {"neden": "Aşkın delilikle iç içe geçtiği, imkânsız bir aşkı anlatan Fars-İslam edebiyatının klasik efsanesi.", "kw": ["imkânsız aşk", "delilik", "ayrılık"]}, "Muhayyelat": {"neden": "Fantastik ve gerçeküstü hikâyelerle ilk Osmanlı roman denemelerinden birini oluşturan eser.", "kw": ["fantastik anlatı", "Osmanlı modernleşmesi", "hayal gücü"]}, "Uçurtma Avcısı": {"neden": "Bir çocukluk ihanetinin yıllar sonra kefaretini anlatan, Afganistan tarihiyle iç içe geçmiş roman.", "kw": ["ihanet", "kefaret", "arkadaşlık"]}, "Bin Muhteşem Güneş": {"neden": "Savaş altındaki Afgan kadınlarının dayanışmasını ve dayanıklılığını anlatan roman.", "kw": ["kadın dayanışması", "savaş", "dayanıklılık"]}, "Kar": {"neden": "Bir şehirde laiklik-din geriliminin bir şairin gözünden anlatıldığı, Doğu-Batı geriliminin romanı.", "kw": ["laiklik-din gerilimi", "siyasi şiddet", "kimlik arayışı"]}};
+const flat = [];
+western.forEach((col,ci)=>{
+  col[2].forEach((b)=>{
+    flat.push({col:ci,eser:b[0],yazar:b[1],oncelik:b[2],onkosul:b[3],bucket:b[4],idx:flat.length,section:'west'});
+  });
+});
+const dflat = dogu.map((d,i)=>({col:d[0],eser:d[1],yazar:d[2],donem:d[3],idx:1000+i,section:'east'}));
+
+const COLW=228, GAP_X=64, LEFT=20, TOP=116;
+const NODEH=80, GAP_Y=14;      // standard cards (müzik, roman)
+const NODEH_R=156, GAP_Y_R=18; // main grid + doğu readings (extra neden+kavram rows)
+const NODEH_M=104, GAP_Y_M=14; // mimari cards (extra üslup row + wiki link)
+
+const westColCounts = western.map(c=>c[2].length);
+const westMaxCount = Math.max(...westColCounts);
+let cursorY = TOP + westMaxCount*(NODEH_R+GAP_Y_R) + 20;
+
+const mapW = western.length*(COLW+GAP_X)+LEFT;
+const mapEl = document.getElementById('map');
+
+western.forEach((col,ci)=>{
+  const x = LEFT+ci*(COLW+GAP_X);
+  const h = document.createElement('div');
+  h.style.cssText = 'position:absolute;left:'+x+'px;top:16px;width:'+COLW+'px';
+  h.innerHTML = '<div class="col-title">'+col[0]+'</div><div class="col-sub">'+col[1]+'</div>'+
+    '<div class="col-akim">'+akim[ci]+'</div><div class="col-olay">'+olaylar[ci]+'</div>'+
+    '<div class="col-progress" data-col="'+ci+'"></div>';
+  mapEl.appendChild(h);
+});
+
+function addDivider(y){
+  const d = document.createElement('div');
+  d.className='divider'; d.style.top=y+'px';
+  mapEl.appendChild(d);
+}
+function addSectionTitle(label, y){
+  const t = document.createElement('div');
+  t.className='section-title';
+  t.style.cssText = 'left:'+LEFT+'px;top:'+y+'px';
+  t.textContent = label;
+  mapEl.appendChild(t);
+}
+function addColumnEraLabels(y, cols, isDogu){
+  cols.forEach(ci=>{
+    const x = LEFT+ci*(COLW+GAP_X);
+    const lab = document.createElement('div');
+    lab.className = 'col-sub-rep';
+    lab.style.cssText = 'left:'+x+'px;top:'+y+'px;width:'+COLW+'px';
+    const akimText = isDogu ? (doguAkim[ci]||'') : akim[ci];
+    const olayText = isDogu ? '' : olaylar[ci];
+    lab.innerHTML = '<div>'+western[ci][0]+' · '+western[ci][1]+'</div>'+
+      (akimText?'<div class="akim-rep">'+akimText+'</div>':'')+
+      (olayText?'<div class="olay-rep">'+olayText+'</div>':'');
+    mapEl.appendChild(lab);
+  });
+}
+
+function westPos(item){
+  const x = LEFT+item.col*(COLW+GAP_X);
+  const ri = western[item.col][2].findIndex(b=>b[0]===item.eser);
+  const y = TOP+ri*(NODEH_R+GAP_Y_R);
+  return {x,y,w:COLW,h:NODEH_R};
+}
+
+let readState = {};
+async function loadState(){
+  try{
+    if(window.storage){
+      const res = await window.storage.get('okuma-durumu', false);
+      if(res && res.value){ readState = JSON.parse(res.value); return; }
+    }
+  }catch(e){}
+  try{
+    const raw = localStorage.getItem('okuma-durumu');
+    if(raw) readState = JSON.parse(raw);
+  }catch(e){ readState = {}; }
+}
+async function saveState(){
+  try{
+    if(window.storage){ await window.storage.set('okuma-durumu', JSON.stringify(readState), false); return; }
+  }catch(e){}
+  try{ localStorage.setItem('okuma-durumu', JSON.stringify(readState)); }catch(e){}
+}
+
+function resolvePrereq(name, currentIdx){
+  if(!name || name==='-') return null;
+  let exact = flat.find(b=>b.eser===name);
+  if(exact) return exact;
+  const nameLc = name.toLowerCase();
+  const before = flat.filter(b=>b.idx<currentIdx && b.yazar.toLowerCase().includes(nameLc));
+  if(before.length) return before[before.length-1];
+  const any = flat.filter(b=>b.yazar.toLowerCase().includes(nameLc) && b.idx!==currentIdx);
+  return any[0]||null;
+}
+function prereqsSatisfied(item){
+  if(item.onkosul==='-') return true;
+  return item.onkosul.split(',').map(s=>s.trim()).every(name=>{
+    const src = resolvePrereq(name, item.idx);
+    if(!src) return true;
+    return !!readState[src.eser];
+  });
+}
+function computeNextUp(){
+  const tiers = ['Mutlaka Oku','Önerilir','Derinleşme'];
+  for(const tier of tiers){
+    const cand = flat.find(f=> f.oncelik===tier && !readState[f.eser] && prereqsSatisfied(f));
+    if(cand) return cand;
+  }
+  return null;
+}
+function renderNextUp(){
+  const wrap = document.getElementById('nextupWrap');
+  const nx = computeNextUp();
+  if(!nx){ wrap.innerHTML=''; return; }
+  wrap.innerHTML = '<div class="nextup" id="nextupBtn">Sıradaki okuman: <b>'+nx.eser+'</b> — '+nx.yazar+' ('+western[nx.col][0]+')</div>';
+  document.querySelectorAll('.node').forEach(n=>n.classList.remove('nextup-highlight'));
+  const n = document.querySelector('.node[data-eser="'+CSS.escape(nx.eser)+'"]');
+  if(n) n.classList.add('nextup-highlight');
+  document.getElementById('nextupBtn').addEventListener('click', ()=>{
+    if(n) n.scrollIntoView({behavior:'smooth', inline:'center', block:'center'});
+  });
+}
+function updateProgress(){
+  const totalW = flat.length, totalE = dflat.length;
+  let readW=0, readE=0;
+  flat.forEach(f=>{ if(readState[f.eser]) readW++; });
+  dflat.forEach(f=>{ if(readState[f.eser]) readE++; });
+  document.getElementById('progressText').textContent =
+    'Batı: '+readW+'/'+totalW+' okundu · Doğu: '+readE+'/'+totalE+' okundu';
+  western.forEach((col,ci)=>{
+    const total = col[2].length;
+    const read = col[2].filter(b=>readState[b[0]]).length;
+    const elp = mapEl.querySelector('.col-progress[data-col="'+ci+'"]');
+    if(elp) elp.textContent = read+'/'+total+' okundu';
+  });
+  renderNextUp();
+}
+
+function renderNode(key, titleTxt, subTxt, pos, tierClass, tagHtml, promptTxt, wikiUrl, ozetUrl){
+  const el = document.createElement('div');
+  el.className = 'node '+tierClass+(readState[key]?' read':'');
+  el.style.left = pos.x+'px'; el.style.top = pos.y+'px'; el.style.width = pos.w+'px'; el.style.height = pos.h+'px';
+  el.dataset.eser = key;
+  const wikiHtml = wikiUrl ? '<a href="'+wikiUrl+'" target="_blank" rel="noopener" class="wiki">Wikipedia ↗</a>' : '';
+  const ozetHtml = ozetUrl ? '<a href="'+ozetUrl+'" target="_blank" rel="noopener" class="ozet-link">Atlas ↗</a>' : '';
+  const nk = nedenKavram[titleTxt];
+  const whyHtml = nk ? '<div class="why">'+nk.neden+'</div><div class="kw">'+nk.kw.join(' · ')+'</div>' : '';
+  el.innerHTML = '<div class="row1"><div class="titlewrap"><div class="t">'+titleTxt+'</div><div class="s">'+subTxt+'</div></div>'+(tagHtml||'')+'</div>'+
+    whyHtml+
+    '<div class="row2"><input type="checkbox" class="chk" '+(readState[key]?'checked':'')+'>'+ozetHtml+wikiHtml+'</div>';
+  const chk = el.querySelector('.chk');
+  chk.addEventListener('click', e=>e.stopPropagation());
+  chk.addEventListener('change', async ()=>{
+    readState[key] = chk.checked;
+    el.classList.toggle('read', chk.checked);
+    await saveState();
+    updateProgress();
+  });
+  if(wikiUrl){ const a = el.querySelector('.wiki'); a.addEventListener('click', e=>e.stopPropagation()); }
+  if(ozetUrl){ const a = el.querySelector('.ozet-link'); a.addEventListener('click', e=>e.stopPropagation()); }
+  el.querySelector('.t').addEventListener('click', ()=>{ if(window.sendPrompt) sendPrompt(promptTxt); });
+  mapEl.appendChild(el);
+  return el;
+}
+
+flat.forEach(item=>{
+  const p = westPos(item);
+  const tierClass = item.oncelik==='Mutlaka Oku'?'tier-Mutlaka':(item.oncelik==='Önerilir'?'tier-Onerilir':'tier-Derinlesme');
+  const tag = '<span class="tag tag-'+item.bucket+'">'+({felsefe:'FEL',tarih:'TAR',siyaset:'SİY',davranis:'PSİ',sanat:'SAN'}[item.bucket])+'</span>';
+  renderNode(item.eser, item.eser, item.yazar, p, tierClass, tag, "'"+item.eser+"' hakkında bilgi ver", null, ozetLinks[item.eser]);
+});
+
+addDivider(cursorY); cursorY += 20;
+
+// --- Doğu Düşüncesi (readings) ---
+const navDoguY = cursorY;
+addSectionTitle('Doğu Düşüncesi — paralel okumalar', cursorY);
+addColumnEraLabels(cursorY+20, [0,1,2,3,4,6,8], true);
+cursorY += 86;
+const doguColCounts = {};
+dogu.forEach(d=>{ doguColCounts[d[0]] = (doguColCounts[d[0]]||0)+1; });
+const doguMaxCount = Math.max(...Object.values(doguColCounts));
+const doguTop = cursorY;
+const doguRowTrack = {};
+dogu.forEach(d=>{
+  doguRowTrack[d[0]] = doguRowTrack[d[0]]===undefined ? 0 : doguRowTrack[d[0]]+1;
+});
+const doguRowCounter = {};
+dflat.forEach(item=>{
+  doguRowCounter[item.col] = doguRowCounter[item.col]===undefined ? 0 : doguRowCounter[item.col]+1;
+  const ri = doguRowCounter[item.col];
+  const x = LEFT+item.col*(COLW+GAP_X);
+  const y = doguTop+ri*(NODEH_R+GAP_Y_R);
+  renderNode(item.eser, item.eser, item.yazar+' · '+item.donem, {x,y,w:COLW,h:NODEH_R}, 'tier-Dogu', '', "'"+item.eser+"' hakkında bilgi ver");
+});
+cursorY = doguTop + doguMaxCount*(NODEH_R+GAP_Y_R) + 20;
+
+addDivider(cursorY); cursorY += 20;
+
+// --- Müzik: 8 per western column + 8 per doğu column (cols 0-3) ---
+const navMuzikY = cursorY;
+addSectionTitle('Müzik — dönem imzaları', cursorY);
+addColumnEraLabels(cursorY+20, [0,1,2,3,4,5,6,7,8,9]);
+cursorY += 86;
+const muzikTop = cursorY;
+eraMusic.forEach((items,ci)=>{
+  items.forEach((it,ri)=>{
+    const x = LEFT+ci*(COLW+GAP_X);
+    const y = muzikTop+ri*(NODEH+GAP_Y);
+    renderNode('muzik:'+it[0]+ci+ri, it[0], it[1], {x,y,w:COLW,h:NODEH}, 'tier-Muzik', '', "'"+it[0]+"' hakkında bilgi ver");
+  });
+});
+Object.keys(doguMusic).forEach(ci=>{
+  const items = doguMusic[ci];
+  items.forEach((it,ri)=>{
+    const x = LEFT+parseInt(ci)*(COLW+GAP_X);
+    const y = muzikTop+(8+ri)*(NODEH+GAP_Y);
+    renderNode('muzik-dogu:'+it[0]+ci+ri, it[0], it[1], {x,y,w:COLW,h:NODEH}, 'tier-Dogu', '', "'"+it[0]+"' hakkında bilgi ver");
+  });
+});
+cursorY = muzikTop + 16*(NODEH+GAP_Y) + 20;
+
+addDivider(cursorY); cursorY += 20;
+
+// --- Mimari: 8 per western column + 8 per doğu column (cols 0-3), with üslup tag ---
+const navMimariY = cursorY;
+addSectionTitle('Mimari — dönem imzaları ve üslupları', cursorY);
+addColumnEraLabels(cursorY+20, [0,1,2,3,4,5,6,7,8,9]);
+cursorY += 86;
+const mimariTop = cursorY;
+eraArch.forEach((items,ci)=>{
+  items.forEach((it,ri)=>{
+    const x = LEFT+ci*(COLW+GAP_X);
+    const y = mimariTop+ri*(NODEH_M+GAP_Y_M);
+    const uslupTag = '<span class="tag tag-uslup">'+it[2]+'</span>';
+    renderNode('mimari:'+it[0]+ci+ri, it[0], it[1], {x,y,w:COLW,h:NODEH_M}, 'tier-Mimari', uslupTag, "'"+it[0]+"' yapısı ve "+it[2]+" üslubu hakkında bilgi ver", it[3]);
+  });
+});
+Object.keys(doguArch).forEach(ci=>{
+  const items = doguArch[ci];
+  items.forEach((it,ri)=>{
+    const x = LEFT+parseInt(ci)*(COLW+GAP_X);
+    const y = mimariTop+(8+ri)*(NODEH_M+GAP_Y_M);
+    const uslupTag = '<span class="tag tag-uslup">'+it[2]+'</span>';
+    renderNode('mimari-dogu:'+it[0]+ci+ri, it[0], it[1], {x,y,w:COLW,h:NODEH_M}, 'tier-Dogu', uslupTag, "'"+it[0]+"' yapısı ve "+it[2]+" üslubu hakkında bilgi ver", it[3]);
+  });
+});
+cursorY = mimariTop + 16*(NODEH_M+GAP_Y_M) + 20;
+
+addDivider(cursorY); cursorY += 20;
+
+// --- Roman ---
+const navRomanY = cursorY;
+addSectionTitle('Roman — dönemin romanları', cursorY);
+addColumnEraLabels(cursorY+20, [0,1,2,3,4,5,6,7,8,9]);
+cursorY += 86;
+const romanTop = cursorY;
+let romanMaxRows = 0;
+romanLayer.forEach((colBooks,ci)=>{
+  romanMaxRows = Math.max(romanMaxRows, colBooks.length);
+  colBooks.forEach((r,ri)=>{
+    const x = LEFT+ci*(COLW+GAP_X);
+    const y = romanTop+ri*(NODEH_R+GAP_Y_R);
+    renderNode('roman:'+r[0], r[0], r[1], {x,y,w:COLW,h:NODEH_R}, 'tier-Roman', '', "'"+r[0]+"' hakkında bilgi ver", null, ozetLinks[r[0]]);
+  });
+});
+Object.keys(doguRoman).forEach(ci=>{
+  const items = doguRoman[ci];
+  items.forEach((r,ri)=>{
+    const x = LEFT+parseInt(ci)*(COLW+GAP_X);
+    const y = romanTop+(romanMaxRows+ri)*(NODEH_R+GAP_Y_R);
+    renderNode('roman-dogu:'+r[0], r[0], r[1], {x,y,w:COLW,h:NODEH_R}, 'tier-Dogu', '', "'"+r[0]+"' hakkında bilgi ver");
+  });
+});
+const doguRomanMax = Math.max(0, ...Object.values(doguRoman).map(a=>a.length));
+cursorY = romanTop + (romanMaxRows+doguRomanMax)*(NODEH_R+GAP_Y_R) + 30;
+
+mapEl.style.width = mapW+'px';
+mapEl.style.height = cursorY+'px';
+
+const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+svg.setAttribute('class','overlay');
+svg.setAttribute('width', mapW); svg.setAttribute('height', cursorY);
+mapEl.insertBefore(svg, mapEl.firstChild);
+
+const edges = [];
+flat.forEach(item=>{
+  item.onkosul.split(',').map(s=>s.trim()).forEach(name=>{
+    const src = resolvePrereq(name, item.idx);
+    if(src){
+      const sp = westPos(src), tp = westPos(item);
+      const x1 = sp.x+sp.w, y1 = sp.y+sp.h/2;
+      const x2 = tp.x, y2 = tp.y+tp.h/2;
+      const dx = Math.max(40, Math.abs(x2-x1)*0.5);
+      const d = 'M'+x1+','+y1+' C'+(x1+dx)+','+y1+' '+(x2-dx)+','+y2+' '+x2+','+y2;
+      const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+      const colDiff = Math.abs(item.col-src.col);
+      const edgeClass = colDiff>=2 ? 'edge-long' : 'edge-short';
+      path.setAttribute('d', d); path.setAttribute('class', edgeClass);
+      path.dataset.target = item.eser; path.dataset.source = src.eser;
+      svg.appendChild(path);
+      edges.push(path);
+    }
+  });
+});
+
+document.querySelectorAll('.node').forEach(n=>{
+  n.addEventListener('mouseenter', ()=>{
+    const eser = n.dataset.eser;
+    edges.forEach(p=>{ p.classList.toggle('hi', p.dataset.target===eser || p.dataset.source===eser); });
+  });
+  n.addEventListener('mouseleave', ()=>{ edges.forEach(p=>p.classList.remove('hi')); });
+});
+
+(async ()=>{
+  await loadState();
+  document.querySelectorAll('.node').forEach(n=>{
+    const key = n.dataset.eser;
+    if(readState[key]){ n.classList.add('read'); const c=n.querySelector('.chk'); if(c) c.checked=true; }
+  });
+  updateProgress();
+})();
+
+// --- Navigation panel: quick-jump by era (horizontal) and by layer (vertical) ---
+const scrollEl = document.querySelector('.scroll');
+const romanNumerals = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
+const navErasEl = document.getElementById('navEras');
+romanNumerals.forEach((label,ci)=>{
+  const btn = document.createElement('button');
+  btn.className = 'nav-btn';
+  btn.textContent = label;
+  btn.title = western[ci][0];
+  btn.addEventListener('click', ()=>{
+    const targetX = LEFT+ci*(COLW+GAP_X)-24;
+    scrollEl.scrollTo({left: targetX, behavior:'smooth'});
+  });
+  navErasEl.appendChild(btn);
+});
+const navLayersEl = document.getElementById('navLayers');
+const layerTargets = [
+  ['Ana', 0],
+  ['Doğu', navDoguY],
+  ['Müzik', navMuzikY],
+  ['Mimari', navMimariY],
+  ['Roman', navRomanY]
+];
+layerTargets.forEach(([label,y])=>{
+  const btn = document.createElement('button');
+  btn.className = 'nav-btn nav-btn-wide';
+  btn.textContent = label;
+  btn.addEventListener('click', ()=>{
+    window.scrollTo({top: Math.max(0,y-90), behavior:'smooth'});
+  });
+  navLayersEl.appendChild(btn);
+});
+document.getElementById('navToggle').addEventListener('click', ()=>{
+  document.getElementById('navPanel').classList.toggle('collapsed');
+});
+</script>
+</body>
+</html>
