@@ -165,6 +165,7 @@
   .dash-bar-track{height:6px;border-radius:3px;background:var(--border);overflow:hidden}
   .dash-bar-fill{height:100%;background:var(--gold);border-radius:3px;transition:width .3s}
   .dash-scroll{max-height:340px;overflow-y:auto;padding-right:4px}
+  .goal-box{background:var(--amber-bg);border:0.5px solid var(--gold);border-radius:4px;padding:10px 12px;margin-bottom:16px}
   .nav-panel{position:fixed;right:20px;bottom:20px;z-index:20;background:var(--card);border:0.5px solid var(--border);
         border-radius:4px;box-shadow:0 6px 24px rgba(20,14,4,.22);padding:12px;max-width:220px}
   .nav-toggle{display:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--border);
@@ -373,11 +374,13 @@ function westPos(item){
 
 let readState = {};
 let notesState = {};
+let goalState = {};
+let dateState = {};
 function unpackCloudData(raw){
-  if(raw && typeof raw==='object' && ('read' in raw || 'notes' in raw)){
-    return { read: raw.read||{}, notes: raw.notes||{} };
+  if(raw && typeof raw==='object' && ('read' in raw || 'notes' in raw || 'goal' in raw)){
+    return { read: raw.read||{}, notes: raw.notes||{}, goal: raw.goal||{}, dates: raw.dates||{} };
   }
-  return { read: raw||{}, notes: {} };
+  return { read: raw||{}, notes: {}, goal: {}, dates: {} };
 }
 const SUPABASE_URL = 'https://vtyaktxbcudjopbankdj.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_N8PhQal2eSK742Q5s2ARJQ_YgnS96HO';
@@ -412,9 +415,11 @@ async function loadState(){
     const cloudData = await cloudFetch(syncCode);
     if(cloudData){
       const unpacked = unpackCloudData(cloudData);
-      readState = unpacked.read; notesState = unpacked.notes;
+      readState = unpacked.read; notesState = unpacked.notes; goalState = unpacked.goal; dateState = unpacked.dates;
       localStorage.setItem('okuma-durumu', JSON.stringify(readState));
       localStorage.setItem('notlar', JSON.stringify(notesState));
+      localStorage.setItem('hedef', JSON.stringify(goalState));
+      localStorage.setItem('okuma-tarihleri', JSON.stringify(dateState));
       return;
     }
   }catch(e){}
@@ -423,15 +428,21 @@ async function loadState(){
     if(raw) readState = JSON.parse(raw);
     const rawNotes = localStorage.getItem('notlar');
     if(rawNotes) notesState = JSON.parse(rawNotes);
-  }catch(e){ readState = {}; notesState = {}; }
-  cloudSave(syncCode, {read:readState, notes:notesState}).catch(()=>{});
+    const rawGoal = localStorage.getItem('hedef');
+    if(rawGoal) goalState = JSON.parse(rawGoal);
+    const rawDates = localStorage.getItem('okuma-tarihleri');
+    if(rawDates) dateState = JSON.parse(rawDates);
+  }catch(e){ readState = {}; notesState = {}; goalState = {}; dateState = {}; }
+  cloudSave(syncCode, {read:readState, notes:notesState, goal:goalState, dates:dateState}).catch(()=>{});
 }
 async function saveState(){
   try{
     localStorage.setItem('okuma-durumu', JSON.stringify(readState));
     localStorage.setItem('notlar', JSON.stringify(notesState));
+    localStorage.setItem('hedef', JSON.stringify(goalState));
+    localStorage.setItem('okuma-tarihleri', JSON.stringify(dateState));
   }catch(e){}
-  cloudSave(syncCode, {read:readState, notes:notesState}).catch(()=>{});
+  cloudSave(syncCode, {read:readState, notes:notesState, goal:goalState, dates:dateState}).catch(()=>{});
 }
 
 function resolvePrereq(name, currentIdx){
@@ -534,6 +545,27 @@ function renderDashboard(){
       '<div class="dash-bar-track"><div class="dash-bar-fill" style="width:'+p+'%"></div></div></div>';
   }).join('');
 
+  const currentYear = new Date().getFullYear();
+  const readThisYear = Object.keys(readState).filter(k=>readState[k] && dateState[k] && dateState[k].slice(0,4)===String(currentYear)).length;
+  const target = goalState.target || 0;
+  let goalHtml;
+  if(target > 0){
+    const goalPct = Math.min(100, Math.round(100*readThisYear/target));
+    goalHtml = '<div class="goal-box">'+
+      '<div class="dash-bar-label"><span>'+currentYear+' Hedefi</span><span>'+readThisYear+' / '+target+'</span></div>'+
+      '<div class="dash-bar-track"><div class="dash-bar-fill" style="width:'+goalPct+'%"></div></div>'+
+      '<button class="modal-btn" id="goalEdit" style="margin-top:8px">Hedefi Değiştir</button>'+
+    '</div>';
+  }else{
+    goalHtml = '<div class="goal-box">'+
+      '<div class="dash-bar-label"><span>'+currentYear+' için bir hedef koy</span></div>'+
+      '<div style="display:flex;gap:6px;margin-top:6px">'+
+        '<input type="number" id="goalInput" min="1" placeholder="örn. 20" style="width:80px;padding:6px 8px;border-radius:4px;border:0.5px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font-mono);font-size:12px">'+
+        '<button class="modal-btn primary" id="goalSet">Hedef Koy</button>'+
+      '</div>'+
+    '</div>';
+  }
+
   const overlay = document.createElement('div');
   overlay.className = 'modal-overlay';
   overlay.innerHTML = '<div class="modal-box wide">'+
@@ -544,6 +576,7 @@ function renderDashboard(){
       '<div class="dash-stat"><div class="num">'+readAll+'</div><div class="lbl">Okunan</div></div>'+
       '<div class="dash-stat"><div class="num">'+noteCount+'</div><div class="lbl">Not</div></div>'+
     '</div>'+
+    goalHtml+
     '<div class="dash-scroll">'+barsHtml+'</div>'+
     '<div class="modal-actions"><button class="modal-btn primary" id="dashClose">Kapat</button></div>'+
   '</div>';
@@ -551,6 +584,19 @@ function renderDashboard(){
   function close(){ overlay.remove(); }
   overlay.addEventListener('click', e=>{ if(e.target===overlay) close(); });
   overlay.querySelector('#dashClose').addEventListener('click', close);
+  const setBtn = overlay.querySelector('#goalSet');
+  if(setBtn){
+    setBtn.addEventListener('click', async ()=>{
+      const val = parseInt(overlay.querySelector('#goalInput').value, 10);
+      if(val > 0){ goalState.target = val; await saveState(); close(); renderDashboard(); }
+    });
+  }
+  const editBtn = overlay.querySelector('#goalEdit');
+  if(editBtn){
+    editBtn.addEventListener('click', async ()=>{
+      goalState.target = 0; await saveState(); close(); renderDashboard();
+    });
+  }
 }
 
 function renderNode(key, titleTxt, subTxt, pos, tierClass, tagHtml, promptTxt, wikiUrl, ozetUrl){
@@ -571,6 +617,7 @@ function renderNode(key, titleTxt, subTxt, pos, tierClass, tagHtml, promptTxt, w
   chk.addEventListener('click', e=>e.stopPropagation());
   chk.addEventListener('change', async ()=>{
     readState[key] = chk.checked;
+    if(chk.checked && !dateState[key]){ dateState[key] = new Date().toISOString().slice(0,10); }
     el.classList.toggle('read', chk.checked);
     await saveState();
     updateProgress();
@@ -832,9 +879,11 @@ document.getElementById('dashboardBtn').addEventListener('click', renderDashboar
       syncCode = code;
       localStorage.setItem('atlas-sync-code', code);
       const unpacked = unpackCloudData(data);
-      readState = unpacked.read; notesState = unpacked.notes;
+      readState = unpacked.read; notesState = unpacked.notes; goalState = unpacked.goal; dateState = unpacked.dates;
       localStorage.setItem('okuma-durumu', JSON.stringify(readState));
       localStorage.setItem('notlar', JSON.stringify(notesState));
+      localStorage.setItem('hedef', JSON.stringify(goalState));
+      localStorage.setItem('okuma-tarihleri', JSON.stringify(dateState));
       codeEl.textContent = syncCode;
       document.querySelectorAll('.node').forEach(n=>{
         const key = n.dataset.eser;
