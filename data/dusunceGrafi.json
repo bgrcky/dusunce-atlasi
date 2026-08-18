@@ -1,0 +1,28 @@
+{
+  "edges": [
+    ["Sokrates'in Savunması","Devlet","sorgulama → adalet"],
+    ["Devlet","Nikomakhos'a Etik","ideal düzen → erdemli yaşam"],
+    ["Nikomakhos'a Etik","El Kitabı","erdem → özdenetim"],
+    ["El Kitabı","Kendime Düşünceler","Stoacı pratik → iç disiplin"],
+    ["Devlet","Politika","ideal devlet → karşılaştırmalı siyaset"],
+    ["Politika","Prens","iyi düzen → siyasal gerçekçilik"],
+    ["Prens","Leviathan","iktidar → egemenlik"],
+    ["Leviathan","Yönetim Üzerine İki İnceleme","mutlak egemenlik → sınırlı yönetim"],
+    ["Yönetim Üzerine İki İnceleme","Toplum Sözleşmesi","doğal hak → genel irade"],
+    ["Toplum Sözleşmesi","Özgürlük Üzerine","kolektif özgürlük → bireysel özgürlük"],
+    ["Nikomakhos'a Etik","Summa Theologica","erdem etiği → Hristiyan sentezi"],
+    ["Summa Theologica","Etika","Tanrı-merkezli düzen → rasyonel doğa"],
+    ["Etika","Aydınlanma Nedir?","akıl → özerklik"],
+    ["Aydınlanma Nedir?","Böyle Buyurdu Zerdüşt","özerk akıl → değerlerin yeniden değerlendirilmesi"],
+    ["Böyle Buyurdu Zerdüşt","Sisifos Söyleni","nihilizm → absürd"],
+    ["Sisifos Söyleni","İnsanın Anlam Arayışı","absürd → anlam kurma"],
+    ["Leviathan","Ulusların Zenginliği","düzen → piyasa toplumu"],
+    ["Ulusların Zenginliği","Komünist Manifesto","piyasa → sınıf çatışması"],
+    ["Komünist Manifesto","Özgürlükten Kaçış","toplumsal yapı → bireysel kaçış"],
+    ["Özgürlükten Kaçış","İnsanın Anlam Arayışı","özgürlük kaygısı → anlam"],
+    ["Düşlerin Yorumu","Özgürlükten Kaçış","bilinçdışı → toplumsal psikoloji"],
+    ["Amerika'da Demokrasi","Özgürlük Üzerine","çoğunluk → bireysel alan"],
+    ["Deliliğe Övgü","Prens","Rönesans eleştirisi → güç siyaseti"],
+    ["İtiraflar","Summa Theologica","içsel benlik → skolastik sentez"]
+  ]
+}
