@@ -207,6 +207,13 @@
   .search-count{position:absolute;right:10px;font-family:var(--font-mono);font-size:10px;color:var(--text-sec)}
   .node.search-dim{opacity:.15}
   .node.search-hit{box-shadow:0 0 0 2px var(--gold)!important;z-index:8}
+  .node.route-dim{opacity:.12;filter:saturate(.3)}
+  .node.route-hit{box-shadow:0 0 0 2px var(--gold)!important;z-index:9;transition:opacity .35s ease, box-shadow .2s ease}
+  .route-badge{position:absolute;top:3px;left:3px;width:17px;height:17px;border-radius:50%;
+        background:var(--gold);color:var(--card);font-family:var(--font-mono);font-size:9.5px;font-weight:600;
+        display:flex;align-items:center;justify-content:center;z-index:11;box-shadow:0 1px 4px rgba(0,0,0,.3)}
+  .nav-btn.route-active{background:var(--gold);color:var(--card);border-color:var(--gold)}
+  #navRoutes{display:flex;flex-wrap:wrap;gap:5px}
   .legend-toggle{margin-top:2px}
   .legend-toggle summary{font-family:var(--font-mono);font-size:10.5px;color:var(--gold);cursor:pointer;letter-spacing:.3px;list-style:none;display:inline-block}
   .legend-toggle summary::-webkit-details-marker{display:none}
@@ -276,6 +283,8 @@
     <div class="nav-row" id="navEras"></div>
     <div class="nav-row-label">Katman</div>
     <div class="nav-row" id="navLayers"></div>
+    <div class="nav-row-label">Rotalar</div>
+    <div class="nav-row" id="navRoutes"></div>
     <div class="nav-row-label">Senkron kodu</div>
     <div class="sync-row">
       <code id="syncCode" class="sync-code" title="Kopyalamak için tıkla">…</code>
@@ -821,6 +830,82 @@ layerTargets.forEach(([label,y])=>{
   });
   navLayersEl.appendChild(btn);
 });
+
+// --- Rotalar (curated reading paths + layer-level highlights) ---
+const ROTALAR = [
+  { id:'temel', label:'Temel Rota', eserler:[
+    "Sokrates'in Savunması","Devlet","Nikomakhos'a Etik","El Kitabı","İtiraflar","Summa Theologica",
+    "Prens","Leviathan","Toplum Sözleşmesi","Aydınlanma Nedir?","Komünist Manifesto",
+    "Böyle Buyurdu Zerdüşt","Düşlerin Yorumu","Varlık ve Zaman","Sisifos Söyleni",
+    "Totalitarizmin Kaynakları","Hapishanenin Doğuşu","Bir Adalet Teorisi","Hızlı ve Yavaş Düşünme","Görme Biçimleri"
+  ]},
+  { id:'bati', label:'Batı Düşüncesi', eserler: () => flat.map(f=>f.eser) },
+  { id:'dogu', label:'Doğu Düşüncesi', eserler: () => dflat.map(f=>f.eser) },
+  { id:'iktidar', label:'İktidarın Tarihi', eserler:[
+    "Devlet","Prens","Leviathan","Toplum Sözleşmesi","Komünist Manifesto","Hapishanenin Doğuşu"
+  ]},
+  { id:'iyi-yasam', label:'İyi Yaşam Rotası', eserler:[
+    "Nikomakhos'a Etik","El Kitabı","Kendime Düşünceler","Denemeler","Böyle Buyurdu Zerdüşt","İnsanın Anlam Arayışı"
+  ]},
+  { id:'modern-insan', label:'Modern İnsan Rotası', eserler:[
+    "Suç ve Ceza","Ahlakın Soykütüğü","Uygarlığın Huzursuzluğu","Dönüşüm","Yabancı","Özgürlükten Kaçış"
+  ]}
+];
+
+const navRoutesEl = document.getElementById('navRoutes');
+let activeRoute = null;
+
+function clearRoute(){
+  document.querySelectorAll('.node').forEach(n=>{
+    n.classList.remove('route-dim','route-hit');
+    const b = n.querySelector('.route-badge');
+    if(b) b.remove();
+  });
+  navRoutesEl.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('route-active'));
+  activeRoute = null;
+}
+
+function applyRoute(route, btn){
+  // Route ile arama birbirini geçersiz kılar
+  const searchInputEl = document.getElementById('searchInput');
+  if(searchInputEl.value){ searchInputEl.value=''; searchInputEl.dispatchEvent(new Event('input')); }
+
+  if(activeRoute === route.id){ clearRoute(); return; }
+  clearRoute();
+  activeRoute = route.id;
+  btn.classList.add('route-active');
+
+  const keys = typeof route.eserler === 'function' ? route.eserler() : route.eserler;
+  const keySet = new Set(keys);
+  const allNodes = document.querySelectorAll('.node');
+  allNodes.forEach(n=>{
+    const key = n.dataset.eser;
+    if(keySet.has(key)){ n.classList.add('route-hit'); }
+    else{ n.classList.add('route-dim'); }
+  });
+  // Sıralı rotalar için numara rozeti ekle (tek bir layer highlight'ında rozet anlamsız, atla)
+  if(Array.isArray(route.eserler)){
+    keys.forEach((key, i)=>{
+      const n = document.querySelector('.node[data-eser="'+CSS.escape(key)+'"]');
+      if(n){
+        const badge = document.createElement('div');
+        badge.className = 'route-badge';
+        badge.textContent = i+1;
+        n.appendChild(badge);
+      }
+    });
+    const firstNode = document.querySelector('.node[data-eser="'+CSS.escape(keys[0])+'"]');
+    if(firstNode) firstNode.scrollIntoView({behavior:'smooth', block:'center', inline:'center'});
+  }
+}
+
+ROTALAR.forEach(route=>{
+  const btn = document.createElement('button');
+  btn.className = 'nav-btn nav-btn-wide';
+  btn.textContent = route.label;
+  btn.addEventListener('click', ()=> applyRoute(route, btn));
+  navRoutesEl.appendChild(btn);
+});
 document.getElementById('navToggle').addEventListener('click', ()=>{
   document.getElementById('navPanel').classList.toggle('collapsed');
 });
@@ -833,6 +918,7 @@ document.getElementById('dashboardBtn').addEventListener('click', renderDashboar
   let firstHit = null;
   input.addEventListener('input', ()=>{
     const q = input.value.trim().toLocaleLowerCase('tr-TR');
+    if(q && typeof clearRoute==='function' && activeRoute){ clearRoute(); }
     const nodes = document.querySelectorAll('.node');
     firstHit = null;
     let hitCount = 0;
