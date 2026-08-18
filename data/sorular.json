@@ -1,0 +1,12 @@
+[
+{"id":"iyi-hayat","soru":"İyi bir hayat nedir?","eserler":["Sokrates'in Savunması","Nikomakhos'a Etik","El Kitabı","Kendime Düşünceler","İnsanın Anlam Arayışı"]},
+{"id":"olum","soru":"Ölümden korkmalı mıyız?","eserler":["Menoikeus'a Mektup","El Kitabı","Kendime Düşünceler","Sisifos Söyleni"]},
+{"id":"devlet","soru":"Devlet neden var?","eserler":["Devlet","Prens","Leviathan","Toplum Sözleşmesi"]},
+{"id":"ozgur-irade","soru":"Özgür irademiz var mı?","eserler":["El Kitabı","Etika","İnsanın Anlam Arayışı"]},
+{"id":"adalet","soru":"Adalet nedir?","eserler":["Devlet","Nikomakhos'a Etik","Toplum Sözleşmesi","Bir Adalet Teorisi"]},
+{"id":"insan-dogasi","soru":"İnsan doğası iyi midir?","eserler":["Devlet","Nikomakhos'a Etik","Leviathan","Toplum Sözleşmesi"]},
+{"id":"anlam","soru":"Hayatın anlamı var mı?","eserler":["Böyle Buyurdu Zerdüşt","Sisifos Söyleni","İnsanın Anlam Arayışı"]},
+{"id":"mutluluk","soru":"Mutluluk nedir?","eserler":["Nikomakhos'a Etik","Menoikeus'a Mektup","El Kitabı","Kendime Düşünceler"]},
+{"id":"iktidar","soru":"İktidar insanı değiştirir mi?","eserler":["Devlet","Prens","Leviathan"]},
+{"id":"bilgi","soru":"Neyi gerçekten bilebiliriz?","eserler":["Devlet","İlk Felsefe Üzerine Meditasyonlar","İnsan Anlığı Üzerine Bir Soruşturma","Saf Aklın Eleştirisi"]}
+]
