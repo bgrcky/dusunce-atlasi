@@ -1,0 +1,38 @@
+[
+  {
+    "id": "erdem",
+    "label": "Erdem",
+    "aciklama": "İyi insan nasıl yaşamalı? Erdem fikrinin Antik Yunan'dan modern dünyaya uzanan dönüşümü.",
+    "eserler": ["Nikomakhos'a Etik", "El Kitabı", "Kendime Düşünceler", "Denemeler", "Böyle Buyurdu Zerdüşt"]
+  },
+  {
+    "id": "iktidar",
+    "label": "İktidar",
+    "aciklama": "Devletin meşruiyetinden disipline: iktidarın kimde olduğu, nasıl kurulduğu ve nasıl sınırlandığı.",
+    "eserler": ["Devlet", "Prens", "Leviathan", "Toplum Sözleşmesi", "Komünist Manifesto", "Hapishanenin Doğuşu"]
+  },
+  {
+    "id": "ozgurluk",
+    "label": "Özgürlük",
+    "aciklama": "Bireyin özgürlüğü ile toplum, otorite ve sorumluluk arasındaki gerilim.",
+    "eserler": ["Toplum Sözleşmesi", "Aydınlanma Nedir?", "Böyle Buyurdu Zerdüşt", "Özgürlükten Kaçış", "Bir Adalet Teorisi"]
+  },
+  {
+    "id": "anlam",
+    "label": "Anlam",
+    "aciklama": "İnsan hayatına anlam veren şey nedir? İnançtan varoluşçuluğa ve psikolojiye uzanan hat.",
+    "eserler": ["İtiraflar", "Böyle Buyurdu Zerdüşt", "Varlık ve Zaman", "Sisifos Söyleni", "İnsanın Anlam Arayışı"]
+  },
+  {
+    "id": "insan-dogasi",
+    "label": "İnsan Doğası",
+    "aciklama": "İnsan özünde nedir: akıllı, toplumsal, çıkarcı, özgür ya da bilinçdışı tarafından yönlendirilen bir varlık mı?",
+    "eserler": ["Devlet", "Nikomakhos'a Etik", "Leviathan", "Toplum Sözleşmesi", "Düşlerin Yorumu", "Hızlı ve Yavaş Düşünme"]
+  },
+  {
+    "id": "adalet",
+    "label": "Adalet",
+    "aciklama": "Adil toplum nasıl kurulur? Klasik siyaset felsefesinden çağdaş dağıtım adaletine uzanan tartışma.",
+    "eserler": ["Devlet", "Nikomakhos'a Etik", "Toplum Sözleşmesi", "Komünist Manifesto", "Bir Adalet Teorisi"]
+  }
+]

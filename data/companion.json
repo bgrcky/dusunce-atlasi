@@ -1,0 +1,66 @@
+{
+  "Nikomakhos'a Etik": {
+    "nedenOnemli": "İyi yaşamı haz ya da başarıdan çok karakter, alışkanlık ve erdem üzerinden kuran etik düşüncenin temel metinlerinden biri.",
+    "anaFikir": "Mutluluk tek bir duygu değil; erdemli etkinlikle şekillenen iyi yaşanmış bir hayatın bütünüdür.",
+    "once": ["Devlet"],
+    "sonra": ["El Kitabı", "Kendime Düşünceler"],
+    "fikirler": ["Erdem", "İyi yaşam", "Mutluluk"],
+    "zorluk": 3
+  },
+  "Devlet": {
+    "nedenOnemli": "Adalet, eğitim, siyasal düzen ve filozofun toplumdaki rolünü tek bir büyük soru etrafında birleştiren kurucu siyaset felsefesi metni.",
+    "anaFikir": "Adil toplum ile adil insan birbirinin aynasıdır; düzen, ruhun ve kentin parçaları doğru işlev gördüğünde ortaya çıkar.",
+    "once": ["Sokrates'in Savunması"],
+    "sonra": ["Nikomakhos'a Etik", "Prens"],
+    "fikirler": ["Adalet", "Devlet", "Eğitim"],
+    "zorluk": 3
+  },
+  "El Kitabı": {
+    "nedenOnemli": "Stoacı pratiği gündelik kararların içine taşıyan kısa ve yoğun bir yaşam kılavuzu.",
+    "anaFikir": "Huzurun başlangıcı, kontrol edebildiğimiz şeylerle edemediklerimizi ayırabilmektir.",
+    "once": ["Nikomakhos'a Etik"],
+    "sonra": ["Kendime Düşünceler"],
+    "fikirler": ["Stoacılık", "Özdenetim", "Erdem"],
+    "zorluk": 1
+  },
+  "Prens": {
+    "nedenOnemli": "Siyaseti ideal düzen tasarımından ayırıp iktidarın nasıl kazanıldığı ve korunduğu üzerinden inceleyen kırılma metni.",
+    "anaFikir": "Siyasal eylemin ölçütleri özel ahlakın ölçütleriyle her zaman örtüşmez.",
+    "once": ["Devlet"],
+    "sonra": ["Leviathan"],
+    "fikirler": ["İktidar", "Devlet", "Siyasal gerçekçilik"],
+    "zorluk": 2
+  },
+  "Leviathan": {
+    "nedenOnemli": "Modern devletin meşruiyetini insan doğası, güvenlik ve toplumsal sözleşme üzerinden sistematik biçimde kurar.",
+    "anaFikir": "Ortak bir otorite olmadığında özgür bireylerin güvensizliği çatışma üretir; siyasal düzen güvenlik karşılığında kurulur.",
+    "once": ["Prens"],
+    "sonra": ["Toplum Sözleşmesi"],
+    "fikirler": ["İktidar", "İnsan doğası", "Toplum sözleşmesi"],
+    "zorluk": 4
+  },
+  "Toplum Sözleşmesi": {
+    "nedenOnemli": "Özgür bireyin siyasal topluluğa katılırken nasıl hâlâ özgür kalabileceğini soran modern demokrasi tartışmasının temel metinlerinden.",
+    "anaFikir": "Meşru siyasal otorite zor kullanmaktan değil, yurttaşların ortak iradesinden doğmalıdır.",
+    "once": ["Leviathan"],
+    "sonra": ["Aydınlanma Nedir?", "Bir Adalet Teorisi"],
+    "fikirler": ["Özgürlük", "Egemenlik", "Genel irade"],
+    "zorluk": 3
+  },
+  "Sisifos Söyleni": {
+    "nedenOnemli": "Anlamsızlık karşısında yaşamaya devam etmenin felsefi gerekçesini varoluşçu bir açıklıkla tartışır.",
+    "anaFikir": "Dünya nihai bir anlam sunmasa bile insan, başkaldırı ve bilinç yoluyla yaşamı seçebilir.",
+    "once": ["Böyle Buyurdu Zerdüşt"],
+    "sonra": ["İnsanın Anlam Arayışı"],
+    "fikirler": ["Anlam", "Absürd", "Başkaldırı"],
+    "zorluk": 2
+  },
+  "İnsanın Anlam Arayışı": {
+    "nedenOnemli": "Aşırı acı koşullarında bile insanın anlam kurma kapasitesini psikoloji ve tanıklık üzerinden birleştirir.",
+    "anaFikir": "Koşulları her zaman seçemeyiz; fakat onlara karşı alacağımız tutumda bir özgürlük alanı kalabilir.",
+    "once": ["Sisifos Söyleni"],
+    "sonra": ["Özgürlükten Kaçış"],
+    "fikirler": ["Anlam", "Özgürlük", "Logoterapi"],
+    "zorluk": 1
+  }
+}
