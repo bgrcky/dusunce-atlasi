@@ -905,9 +905,10 @@ function applyRoute(route, btn){
         n.appendChild(badge);
       }
     });
-    const firstNode = document.querySelector('.node[data-eser="'+CSS.escape(keys[0])+'"]');
-    focusOnNode(firstNode);
   }
+  // Rota tipi ne olursa olsun (sıralı ya da katman-geneli), ilk esere odaklan
+  const firstNode = document.querySelector('.node[data-eser="'+CSS.escape(keys[0])+'"]');
+  focusOnNode(firstNode);
 }
 
 ROTALAR.forEach(route=>{
