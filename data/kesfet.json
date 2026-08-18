@@ -1,0 +1,8 @@
+[
+  {"id":"iyi-yasam","label":"İyi yaşam","soru":"İyi bir hayat neye dayanır?","eserler":["Nikomakhos'a Etik","El Kitabı","Kendime Düşünceler","İnsanın Anlam Arayışı"]},
+  {"id":"iktidar","label":"İktidar","soru":"İktidar nasıl kurulur ve meşrulaşır?","eserler":["Devlet","Prens","Leviathan","Toplum Sözleşmesi"]},
+  {"id":"ozgurluk","label":"Özgürlük","soru":"İnsan ne ölçüde özgürdür?","eserler":["El Kitabı","Toplum Sözleşmesi","Sisifos Söyleni","İnsanın Anlam Arayışı"]},
+  {"id":"insan-dogasi","label":"İnsan doğası","soru":"İnsanı insan yapan nedir?","eserler":["Devlet","Nikomakhos'a Etik","Leviathan","Toplum Sözleşmesi"]},
+  {"id":"anlam","label":"Anlam","soru":"Anlam verilmiş midir, yoksa kurulur mu?","eserler":["Kendime Düşünceler","Sisifos Söyleni","İnsanın Anlam Arayışı"]},
+  {"id":"adalet","label":"Adalet","soru":"Adil insan ve adil toplum nasıl mümkün olur?","eserler":["Devlet","Nikomakhos'a Etik","Toplum Sözleşmesi"]}
+]

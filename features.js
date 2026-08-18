@@ -1,128 +1,58 @@
 (async function(){
-  const [fikirHatlari, companion] = await Promise.all([
+  const [fikirHatlari, companion, kesfet, dunya] = await Promise.all([
     fetch('./data/fikirHatlari.json').then(r=>r.json()),
-    fetch('./data/companion.json').then(r=>r.json())
+    fetch('./data/companion.json').then(r=>r.json()),
+    fetch('./data/kesfet.json').then(r=>r.json()),
+    fetch('./data/dunyaParalel.json').then(r=>r.json())
   ]);
 
-  const style = document.createElement('style');
-  style.textContent = `
-    .node.idea-dim{opacity:.10!important;filter:saturate(.25)}
-    .node.idea-hit{box-shadow:0 0 0 2px var(--gold)!important;z-index:12!important}
+  const style=document.createElement('style');
+  style.textContent=`
+    .node.idea-dim,.node.discover-dim{opacity:.10!important;filter:saturate(.25)}
+    .node.idea-hit,.node.discover-hit{box-shadow:0 0 0 2px var(--gold)!important;z-index:12!important}
     .nav-btn.idea-active{background:var(--gold);color:var(--card);border-color:var(--gold)}
-    #navIdeas{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px}
-    .idea-note{font-family:var(--font-display);font-size:11px;line-height:1.35;color:var(--text-sec);margin:2px 0 7px;display:none}
-    .idea-note.visible{display:block}
-    .companion-panel{position:fixed;top:0;right:0;width:min(420px,92vw);height:100vh;z-index:80;background:var(--card);border-left:1px solid var(--border);box-shadow:-12px 0 38px rgba(20,14,4,.24);padding:26px 24px 32px;overflow-y:auto;transform:translateX(105%);transition:transform .28s ease}
-    .companion-panel.open{transform:translateX(0)}
-    .companion-kicker{font-family:var(--font-mono);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
-    .companion-panel h2{font-family:var(--font-display);font-size:26px;line-height:1.1;margin:0 36px 8px 0;color:var(--text)}
-    .companion-close{position:absolute;right:16px;top:16px;border:0;background:none;color:var(--text-sec);font-size:22px;cursor:pointer}
-    .companion-block{padding:15px 0;border-top:.5px solid var(--border)}
-    .companion-label{font-family:var(--font-mono);font-size:9.5px;text-transform:uppercase;letter-spacing:1px;color:var(--gold);margin-bottom:6px}
-    .companion-copy{font-family:var(--font-display);font-size:15px;line-height:1.55;color:var(--text)}
-    .companion-main{font-style:italic;font-size:17px}
-    .companion-tags{display:flex;gap:6px;flex-wrap:wrap}
-    .companion-tag,.companion-jump{font-family:var(--font-mono);font-size:10px;padding:5px 8px;border:.5px solid var(--border);border-radius:12px;background:var(--bg);color:var(--text-sec)}
-    button.companion-jump{cursor:pointer}
-    button.companion-jump:hover{border-color:var(--gold);color:var(--gold)}
-    .difficulty{letter-spacing:3px;color:var(--gold);font-size:14px}
-    .companion-hint{font-family:var(--font-mono);font-size:9px;color:var(--text-sec);margin-top:14px}
-    @media(max-width:640px){.companion-panel{padding:22px 18px 28px}.companion-panel h2{font-size:23px}}
-  `;
-  document.head.appendChild(style);
+    #navIdeas{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px}.idea-note{font-family:var(--font-display);font-size:11px;line-height:1.35;color:var(--text-sec);margin:2px 0 7px;display:none}.idea-note.visible{display:block}
+    .companion-panel{position:fixed;top:0;right:0;width:min(420px,92vw);height:100vh;z-index:80;background:var(--card);border-left:1px solid var(--border);box-shadow:-12px 0 38px rgba(20,14,4,.24);padding:26px 24px 32px;overflow-y:auto;transform:translateX(105%);transition:transform .28s ease}.companion-panel.open{transform:translateX(0)}
+    .companion-kicker,.atlas-kicker{font-family:var(--font-mono);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}.companion-panel h2{font-family:var(--font-display);font-size:26px;line-height:1.1;margin:0 36px 8px 0;color:var(--text)}.companion-close{position:absolute;right:16px;top:16px;border:0;background:none;color:var(--text-sec);font-size:22px;cursor:pointer}.companion-block{padding:15px 0;border-top:.5px solid var(--border)}.companion-label{font-family:var(--font-mono);font-size:9.5px;text-transform:uppercase;letter-spacing:1px;color:var(--gold);margin-bottom:6px}.companion-copy{font-family:var(--font-display);font-size:15px;line-height:1.55;color:var(--text)}.companion-main{font-style:italic;font-size:17px}.companion-tags{display:flex;gap:6px;flex-wrap:wrap}.companion-tag,.companion-jump{font-family:var(--font-mono);font-size:10px;padding:5px 8px;border:.5px solid var(--border);border-radius:12px;background:var(--bg);color:var(--text-sec)}button.companion-jump{cursor:pointer}.difficulty{letter-spacing:3px;color:var(--gold);font-size:14px}
+    .atlas-tools{position:fixed;left:18px;bottom:18px;z-index:65;display:flex;gap:7px;flex-wrap:wrap;max-width:min(650px,calc(100vw - 36px))}.atlas-tool{border:.5px solid var(--border);background:var(--card);color:var(--text);padding:9px 12px;border-radius:18px;box-shadow:0 4px 18px rgba(20,14,4,.10);font:10px var(--font-mono);letter-spacing:.25px;cursor:pointer}.atlas-tool:hover{border-color:var(--gold);color:var(--gold)}
+    .atlas-overlay{position:fixed;inset:0;z-index:90;background:rgba(18,13,7,.52);display:flex;align-items:center;justify-content:center;padding:20px}.atlas-modal{width:min(760px,96vw);max-height:88vh;overflow:auto;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:26px;box-shadow:0 22px 70px rgba(0,0,0,.30);position:relative}.atlas-modal h2{font-family:var(--font-display);font-size:30px;margin:0 36px 8px}.atlas-lead{font-family:var(--font-display);color:var(--text-sec);font-size:15px;line-height:1.55;margin-bottom:20px}.atlas-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.atlas-choice{background:var(--bg);border:.5px solid var(--border);border-radius:7px;padding:15px;text-align:left;color:var(--text);cursor:pointer}.atlas-choice:hover{border-color:var(--gold)}.atlas-choice b{display:block;font:17px var(--font-display);margin-bottom:4px}.atlas-choice span{font:11px/1.45 var(--font-mono);color:var(--text-sec)}
+    .microbar{position:fixed;left:50%;bottom:68px;transform:translateX(-50%);z-index:70;width:min(720px,92vw);background:var(--card);border:1px solid var(--gold);border-radius:8px;padding:12px 14px;box-shadow:0 12px 35px rgba(20,14,4,.20)}.microbar-head{display:flex;justify-content:space-between;gap:12px;align-items:center;font:11px var(--font-mono);color:var(--text-sec)}.microbar-title{font:18px var(--font-display);color:var(--text);margin-top:3px}.microbar-steps{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}.microbar-step{font:9px var(--font-mono);padding:4px 7px;border-radius:10px;border:.5px solid var(--border)}
+    .personal-hero{display:grid;grid-template-columns:160px 1fr;gap:22px;align-items:center;margin:18px 0 22px}.personal-ring{width:140px;height:140px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--gold) var(--p),var(--bg) 0);position:relative}.personal-ring:after{content:'';position:absolute;inset:10px;border-radius:50%;background:var(--card)}.personal-ring strong{z-index:1;font:28px var(--font-display)}.personal-stat{font:13px/1.6 var(--font-mono);color:var(--text-sec)}.personal-stat b{color:var(--text)}.theme-row{margin:10px 0}.theme-head{display:flex;justify-content:space-between;font:11px var(--font-mono);margin-bottom:4px}.theme-track{height:7px;background:var(--bg);border-radius:5px;overflow:hidden}.theme-fill{height:100%;background:var(--gold)}
+    .world-card{padding:16px 0;border-top:.5px solid var(--border)}.world-era{font:19px var(--font-display);margin-bottom:10px}.world-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}.world-col{background:var(--bg);padding:12px;border-radius:6px}.world-col b{display:block;font:10px var(--font-mono);color:var(--gold);text-transform:uppercase;margin-bottom:5px}.world-col p,.world-event{font:13px/1.5 var(--font-display);margin:0}.world-event{margin-top:9px;color:var(--text-sec)}
+    @media(max-width:640px){.companion-panel{padding:22px 18px 28px}.companion-panel h2{font-size:23px}.atlas-grid,.world-cols{grid-template-columns:1fr}.personal-hero{grid-template-columns:1fr}.atlas-tools{left:10px;bottom:10px}.microbar{bottom:62px}}
+  `; document.head.appendChild(style);
 
-  function waitForAtlas(){
-    return new Promise(resolve=>{
-      const check=()=>{
-        if(document.querySelector('.node[data-eser]') && document.getElementById('navBody')) resolve();
-        else requestAnimationFrame(check);
-      };
-      check();
-    });
-  }
+  function waitForAtlas(){return new Promise(resolve=>{const check=()=>document.querySelector('.node[data-eser]')&&document.getElementById('navBody')?resolve():requestAnimationFrame(check);check();});}
   await waitForAtlas();
+  const nodes=()=>Array.from(document.querySelectorAll('.node[data-eser]'));
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function closeOverlay(){document.querySelector('.atlas-overlay')?.remove();}
+  function modal(kicker,title,lead,body){closeOverlay();const o=document.createElement('div');o.className='atlas-overlay';o.innerHTML='<div class="atlas-modal"><button class="companion-close" aria-label="Kapat">×</button><div class="atlas-kicker">'+kicker+'</div><h2>'+title+'</h2><div class="atlas-lead">'+lead+'</div>'+body+'</div>';document.body.appendChild(o);o.addEventListener('click',e=>{if(e.target===o)closeOverlay();});o.querySelector('.companion-close').onclick=closeOverlay;return o;}
 
-  const navBody = document.getElementById('navBody');
-  const syncLabel = Array.from(navBody.querySelectorAll('.nav-row-label')).find(el=>el.textContent.trim()==='Senkron kodu');
-  const label = document.createElement('div');
-  label.className='nav-row-label'; label.textContent='Fikirler';
-  const ideasWrap = document.createElement('div'); ideasWrap.id='navIdeas'; ideasWrap.className='nav-row';
-  const note = document.createElement('div'); note.className='idea-note';
-  if(syncLabel){ navBody.insertBefore(label,syncLabel); navBody.insertBefore(ideasWrap,syncLabel); navBody.insertBefore(note,syncLabel); }
-  else { navBody.append(label,ideasWrap,note); }
+  // Fikir hatları
+  const navBody=document.getElementById('navBody');const syncLabel=Array.from(navBody.querySelectorAll('.nav-row-label')).find(el=>el.textContent.trim()==='Senkron kodu');const label=document.createElement('div');label.className='nav-row-label';label.textContent='Fikirler';const ideasWrap=document.createElement('div');ideasWrap.id='navIdeas';ideasWrap.className='nav-row';const note=document.createElement('div');note.className='idea-note';if(syncLabel){navBody.insertBefore(label,syncLabel);navBody.insertBefore(ideasWrap,syncLabel);navBody.insertBefore(note,syncLabel);}else navBody.append(label,ideasWrap,note);
+  let activeIdea=null;function clearIdea(){nodes().forEach(n=>n.classList.remove('idea-dim','idea-hit'));ideasWrap.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('idea-active'));note.classList.remove('visible');note.textContent='';activeIdea=null;}
+  function applyIdea(idea,btn){if(activeIdea===idea.id){clearIdea();return;}clearIdea();activeIdea=idea.id;btn.classList.add('idea-active');const set=new Set(idea.eserler);let first=null;nodes().forEach(n=>{const hit=set.has(n.dataset.eser);n.classList.add(hit?'idea-hit':'idea-dim');if(hit&&!first)first=n;});note.textContent=idea.aciklama;note.classList.add('visible');if(first)requestAnimationFrame(()=>first.scrollIntoView({behavior:'smooth',block:'center',inline:'center'}));}
+  fikirHatlari.forEach(idea=>{const btn=document.createElement('button');btn.className='nav-btn nav-btn-wide';btn.textContent=idea.label;btn.onclick=()=>applyIdea(idea,btn);ideasWrap.appendChild(btn);});
 
-  let activeIdea=null;
-  function clearIdea(){
-    document.querySelectorAll('.node').forEach(n=>n.classList.remove('idea-dim','idea-hit'));
-    ideasWrap.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('idea-active'));
-    note.classList.remove('visible'); note.textContent=''; activeIdea=null;
-  }
-  function applyIdea(idea,btn){
-    if(activeIdea===idea.id){ clearIdea(); return; }
-    clearIdea();
-    activeIdea=idea.id; btn.classList.add('idea-active');
-    const set=new Set(idea.eserler);
-    let first=null;
-    document.querySelectorAll('.node').forEach(n=>{
-      const hit=set.has(n.dataset.eser);
-      n.classList.add(hit?'idea-hit':'idea-dim');
-      if(hit && !first) first=n;
-    });
-    note.textContent=idea.aciklama; note.classList.add('visible');
-    if(first) requestAnimationFrame(()=>first.scrollIntoView({behavior:'smooth',block:'center',inline:'center'}));
-  }
-  fikirHatlari.forEach(idea=>{
-    const btn=document.createElement('button'); btn.className='nav-btn nav-btn-wide'; btn.textContent=idea.label;
-    btn.addEventListener('click',()=>applyIdea(idea,btn)); ideasWrap.appendChild(btn);
-  });
+  // Companion
+  const panel=document.createElement('aside');panel.className='companion-panel';panel.setAttribute('aria-live','polite');document.body.appendChild(panel);function jumps(arr){return !arr?.length?'<span class="companion-copy">—</span>':arr.map(x=>'<button class="companion-jump" data-jump="'+esc(x)+'">'+esc(x)+'</button>').join(' ');}
+  function openCompanion(eser){const c=companion[eser];if(!c)return false;panel.innerHTML='<button class="companion-close">×</button><div class="companion-kicker">Companion Card</div><h2>'+esc(eser)+'</h2><div class="companion-block"><div class="companion-label">Neden önemli?</div><div class="companion-copy">'+esc(c.nedenOnemli)+'</div></div><div class="companion-block"><div class="companion-label">Ana fikir</div><div class="companion-copy companion-main">'+esc(c.anaFikir)+'</div></div><div class="companion-block"><div class="companion-label">Önce</div><div class="companion-tags">'+jumps(c.once)+'</div></div><div class="companion-block"><div class="companion-label">Sonra</div><div class="companion-tags">'+jumps(c.sonra)+'</div></div><div class="companion-block"><div class="companion-label">Fikirler</div><div class="companion-tags">'+(c.fikirler||[]).map(x=>'<span class="companion-tag">'+esc(x)+'</span>').join('')+'</div></div><div class="companion-block"><div class="companion-label">Zorluk</div><div class="difficulty">'+('●'.repeat(c.zorluk||1)+'○'.repeat(Math.max(0,5-(c.zorluk||1))))+'</div></div>';panel.classList.add('open');panel.querySelector('.companion-close').onclick=()=>panel.classList.remove('open');panel.querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>{const n=document.querySelector('.node[data-eser="'+CSS.escape(b.dataset.jump)+'"]');if(n){panel.classList.remove('open');n.scrollIntoView({behavior:'smooth',block:'center',inline:'center'});setTimeout(()=>openCompanion(b.dataset.jump),350);}});return true;}
+  document.addEventListener('click',e=>{const title=e.target.closest('.node .t');if(!title)return;const node=title.closest('.node');if(node&&companion[node.dataset.eser]){e.preventDefault();e.stopImmediatePropagation();openCompanion(node.dataset.eser);}},true);
 
-  const panel=document.createElement('aside'); panel.className='companion-panel'; panel.setAttribute('aria-live','polite');
-  document.body.appendChild(panel);
-  function jumps(arr){
-    if(!arr || !arr.length) return '<span class="companion-copy">—</span>';
-    return arr.map(x=>'<button class="companion-jump" data-jump="'+x.replace(/"/g,'&quot;')+'">'+x+'</button>').join(' ');
-  }
-  function openCompanion(eser){
-    const c=companion[eser]; if(!c) return false;
-    panel.innerHTML='<button class="companion-close" aria-label="Kapat">×</button>'+
-      '<div class="companion-kicker">Companion Card</div><h2>'+eser+'</h2>'+
-      '<div class="companion-block"><div class="companion-label">Neden önemli?</div><div class="companion-copy">'+c.nedenOnemli+'</div></div>'+
-      '<div class="companion-block"><div class="companion-label">Ana fikir</div><div class="companion-copy companion-main">'+c.anaFikir+'</div></div>'+
-      '<div class="companion-block"><div class="companion-label">Önce</div><div class="companion-tags">'+jumps(c.once)+'</div></div>'+
-      '<div class="companion-block"><div class="companion-label">Sonra</div><div class="companion-tags">'+jumps(c.sonra)+'</div></div>'+
-      '<div class="companion-block"><div class="companion-label">Fikirler</div><div class="companion-tags">'+(c.fikirler||[]).map(x=>'<span class="companion-tag">'+x+'</span>').join('')+'</div></div>'+
-      '<div class="companion-block"><div class="companion-label">Zorluk</div><div class="difficulty">'+('●'.repeat(c.zorluk||1)+'○'.repeat(Math.max(0,5-(c.zorluk||1))))+'</div></div>'+
-      '<div class="companion-hint">Haritadaki eser başlığına tıklayarak bu kartı açabilirsin.</div>';
-    panel.classList.add('open');
-    panel.querySelector('.companion-close').addEventListener('click',()=>panel.classList.remove('open'));
-    panel.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>{
-      const n=document.querySelector('.node[data-eser="'+CSS.escape(b.dataset.jump)+'"]');
-      if(n){ panel.classList.remove('open'); n.scrollIntoView({behavior:'smooth',block:'center',inline:'center'}); setTimeout(()=>openCompanion(b.dataset.jump),350); }
-    }));
-    return true;
-  }
+  // Bugün keşfet
+  function clearDiscover(){nodes().forEach(n=>n.classList.remove('discover-dim','discover-hit'));document.querySelector('.microbar')?.remove();}
+  function startDiscover(route){clearIdea();clearDiscover();const set=new Set(route.eserler);let first=null;nodes().forEach(n=>{const hit=set.has(n.dataset.eser);n.classList.add(hit?'discover-hit':'discover-dim');if(hit&&!first)first=n;});const bar=document.createElement('div');bar.className='microbar';bar.innerHTML='<div class="microbar-head"><span>MİKRO ROTA · '+route.eserler.length+' DURAK</span><button class="companion-jump" id="microClose">Rotayı kapat</button></div><div class="microbar-title">'+esc(route.label)+' — '+esc(route.soru)+'</div><div class="microbar-steps">'+route.eserler.map((x,i)=>'<span class="microbar-step">'+(i+1)+'. '+esc(x)+'</span>').join('')+'</div>';document.body.appendChild(bar);bar.querySelector('#microClose').onclick=clearDiscover;if(first)first.scrollIntoView({behavior:'smooth',block:'center',inline:'center'});}
+  function showDiscover(){const o=modal('Bugün keşfet','Bugün neyi düşünmek istiyorsun?','Bir soru seç. Atlas geri kalanını geri plana atıp sana kısa, takip edilebilir bir düşünce rotası açsın.','<div class="atlas-grid">'+kesfet.map((r,i)=>'<button class="atlas-choice" data-discover="'+i+'"><b>'+esc(r.label)+'</b><span>'+esc(r.soru)+' · '+r.eserler.length+' durak</span></button>').join('')+'</div>');o.querySelectorAll('[data-discover]').forEach(b=>b.onclick=()=>{const r=kesfet[+b.dataset.discover];closeOverlay();startDiscover(r);});}
 
-  document.addEventListener('click',e=>{
-    const title=e.target.closest('.node .t');
-    if(!title) return;
-    const node=title.closest('.node');
-    if(node && companion[node.dataset.eser]){
-      e.preventDefault(); e.stopImmediatePropagation(); openCompanion(node.dataset.eser);
-    }
-  },true);
-  document.addEventListener('keydown',e=>{ if(e.key==='Escape') panel.classList.remove('open'); });
+  // Kişisel Atlas
+  function showPersonal(){let state={};try{state=JSON.parse(localStorage.getItem('okuma-durumu')||'{}');}catch(e){}const all=nodes();const read=all.filter(n=>state[n.dataset.eser]);const pct=all.length?Math.round(read.length/all.length*100):0;const themes=fikirHatlari.map(i=>{const total=i.eserler.filter(x=>all.some(n=>n.dataset.eser===x)).length;const done=i.eserler.filter(x=>state[x]).length;return {...i,total,done,p:total?Math.round(done/total*100):0};}).filter(x=>x.total).sort((a,b)=>b.p-a.p);const strongest=themes[0];const weakest=[...themes].sort((a,b)=>a.p-b.p)[0];const body='<div class="personal-hero"><div class="personal-ring" style="--p:'+pct+'%"><strong>'+pct+'%</strong></div><div class="personal-stat"><b>'+read.length+'</b> eser tamamlandı · <b>'+all.length+'</b> eser atlasında<br>En çok ilerlediğin hat: <b>'+(strongest?esc(strongest.label):'—')+'</b><br>Keşfe en açık alan: <b>'+(weakest?esc(weakest.label):'—')+'</b></div></div><div class="atlas-kicker">Fikir haritan</div>'+themes.map(t=>'<div class="theme-row"><div class="theme-head"><span>'+esc(t.label)+'</span><span>'+t.done+'/'+t.total+' · %'+t.p+'</span></div><div class="theme-track"><div class="theme-fill" style="width:'+t.p+'%"></div></div></div>').join('');modal('Kişisel Atlas','Atlasın nasıl şekilleniyor?','İlerleme yalnızca kaç eser bitirdiğini değil, hangi soruların peşinden daha çok gittiğini de gösterir.',body);}
 
-  const input=document.getElementById('searchInput');
-  if(input){
-    input.placeholder='Eser, yazar veya fikir ara…';
-    input.addEventListener('input',()=>{
-      const q=input.value.trim().toLocaleLowerCase('tr-TR');
-      if(!q) return;
-      const idea=fikirHatlari.find(i=>i.label.toLocaleLowerCase('tr-TR').includes(q));
-      if(idea){
-        const btn=Array.from(ideasWrap.children)[fikirHatlari.indexOf(idea)];
-        applyIdea(idea,btn);
-      }
-    });
-  }
+  // Aynı anda dünyada
+  function showWorld(){const body=dunya.map(d=>'<div class="world-card"><div class="world-era">'+esc(d.label)+'</div><div class="world-cols"><div class="world-col"><b>Batı</b><p>'+esc(d.bati)+'</p></div><div class="world-col"><b>Doğu ve diğer merkezler</b><p>'+esc(d.dogu)+'</p></div></div><div class="world-event">↳ '+esc(d.olay)+'</div></div>').join('');modal('Paralel zaman','Aynı anda dünyada ne oluyordu?','Düşünürleri tek başına değil, başka coğrafyalardaki eşzamanlı fikirler ve büyük tarihsel kırılmalar içinde gör.',body);}
+
+  const tools=document.createElement('div');tools.className='atlas-tools';tools.innerHTML='<button class="atlas-tool" id="discoverBtn">✦ Bugün keşfet</button><button class="atlas-tool" id="personalBtn">◎ Kişisel Atlas</button><button class="atlas-tool" id="worldBtn">◫ Aynı anda dünyada</button>';document.body.appendChild(tools);tools.querySelector('#discoverBtn').onclick=showDiscover;tools.querySelector('#personalBtn').onclick=showPersonal;tools.querySelector('#worldBtn').onclick=showWorld;
+
+  const input=document.getElementById('searchInput');if(input){input.placeholder='Eser, yazar veya fikir ara…';input.addEventListener('input',()=>{const q=input.value.trim().toLocaleLowerCase('tr-TR');if(!q)return;const idea=fikirHatlari.find(i=>i.label.toLocaleLowerCase('tr-TR').includes(q));if(idea){const btn=Array.from(ideasWrap.children)[fikirHatlari.indexOf(idea)];applyIdea(idea,btn);}});}
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){panel.classList.remove('open');closeOverlay();}});
 })();
