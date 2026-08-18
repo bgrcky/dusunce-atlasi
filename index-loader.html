@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<meta name="description" content="Batı ve Doğu düşünce tarihini kronolojik, önkoşullu ve çok katmanlı bir yol haritasıyla keşfet — felsefe, tarih, müzik, mimari ve roman bir arada.">
+<title>Düşünce Atlası — Okuma Haritası</title>
+</head>
+<body>
+<script>
+fetch('./index-core.html').then(function(r){ if(!r.ok) throw new Error('core'); return r.text(); }).then(function(html){
+  html = html.replace('</body>', '<script src="./features.js"><\/script></body>');
+  document.open(); document.write(html); document.close();
+}).catch(function(){ document.body.innerHTML='<p style="font-family:system-ui;padding:24px">Düşünce Atlası yüklenemedi. Lütfen sayfayı yenile.</p>'; });
+</script>
+</body>
+</html>
