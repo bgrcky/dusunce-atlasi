@@ -1,0 +1,37 @@
+[
+  {
+    "col": 0,
+    "donem": "I. Erdem ve Kozmik Düzen",
+    "altbaslik": "Çin ve Hint Klasik Çağı · MÖ 8.–3. yy"
+  },
+  {
+    "col": 1,
+    "donem": "II. Akışa Teslimiyet ve Benliğin Çözülüşü",
+    "altbaslik": "Taoculuk ve Budizm · MÖ 4. yy–MS 2. yy"
+  },
+  {
+    "col": 2,
+    "donem": "III. Akıl, Vahiy ve Aşkın Sentezi",
+    "altbaslik": "İslam Altın Çağı · 9.–13. yy"
+  },
+  {
+    "col": 3,
+    "donem": "IV. Tarihin ve Ahlakın Sistemleşmesi",
+    "altbaslik": "Geç Orta Çağ · 14.–16. yy"
+  },
+  {
+    "col": 4,
+    "donem": "V. Islahat Arayışı ve Ansiklopedik Akıl",
+    "altbaslik": "Osmanlı ve Hint-İslam Dünyası · 17.–18. yy"
+  },
+  {
+    "col": 6,
+    "donem": "VI. Doğu'nun Kendini Yeniden Keşfi",
+    "altbaslik": "Hint Rönesansı ve İslam Modernizmi · 1900–1930'lar"
+  },
+  {
+    "col": 8,
+    "donem": "VII. Sömürgecilik Sonrası Adalet Arayışı",
+    "altbaslik": "Post-kolonyal Teori · 1978–2009"
+  }
+]

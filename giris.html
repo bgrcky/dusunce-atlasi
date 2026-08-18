@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Düşünce Atlası'ndaki 10 dönemin neden bu sırayla takip edilmesi gerektiğini ve her dönemi şekillendiren büyük olayları anlatan giriş sayfası.">
+<meta name="description" content="Düşünce Atlası'ndaki dönemlerin neden bu sırayla takip edilmesi gerektiğini ve her dönemi şekillendiren büyük olayları anlatan giriş sayfası.">
 <title>Dönemler Üzerine — Düşünce Atlası</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,6 +36,12 @@
   .hero-route .wp text{font-family:var(--font-display);font-size:12px;font-weight:600;fill:var(--gold)}
   .back-link{font-family:var(--font-mono);font-size:11.5px;color:var(--gold);text-decoration:none;letter-spacing:.3px}
   .back-link:hover{text-decoration:underline}
+  .top-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .katman-tabs{display:flex;gap:6px}
+  .katman-tab{font-family:var(--font-mono);font-size:11.5px;color:var(--text-sec);text-decoration:none;
+    padding:6px 12px;border:0.5px solid var(--border);border-radius:14px;letter-spacing:.3px}
+  .katman-tab.active{color:var(--gold);border-color:var(--gold);background:color-mix(in srgb, var(--gold) 10%, transparent)}
+  .katman-tab:hover{border-color:var(--gold)}
   h1{font-family:var(--font-display);font-size:30px;font-weight:600;margin:18px 0 6px;letter-spacing:.2px}
   .intro{font-family:var(--font-display);font-style:italic;font-size:15px;color:var(--text-sec);margin-bottom:44px;max-width:560px}
   .donem{margin-bottom:0px;padding-bottom:36px}
@@ -62,7 +68,7 @@
   .hero-img-wrap{margin:0 0 14px;border-radius:6px;overflow:hidden;border:0.5px solid var(--border);position:relative}
   .hero-img-wrap img{width:100%;height:230px;object-fit:cover;object-position:center 18%;display:block;filter:sepia(28%) saturate(85%) contrast(1.05) brightness(0.92)}
   .hero-caption{font-family:var(--font-mono);font-size:9px;color:var(--text-sec);padding:5px 8px;background:var(--card);line-height:1.4}
-  .figures-row{display:flex;gap:14px;margin:0;justify-content:flex-start}
+  .figures-row{display:flex;gap:14px;margin:0;justify-content:flex-start;flex-wrap:wrap}
   .figure{text-align:center;width:58px}
   .figure img{width:58px;height:58px;border-radius:50%;object-fit:cover;border:1.5px solid var(--gold);
         filter:sepia(28%) saturate(85%) contrast(1.05) brightness(0.92)}
@@ -76,143 +82,118 @@
 <body>
 <svg class="grain" xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
 <div class="wrap">
-  <a href="./" class="back-link">← Haritaya dön</a>
-  <h1>Dönemler Üzerine</h1>
-  <div class="intro">Düşünce Atlası, kitapları rastgele bir liste olarak değil, birbirini besleyen on dönem halinde sunar. Her dönem kendinden öncekine bir cevap, kendinden sonrakine bir zemin. Aşağıda her dönemin neden bu sırada durduğunu ve o dönemi şekillendiren büyük olayları bulacaksın.</div>
-  <svg class="hero-route" viewBox="0 0 674 110" xmlns="http://www.w3.org/2000/svg">
-    <path d="M40,62 C62,62 84,90 106,90 C128,90 150,48 172,48 C194,48 216,82 238,82 C260,82 282,54 304,54 C326,54 348,88 370,88 C392,88 414,50 436,50 C458,50 480,80 502,80 C524,80 546,56 568,56 C590,56 612,74 634,74"/>
-    <g class="wp"><circle cx="40" cy="62" r="16"/><text x="40" y="62" text-anchor="middle" dominant-baseline="central">I</text></g>
-    <g class="wp"><circle cx="106" cy="90" r="16"/><text x="106" y="90" text-anchor="middle" dominant-baseline="central">II</text></g>
-    <g class="wp"><circle cx="172" cy="48" r="16"/><text x="172" y="48" text-anchor="middle" dominant-baseline="central">III</text></g>
-    <g class="wp"><circle cx="238" cy="82" r="16"/><text x="238" y="82" text-anchor="middle" dominant-baseline="central">IV</text></g>
-    <g class="wp"><circle cx="304" cy="54" r="16"/><text x="304" y="54" text-anchor="middle" dominant-baseline="central">V</text></g>
-    <g class="wp"><circle cx="370" cy="88" r="16"/><text x="370" y="88" text-anchor="middle" dominant-baseline="central">VI</text></g>
-    <g class="wp"><circle cx="436" cy="50" r="16"/><text x="436" y="50" text-anchor="middle" dominant-baseline="central">VII</text></g>
-    <g class="wp"><circle cx="502" cy="80" r="16"/><text x="502" y="80" text-anchor="middle" dominant-baseline="central">VIII</text></g>
-    <g class="wp"><circle cx="568" cy="56" r="16"/><text x="568" y="56" text-anchor="middle" dominant-baseline="central">IX</text></g>
-    <g class="wp"><circle cx="634" cy="74" r="16"/><text x="634" y="74" text-anchor="middle" dominant-baseline="central">X</text></g>
-  </svg>
+  <div class="top-row">
+    <a href="./" class="back-link">← Haritaya dön</a>
+    <div class="katman-tabs" id="katmanTabs"></div>
+  </div>
+  <h1 id="pageTitle">Dönemler Üzerine</h1>
+  <div class="intro" id="pageIntro"></div>
+  <svg class="hero-route" id="heroRoute" viewBox="0 0 674 110" xmlns="http://www.w3.org/2000/svg"></svg>
   <div id="content"><div class="loading">Yükleniyor…</div></div>
   <footer>
     <a href="./" class="cta">Haritayı Keşfet →</a>
   </footer>
 </div>
 <script>
-(async function(){
-  const [western, baglam, olaylar] = await Promise.all([
-    fetch('./data/western.json').then(r=>r.json()),
-    fetch('./data/donemBaglam.json').then(r=>r.json()),
-    fetch('./data/donemOlaylari.json').then(r=>r.json())
-  ]);
-  const romanNumerals = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
+// ---- Katman yapılandırması ----
+// Yeni bir katman eklemek için: 1) data/ altına donemler + baglam + olaylar (+ opsiyonel gorseller) json'ları ekle
+// 2) aşağıdaki KATMANLAR objesine bir girdi ekle. Kod değişikliği gerekmez.
+const KATMANLAR = {
+  western: {
+    label: 'Batı',
+    donemFile: 'data/western.json',
+    baglamFile: 'data/donemBaglam.json',
+    olaylarFile: 'data/donemOlaylari.json',
+    gorselFile: 'data/donemGorsellerWestern.json',
+    intro: "Düşünce Atlası, kitapları rastgele bir liste olarak değil, birbirini besleyen on dönem halinde sunar. Her dönem kendinden öncekine bir cevap, kendinden sonrakine bir zemin. Aşağıda her dönemin neden bu sırada durduğunu ve o dönemi şekillendiren büyük olayları bulacaksın."
+  },
+  dogu: {
+    label: 'Doğu',
+    donemFile: 'data/doguDonemler.json',
+    baglamFile: 'data/donemBaglamDogu.json',
+    olaylarFile: 'data/donemOlaylariDogu.json',
+    gorselFile: 'data/donemGorsellerDogu.json',
+    intro: "Doğu düşüncesi, Batı'nın on dönemine paralel bir zaman çizgisinde ilerler, ama kendi sorularını kendi diliyle sorar. Bu yedi dönem, Çin ve Hint klasik çağından İslam'ın altın çağına, Osmanlı ıslahatından sömürgecilik sonrası düşünceye uzanan bir çizgi izler."
+  }
+};
+
+function romanNumeral(i){
+  const table = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+  return table[i] || String(i+1);
+}
+
+async function loadKatman(katmanKey){
+  const cfg = KATMANLAR[katmanKey] || KATMANLAR.western;
   const contentEl = document.getElementById('content');
+  contentEl.innerHTML = '<div class="loading">Yükleniyor…</div>';
+  document.getElementById('pageIntro').textContent = cfg.intro;
+
+  // Sekmeleri çiz
+  const tabsEl = document.getElementById('katmanTabs');
+  tabsEl.innerHTML = Object.keys(KATMANLAR).map(k => {
+    const active = k === katmanKey ? ' active' : '';
+    return '<a class="katman-tab' + active + '" href="?katman=' + k + '">' + KATMANLAR[k].label + '</a>';
+  }).join('');
+
+  const fetchJson = (url) => fetch(url).then(r => {
+    if(!r.ok) throw new Error('fetch failed: ' + url);
+    return r.json();
+  });
+
+  const [donemRaw, baglam, olaylar, gorseller] = await Promise.all([
+    fetchJson(cfg.donemFile),
+    fetchJson(cfg.baglamFile),
+    fetchJson(cfg.olaylarFile),
+    cfg.gorselFile ? fetchJson(cfg.gorselFile).catch(() => ({})) : Promise.resolve({})
+  ]);
+
+  // Western formatı: {donem, altbaslik, eserler}. Dogu/diğer formatı: {donem, altbaslik, col}.
+  // Görsel eşlemesi için anahtar: eğer öğede "col" varsa onu, yoksa dizideki index'i kullan.
+  const donemler = donemRaw.map((d, i) => ({ ...d, _gorselKey: (d.col !== undefined ? String(d.col) : String(i)) }));
+
+  // Üstteki güzergah SVG'sini dönem sayısına göre dinamik çiz
+  const n = donemler.length;
+  const routeEl = document.getElementById('heroRoute');
+  const routeW = Math.max(674, n * 66);
+  routeEl.setAttribute('viewBox', '0 0 ' + routeW + ' 110');
+  const amp = [62,90,48,82,54,88,50,80,56,74];
+  let pathD = '', nodesHtml = '';
+  for(let i = 0; i < n; i++){
+    const x = 40 + i * 66;
+    const y = amp[i % amp.length];
+    pathD += (i === 0 ? 'M' : ' C') + (i === 0 ? x + ',' + y : (x-44) + ',' + y + ' ' + (x-22) + ',' + y + ' ' + x + ',' + y);
+    nodesHtml += '<g class="wp"><circle cx="' + x + '" cy="' + y + '" r="16"/><text x="' + x + '" y="' + y + '" text-anchor="middle" dominant-baseline="central">' + romanNumeral(i) + '</text></g>';
+  }
+  routeEl.innerHTML = '<path d="' + pathD + '"/>' + nodesHtml;
+
   let html = '';
-  const donemGorseller = {
-    0: {
-      hero: 'https://commons.wikimedia.org/wiki/Special:FilePath/David_-_The_Death_of_Socrates.jpg',
-      heroCaption: 'Jacques-Louis David, "Sokrates\'in Ölümü", 1787 — Wikimedia Commons, kamu malı',
-      figures: [
-        {name:'Sokrates', img:'https://commons.wikimedia.org/wiki/Special:FilePath/Socrates.png'},
-        {name:'Aristoteles', img:'https://commons.wikimedia.org/wiki/Special:FilePath/Aristotle_Altemps_Inv8575.jpg'}
-      ]
-    },
-    1: {
-      hero: 'https://commons.wikimedia.org/wiki/Special:FilePath/Raffael_058.jpg',
-      heroCaption: 'Raffaello, "Atina Okulu", 1509–1511, Vatikan — Wikimedia Commons, kamu malı',
-      figures: [
-        {name:'Platon', img:'https://commons.wikimedia.org/wiki/Special:FilePath/Plato.png'},
-        {name:'Cicero', img:'https://commons.wikimedia.org/wiki/Special:FilePath/CiceroBust.jpg'}
-      ]
-    },
-    2: {
-      hero: 'https://commons.wikimedia.org/wiki/Special:FilePath/Benozzo_Gozzoli_004a.jpg',
-      heroCaption: 'Benozzo Gozzoli, "Aziz Thomas Aquinas\'ın Zaferi", 1471, Louvre — Wikimedia Commons, kamu malı',
-      figures: [
-        {name:'Augustinus', img:'https://commons.wikimedia.org/wiki/Special:FilePath/Saint_Augustine_Portrait.jpg'},
-        {name:'Thomas Aquinas', img:'https://commons.wikimedia.org/wiki/Special:FilePath/St-thomas-aquinas.jpg'}
-      ]
-    },
-    3: {
-      hero: 'https://commons.wikimedia.org/wiki/Special:FilePath/Portrait_of_Niccolò_Machiavelli_by_Santi_di_Tito.jpg',
-      heroCaption: 'Santi di Tito, Machiavelli portresi, 16.yy — Wikimedia Commons, kamu malı',
-      figures: [
-        {name:'Erasmus', img:'https://commons.wikimedia.org/wiki/Special:FilePath/Erasmus_by_Hans_Holbein_the_Younger.jpg'},
-        {name:'Montaigne', img:'https://commons.wikimedia.org/wiki/Special:FilePath/Michel_de_Montaigne.png'}
-      ]
-    },
-    4: {
-      hero: 'https://commons.wikimedia.org/wiki/Special:FilePath/Leviathan.jpg',
-      heroCaption: 'Leviathan (1651) ön kapağı, Abraham Bosse — Wikimedia Commons, kamu malı',
-      figures: [
-        {name:'Hobbes', img:'https://commons.wikimedia.org/wiki/Special:FilePath/Thomas_Hobbes.jpeg'},
-        {name:'Locke', img:'https://commons.wikimedia.org/wiki/Special:FilePath/John_Locke.jpg'}
-      ]
-    },
-    5: {
-      hero: 'https://commons.wikimedia.org/wiki/Special:FilePath/Philipp_Jakob_Loutherbourg_d._J._002.jpg',
-      heroCaption: 'Philip James de Loutherbourg, "Coalbrookdale Geceleyin", 1801 — Wikimedia Commons, kamu malı',
-      figures: [
-        {name:'Adam Smith', img:'https://commons.wikimedia.org/wiki/Special:FilePath/Adam_Smith_The_Muir_portrait.jpg'},
-        {name:'Karl Marx', img:'https://commons.wikimedia.org/wiki/Special:FilePath/Karl_Marx.jpg'}
-      ]
-    },
-    6: {
-      hero: 'https://commons.wikimedia.org/wiki/Special:FilePath/The_Scream.jpg',
-      heroCaption: 'Edvard Munch, "Çığlık", 1893 — Wikimedia Commons, kamu malı',
-      figures: [
-        {name:'Nietzsche', img:'https://commons.wikimedia.org/wiki/Special:FilePath/Nietzsche187a.jpg'},
-        {name:'Freud', img:'https://commons.wikimedia.org/wiki/Special:FilePath/Sigmund_Freud_LIFE.jpg'}
-      ]
-    },
-    7: {
-      hero: 'https://commons.wikimedia.org/wiki/Special:FilePath/The_defendants_at_Nuremberg_Trials.jpg',
-      heroCaption: 'Nürnberg Mahkemeleri, 1945–46 — Wikimedia Commons, kamu malı',
-      figures: [
-        {name:'Hannah Arendt', img:'https://commons.wikimedia.org/wiki/Special:FilePath/Young_Hannah_Arendt.jpg'},
-        {name:'Heidegger', img:'https://commons.wikimedia.org/wiki/Special:FilePath/Heidegger_2_(1960).jpg'},
-        {name:'Camus', img:'https://commons.wikimedia.org/wiki/Special:FilePath/Camus2.jpg'}
-      ]
-    },
-    8: {
-      hero: 'https://commons.wikimedia.org/wiki/Special:FilePath/NY_stock_exchange_traders_floor_LC-U9-10548-6.jpg',
-      heroCaption: 'New York Menkul Kıymetler Borsası, 1963, Thomas J. O\'Halloran — Library of Congress, kamu malı',
-      figures: [
-        {name:'Kahneman', img:'https://commons.wikimedia.org/wiki/Special:FilePath/Daniel_Kahneman_(3283955327).jpg'},
-        {name:'Rawls', img:'https://commons.wikimedia.org/wiki/Special:FilePath/John_Rawls_(1971_photo_portrait).jpg'},
-        {name:'Foucault', img:'https://commons.wikimedia.org/wiki/Special:FilePath/Michel_Foucault_1974_Brasil.jpg'}
-      ]
-    },
-    9: {
-      hero: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sandro_Botticelli_046.jpg',
-      heroCaption: 'Sandro Botticelli, "Venüs\'ün Doğuşu", c. 1485 — Wikimedia Commons, kamu malı',
-      figures: [
-        {name:'Vermeer', img:'https://commons.wikimedia.org/wiki/Special:FilePath/Girl_with_a_Pearl_Earring.jpg'}
-      ]
-    }
-  };
-  western.forEach((donem, i)=>{
-    const olayListHtml = (olaylar[i]||[]).map(o=>'<li>'+o+'</li>').join('');
-    const g = donemGorseller[i];
-    const heroHtml = g ? '<div class="hero-img-wrap"><img src="'+g.hero+'" loading="lazy" alt="'+donem.donem+'"><div class="hero-caption">'+g.heroCaption+'</div></div>' : '';
-    const figuresHtml = g ? '<div class="figures-row">'+g.figures.map(f=>'<div class="figure"><img src="'+f.img+'" loading="lazy" alt="'+f.name+'"><div class="fname">'+f.name+'</div></div>').join('')+'</div>' : '';
-    const sideRailHtml = g ? '<div class="side-rail">'+heroHtml+figuresHtml+'</div>' : '<div></div>';
-    html += '<div class="donem">'+
-      '<div class="donem-row">'+
-        '<div class="seal">'+romanNumerals[i]+'</div>'+
-        '<div class="donem-body">'+
-          '<h2>'+donem.donem.replace(/^[IVXLCDM]+\.\s*/,'')+'</h2>'+
-          '<div class="donem-sub">'+donem.altbaslik+'</div>'+
-          '<div class="donem-baglam">'+(baglam[i]||'')+'</div>'+
-          '<div class="olaylar-label">Dönemi Etkileyen Büyük Olaylar</div>'+
-          '<ul class="olaylar-list">'+olayListHtml+'</ul>'+
-        '</div>'+
-        sideRailHtml+
-      '</div>'+
+  donemler.forEach((donem, i) => {
+    const olayListHtml = (olaylar[i] || []).map(o => '<li>' + o + '</li>').join('');
+    const g = gorseller[donem._gorselKey];
+    const heroHtml = (g && g.hero) ? '<div class="hero-img-wrap"><img src="' + g.hero + '" loading="lazy" alt="' + donem.donem + '"><div class="hero-caption">' + g.heroCaption + '</div></div>' : '';
+    const figuresHtml = (g && g.figures && g.figures.length) ? '<div class="figures-row">' + g.figures.map(f => '<div class="figure"><img src="' + f.img + '" loading="lazy" alt="' + f.name + '"><div class="fname">' + f.name + '</div></div>').join('') + '</div>' : '';
+    const sideRailHtml = (heroHtml || figuresHtml) ? '<div class="side-rail">' + heroHtml + figuresHtml + '</div>' : '<div></div>';
+    html += '<div class="donem">' +
+      '<div class="donem-row">' +
+        '<div class="seal">' + romanNumeral(i) + '</div>' +
+        '<div class="donem-body">' +
+          '<h2>' + donem.donem.replace(/^[IVXLCDM]+\.\s*/, '') + '</h2>' +
+          '<div class="donem-sub">' + donem.altbaslik + '</div>' +
+          '<div class="donem-baglam">' + (baglam[i] || '') + '</div>' +
+          '<div class="olaylar-label">Dönemi Etkileyen Büyük Olaylar</div>' +
+          '<ul class="olaylar-list">' + olayListHtml + '</ul>' +
+        '</div>' +
+        sideRailHtml +
+      '</div>' +
     '</div>';
-    if(i < western.length-1) html += '<div class="divider-orn">◆</div>';
+    if(i < donemler.length - 1) html += '<div class="divider-orn">◆</div>';
   });
   contentEl.innerHTML = html;
-})();
+}
+
+const params = new URLSearchParams(window.location.search);
+const initialKatman = KATMANLAR[params.get('katman')] ? params.get('katman') : 'western';
+loadKatman(initialKatman);
 </script>
 </body>
 </html>

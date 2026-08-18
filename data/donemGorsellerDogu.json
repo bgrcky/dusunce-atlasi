@@ -1,0 +1,33 @@
+{
+  "0": {
+    "hero": "https://commons.wikimedia.org/wiki/Special:FilePath/Half_Portraits_of_the_Great_Sage_and_Virtuous_Men_of_Old_-_Confucius.jpg",
+    "heroCaption": "\"Eski Çağın Büyük Bilgesi ve Erdemli İnsanları\" dizisinden Konfüçyüs portresi, Yuan Hanedanlığı — Wikimedia Commons, kamu malı"
+  },
+  "1": {
+    "hero": "https://commons.wikimedia.org/wiki/Special:FilePath/Confucius_Laozi_Buddha.jpg",
+    "heroCaption": "Konfüçyüs, genç Buda'yı Lao Tzu'ya takdim ediyor, Qing Hanedanlığı dönemi resmi — Wikimedia Commons, kamu malı"
+  },
+  "2": {
+    "hero": "https://commons.wikimedia.org/wiki/Special:FilePath/Maqamat_hariri.jpg",
+    "heroCaption": "Yahya el-Vasiti, Bağdat'ta bir Abbasi kütüphanesinde alimler, el-Hariri'nin Makamat'ından minyatür, 1237 — Wikimedia Commons, kamu malı",
+    "figures": [
+      {"name": "İbn Sina", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Avicenna-miniatur.jpg"}
+    ]
+  },
+  "3": {
+    "hero": "https://commons.wikimedia.org/wiki/Special:FilePath/Bust_of_Ibn_Khaldun_(Casbah_of_Bejaia,_Algeria).jpg",
+    "heroCaption": "İbn Haldun büstü, Bejaia Kasabası, Cezayir — Wikimedia Commons, kamu malı (Vikipedi seçilmiş görsel)"
+  },
+  "4": {
+    "hero": "https://commons.wikimedia.org/wiki/Special:FilePath/Houghton_Typ_794.34.475_-_K%C3%A2tip_%C3%87elebi,_Kitab-%C4%B1_cihann%C3%BCma.jpg",
+    "heroCaption": "Kâtip Çelebi'nin \"Kitab-ı Cihannüma\" adlı coğrafya eserinden bir sayfa, 17. yy — Harvard Houghton Library, kamu malı"
+  },
+  "6": {
+    "hero": "https://commons.wikimedia.org/wiki/Special:FilePath/Rabindranath_Tagore.jpg",
+    "heroCaption": "Rabindranath Tagore portresi, 1913 Nobel Edebiyat Ödülü yılı — Wikimedia Commons, kamu malı"
+  },
+  "8": {
+    "hero": "https://commons.wikimedia.org/wiki/Special:FilePath/Asian%E2%80%93African_Conference_at_Bandung_April_1955.jpg",
+    "heroCaption": "Bandung Konferansı, Asya-Afrika ülkelerinin sömürgecilik karşıtı ilk büyük buluşması, Nisan 1955 — Wikimedia Commons, kamu malı"
+  }
+}
