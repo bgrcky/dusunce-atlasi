@@ -8,8 +8,9 @@
 </head>
 <body>
 <script>
-const ATLAS_BUILD = '20260818-v8-period-rollback';
+const ATLAS_BUILD = '20260819-mobile-v1';
 fetch('./index-core.html?v='+ATLAS_BUILD).then(function(r){ if(!r.ok) throw new Error('core'); return r.text(); }).then(function(html){
+  html = html.replace('</head>', '<link rel="stylesheet" href="./mobile.css?v='+ATLAS_BUILD+'"></head>');
   html = html.replace('</body>', '<script src="./features.js?v='+ATLAS_BUILD+'"><\/script><script src="./route-readability.js?v='+ATLAS_BUILD+'"><\/script><script src="./v7.js?v='+ATLAS_BUILD+'"><\/script><script src="./route-cleanup.js?v='+ATLAS_BUILD+'"><\/script></body>');
   document.open(); document.write(html); document.close();
 }).catch(function(){ document.body.innerHTML='<p style="font-family:system-ui;padding:24px">Düşünce Atlası yüklenemedi. Lütfen sayfayı yenile.</p>'; });
