@@ -10,5 +10,8 @@ h1{font-size:28px;letter-spacing:-.25px}h1:after{content:" · 2.500 yıllık fik
 .node.tier-Mutlaka{border-left-width:4px;box-shadow:0 5px 18px rgba(35,24,7,.09)}.node.tier-Mutlaka .t{font-size:14.5px}.node.tier-Onerilir{opacity:.92}.node.tier-Derinlesme{opacity:.84}.node.tier-Derinlesme:hover,.node.tier-Onerilir:hover{opacity:1}
 .section-title{font-size:10px;letter-spacing:2.2px}.divider{opacity:.5}
 .zoom-panel{border-radius:8px;box-shadow:0 12px 34px rgba(20,14,4,.16)}
+.nav-panel{top:16px!important;right:16px!important;bottom:auto!important;max-height:calc(100dvh - 32px)!important;transform:none!important}
+.nav-body{position:relative!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;transform:none!important;max-height:calc(100dvh - 48px)!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain!important;-webkit-overflow-scrolling:touch!important;scrollbar-gutter:stable;padding-bottom:14px!important}
+.nav-body::-webkit-scrollbar{width:8px}.nav-body::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--gold) 36%,transparent);border-radius:10px}.nav-body::-webkit-scrollbar-track{background:transparent}
 }
 @media (prefers-color-scheme:dark) and (min-width:701px){body:before{opacity:.12;mix-blend-mode:screen}.node{box-shadow:0 4px 16px rgba(0,0,0,.18)}header{box-shadow:0 8px 30px rgba(0,0,0,.15)}}
