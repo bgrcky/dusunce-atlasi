@@ -18,9 +18,25 @@
   .zoom-level{min-width:42px;display:flex;align-items:center;justify-content:center;padding:0 4px}
   .nav-panel{right:10px!important;bottom:12px!important;top:auto!important;z-index:60!important}
   .nav-toggle{width:46px!important;height:46px!important;border-radius:50%!important;box-shadow:0 6px 22px rgba(20,14,4,.25)!important}
-  .nav-body{position:fixed!important;left:10px!important;right:10px!important;bottom:68px!important;top:auto!important;width:auto!important;max-width:none!important;max-height:68vh!important;overflow:auto!important;border-radius:10px!important;padding:14px!important;box-shadow:0 18px 50px rgba(20,14,4,.34)!important}
+  .nav-body{
+    position:fixed!important;
+    left:10px!important;
+    right:10px!important;
+    top:max(10px,env(safe-area-inset-top))!important;
+    bottom:68px!important;
+    width:auto!important;
+    max-width:none!important;
+    max-height:none!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+    border-radius:10px!important;
+    padding:12px 14px calc(14px + env(safe-area-inset-bottom))!important;
+    box-shadow:0 18px 50px rgba(20,14,4,.34)!important;
+  }
   .nav-row{gap:6px!important;flex-wrap:wrap!important}
-  .nav-btn{min-height:34px!important;padding:6px 9px!important;font-size:10px!important}
+  .nav-btn{min-height:32px!important;padding:5px 8px!important;font-size:10px!important}
   .nav-btn-wide{width:auto!important;flex:1 1 46%!important}
   .v5-overlay{padding:10px!important;align-items:end!important}
   .v5-modal{width:100%!important;max-width:none!important;max-height:84vh!important;border-radius:12px 12px 0 0!important;padding:20px 16px 24px!important}
@@ -46,4 +62,7 @@
   h1{font-size:18px}
   .epigraph{font-size:10px!important}
   .scroll{padding-left:10px;padding-right:10px}
+  .nav-body{left:6px!important;right:6px!important;top:max(6px,env(safe-area-inset-top))!important;padding:10px 12px calc(12px + env(safe-area-inset-bottom))!important}
+  .nav-row{gap:5px!important}
+  .nav-btn{min-height:30px!important;padding:4px 7px!important;font-size:9.5px!important}
 }
