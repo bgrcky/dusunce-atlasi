@@ -1,0 +1,13 @@
+/* Legend + category badge cleanup. Visual-only; no atlas geometry changes. */
+/* First legend row is obsolete after card colors were unified. */
+.legend > div:first-of-type{display:none!important}
+
+/* Category badges: FEL / TAR / SİY / PSİ / SAN all use one neutral-gold treatment. */
+.node .tag,
+.tag,
+[class*="tag-"]{
+  color:var(--gold)!important;
+  border-color:color-mix(in srgb,var(--gold) 58%,var(--border))!important;
+  background:color-mix(in srgb,var(--card) 94%,var(--gold) 6%)!important;
+  box-shadow:none!important;
+}
