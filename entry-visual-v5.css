@@ -1,0 +1,23 @@
+/* Entry Visual V5 — visual-only layer */
+.prologue{position:relative;overflow:hidden;isolation:isolate}
+.prologue>*:not(.idea-geo){position:relative;z-index:2}
+.idea-geo{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.42;mask-image:linear-gradient(to bottom,transparent 0,#000 16%,#000 78%,transparent 100%)}
+.idea-geo svg{width:100%;height:100%;display:block;overflow:visible}
+.idea-geo path{fill:none;stroke:var(--gold);stroke-width:.55;stroke-dasharray:2 7;opacity:.32}
+.idea-geo circle{fill:var(--gold);opacity:.38}
+.idea-geo text{font-family:var(--fm);fill:var(--muted);font-size:9px;letter-spacing:.11em}
+.idea-geo text.thinker{font-family:var(--fd);font-style:italic;font-size:13px;letter-spacing:0;fill:var(--text);opacity:.28}
+.switch-wrap{justify-content:center!important;margin-top:36px!important}
+.switch{width:min(900px,100%);border-radius:14px!important;padding:0!important;gap:1px!important;background:var(--border)!important;overflow:hidden;box-shadow:0 20px 55px rgba(0,0,0,.18)!important}
+.switch button{position:relative;border-radius:0!important;padding:22px 28px 20px!important;text-align:left!important;background:var(--card)!important;transition:background .22s ease,color .22s ease,box-shadow .22s ease!important;font-size:13px!important;letter-spacing:.1em!important}
+.switch button::after{display:block;margin-top:7px;font:400 12px/1.45 var(--fd);letter-spacing:0;text-transform:none;color:var(--muted);transition:color .22s ease}
+#westBtn::after{content:'İnsan · Devlet · Akıl · Özgürlük'}
+#eastBtn::after{content:'Uyum · Benlik · Yol · Bilgelik'}
+.switch button.active{background:color-mix(in srgb,var(--gold) 13%,var(--card))!important;color:var(--text)!important;box-shadow:inset 0 -2px 0 var(--gold)}
+.switch button.active::before{content:'SEÇİLİ';position:absolute;right:18px;top:12px;font:8px var(--fm);letter-spacing:.14em;color:var(--gold)}
+.switch button:hover:not(.active){background:color-mix(in srgb,var(--gold) 5%,var(--card))!important}
+.periods{transition:opacity .18s ease,filter .18s ease!important}.periods.loading{opacity:.25!important;filter:blur(1px)}
+.period{transition:background .18s ease,border-color .18s ease}.period:hover{background:color-mix(in srgb,var(--gold) 3.5%,var(--bg))}
+.atlas-cta{transition:transform .18s ease,border-color .18s ease,background .18s ease!important}.atlas-cta:hover{transform:translateY(-2px)}
+@media(max-width:760px){.idea-geo{opacity:.24}.switch{grid-template-columns:1fr!important}.switch button{padding:17px 18px!important}.switch button.active::before{display:none}}
+@media(prefers-reduced-motion:reduce){.switch button,.periods,.period,.atlas-cta{transition:none!important}}
