@@ -1,176 +1,31 @@
 [
-  {
-    "col": 0,
-    "eser": "Analektler (Lunyu)",
-    "yazar": "Konfüçyüs",
-    "donem": "MÖ 5. yy"
-  },
-  {
-    "col": 0,
-    "eser": "Mengzi",
-    "yazar": "Mengzi (Mencius)",
-    "donem": "MÖ 4. yy"
-  },
-  {
-    "col": 0,
-    "eser": "Xunzi",
-    "yazar": "Xunzi",
-    "donem": "MÖ 3. yy"
-  },
-  {
-    "col": 0,
-    "eser": "Mozi",
-    "yazar": "Mozi",
-    "donem": "MÖ 5. yy"
-  },
-  {
-    "col": 1,
-    "eser": "Tao Te Ching",
-    "yazar": "Lao Tzu",
-    "donem": "MÖ 4. yy"
-  },
-  {
-    "col": 1,
-    "eser": "Zhuangzi",
-    "yazar": "Zhuangzi",
-    "donem": "MÖ 4. yy"
-  },
-  {
-    "col": 1,
-    "eser": "Liezi",
-    "yazar": "Liezi",
-    "donem": "MÖ 4. yy"
-  },
-  {
-    "col": 2,
-    "eser": "Kitabu'ş-Şifa (Seçmeler)",
-    "yazar": "İbn Sina",
-    "donem": "11. yy"
-  },
-  {
-    "col": 2,
-    "eser": "Filozofların Tutarsızlığı",
-    "yazar": "Gazali",
-    "donem": "11. yy"
-  },
-  {
-    "col": 2,
-    "eser": "Tutarsızlığın Tutarsızlığı",
-    "yazar": "İbn Rüşd",
-    "donem": "12. yy"
-  },
-  {
-    "col": 2,
-    "eser": "Mesnevi",
-    "yazar": "Mevlana Celaleddin Rumi",
-    "donem": "13. yy"
-  },
-  {
-    "col": 2,
-    "eser": "El-Medinetü'l-Fazıla",
-    "yazar": "Farabi",
-    "donem": "10. yy"
-  },
-  {
-    "col": 2,
-    "eser": "Felsefe Üzerine",
-    "yazar": "Kindi",
-    "donem": "9. yy"
-  },
-  {
-    "col": 2,
-    "eser": "Hikmetü'l-İşrak",
-    "yazar": "Sühreverdi",
-    "donem": "12. yy"
-  },
-  {
-    "col": 2,
-    "eser": "Fusus al-Hikam",
-    "yazar": "İbn Arabi",
-    "donem": "13. yy"
-  },
-  {
-    "col": 2,
-    "eser": "Rubailer",
-    "yazar": "Ömer Hayyam",
-    "donem": "11-12. yy"
-  },
-  {
-    "col": 2,
-    "eser": "Siyasetname",
-    "yazar": "Nizamülmülk",
-    "donem": "11. yy"
-  },
-  {
-    "col": 3,
-    "eser": "Mukaddime",
-    "yazar": "İbn Haldun",
-    "donem": "14. yy"
-  },
-  {
-    "col": 3,
-    "eser": "Ahlak-ı Alai",
-    "yazar": "Kınalızade Ali Çelebi",
-    "donem": "16. yy"
-  },
-  {
-    "col": 4,
-    "eser": "Huccetullahi'l-Baliğa",
-    "yazar": "Şah Veliyyullah Dihlevi",
-    "donem": "18. yy"
-  },
-  {
-    "col": 4,
-    "eser": "Mizanü'l-Hakk",
-    "yazar": "Kâtip Çelebi",
-    "donem": "17. yy"
-  },
-  {
-    "col": 6,
-    "eser": "Gitanjali",
-    "yazar": "Rabindranath Tagore",
-    "donem": "1910"
-  },
-  {
-    "col": 6,
-    "eser": "İslam'da Dini Düşüncenin Yeniden İnşası",
-    "yazar": "Muhammed İkbal",
-    "donem": "1930"
-  },
-  {
-    "col": 8,
-    "eser": "Şarkiyatçılık",
-    "yazar": "Edward Said",
-    "donem": "1978"
-  },
-  {
-    "col": 8,
-    "eser": "Adaletin Fikri",
-    "yazar": "Amartya Sen",
-    "donem": "2009"
-  },
-  {
-    "col": 0,
-    "eser": "Upanişadlar",
-    "yazar": "Anonim",
-    "donem": "MÖ 8.-2. yy"
-  },
-  {
-    "col": 0,
-    "eser": "Bhagavad Gita",
-    "yazar": "Anonim (Vyasa'ya atfedilir)",
-    "donem": "MÖ 2. yy"
-  },
-  {
-    "col": 1,
-    "eser": "Dhammapada",
-    "yazar": "Buda'nın öğretileri (derleme)",
-    "donem": "MÖ 3. yy"
-  },
-  {
-    "col": 1,
-    "eser": "Mülamadhyamakakarika",
-    "yazar": "Nagarjuna",
-    "donem": "MS 2. yy"
-  }
+  {"col":0,"eser":"Analektler (Lunyu)","yazar":"Konfüçyüs","donem":"MÖ 5. yy","kategori":"felsefe"},
+  {"col":0,"eser":"Mengzi","yazar":"Mengzi (Mencius)","donem":"MÖ 4. yy","kategori":"felsefe"},
+  {"col":0,"eser":"Xunzi","yazar":"Xunzi","donem":"MÖ 3. yy","kategori":"felsefe"},
+  {"col":0,"eser":"Mozi","yazar":"Mozi","donem":"MÖ 5. yy","kategori":"felsefe"},
+  {"col":1,"eser":"Tao Te Ching","yazar":"Lao Tzu","donem":"MÖ 4. yy","kategori":"felsefe"},
+  {"col":1,"eser":"Zhuangzi","yazar":"Zhuangzi","donem":"MÖ 4. yy","kategori":"felsefe"},
+  {"col":1,"eser":"Liezi","yazar":"Liezi","donem":"MÖ 4. yy","kategori":"felsefe"},
+  {"col":2,"eser":"Kitabu'ş-Şifa (Seçmeler)","yazar":"İbn Sina","donem":"11. yy","kategori":"felsefe"},
+  {"col":2,"eser":"Filozofların Tutarsızlığı","yazar":"Gazali","donem":"11. yy","kategori":"felsefe"},
+  {"col":2,"eser":"Tutarsızlığın Tutarsızlığı","yazar":"İbn Rüşd","donem":"12. yy","kategori":"felsefe"},
+  {"col":2,"eser":"Mesnevi","yazar":"Mevlana Celaleddin Rumi","donem":"13. yy","kategori":"sanat"},
+  {"col":2,"eser":"El-Medinetü'l-Fazıla","yazar":"Farabi","donem":"10. yy","kategori":"siyaset"},
+  {"col":2,"eser":"Felsefe Üzerine","yazar":"Kindi","donem":"9. yy","kategori":"felsefe"},
+  {"col":2,"eser":"Hikmetü'l-İşrak","yazar":"Sühreverdi","donem":"12. yy","kategori":"felsefe"},
+  {"col":2,"eser":"Fusus al-Hikam","yazar":"İbn Arabi","donem":"13. yy","kategori":"felsefe"},
+  {"col":2,"eser":"Rubailer","yazar":"Ömer Hayyam","donem":"11-12. yy","kategori":"sanat"},
+  {"col":2,"eser":"Siyasetname","yazar":"Nizamülmülk","donem":"11. yy","kategori":"siyaset"},
+  {"col":3,"eser":"Mukaddime","yazar":"İbn Haldun","donem":"14. yy","kategori":"tarih"},
+  {"col":3,"eser":"Ahlak-ı Alai","yazar":"Kınalızade Ali Çelebi","donem":"16. yy","kategori":"felsefe"},
+  {"col":4,"eser":"Huccetullahi'l-Baliğa","yazar":"Şah Veliyyullah Dihlevi","donem":"18. yy","kategori":"felsefe"},
+  {"col":4,"eser":"Mizanü'l-Hakk","yazar":"Kâtip Çelebi","donem":"17. yy","kategori":"felsefe"},
+  {"col":6,"eser":"Gitanjali","yazar":"Rabindranath Tagore","donem":"1910","kategori":"sanat"},
+  {"col":6,"eser":"İslam'da Dini Düşüncenin Yeniden İnşası","yazar":"Muhammed İkbal","donem":"1930","kategori":"felsefe"},
+  {"col":8,"eser":"Şarkiyatçılık","yazar":"Edward Said","donem":"1978","kategori":"siyaset"},
+  {"col":8,"eser":"Adaletin Fikri","yazar":"Amartya Sen","donem":"2009","kategori":"siyaset"},
+  {"col":0,"eser":"Upanişadlar","yazar":"Anonim","donem":"MÖ 8.-2. yy","kategori":"felsefe"},
+  {"col":0,"eser":"Bhagavad Gita","yazar":"Anonim (Vyasa'ya atfedilir)","donem":"MÖ 2. yy","kategori":"felsefe"},
+  {"col":1,"eser":"Dhammapada","yazar":"Buda'nın öğretileri (derleme)","donem":"MÖ 3. yy","kategori":"felsefe"},
+  {"col":1,"eser":"Mülamadhyamakakarika","yazar":"Nagarjuna","donem":"MS 2. yy","kategori":"felsefe"}
 ]
