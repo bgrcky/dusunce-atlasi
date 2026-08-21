@@ -1,0 +1,30 @@
+/* Map Visual V5 — no geometry changes */
+#map{background:
+ linear-gradient(90deg,
+  rgba(202,160,68,.028) 0%,rgba(202,160,68,.028) 10%,
+  rgba(164,130,70,.018) 10%,rgba(164,130,70,.018) 20%,
+  rgba(108,91,64,.024) 20%,rgba(108,91,64,.024) 30%,
+  rgba(190,145,67,.020) 30%,rgba(190,145,67,.020) 40%,
+  rgba(198,174,112,.018) 40%,rgba(198,174,112,.018) 50%,
+  rgba(126,113,82,.020) 50%,rgba(126,113,82,.020) 60%,
+  rgba(95,92,82,.023) 60%,rgba(95,92,82,.023) 70%,
+  rgba(81,84,88,.025) 70%,rgba(81,84,88,.025) 80%,
+  rgba(71,82,93,.024) 80%,rgba(71,82,93,.024) 90%,
+  rgba(63,76,88,.028) 90%,rgba(63,76,88,.028) 100%)}
+.node{transition:border-color .18s ease,box-shadow .18s ease,opacity .18s ease,filter .18s ease!important}.node:hover{border-color:color-mix(in srgb,var(--gold) 45%,var(--border))!important}
+/* Companion as collector page */
+.v5-card{background:linear-gradient(180deg,color-mix(in srgb,var(--gold) 4%,var(--card)),var(--card) 30%)!important;box-shadow:-22px 0 60px rgba(0,0,0,.26)!important;border-left-color:color-mix(in srgb,var(--gold) 55%,var(--border))!important;transition:transform .24s cubic-bezier(.2,.75,.25,1)!important}
+.v5-card::before{content:'DÜŞÜNCE ATLASI · COMPANION';display:block;font:8px var(--font-mono);letter-spacing:.18em;color:var(--gold);margin-bottom:16px}
+.v5-card h2{font-size:31px!important;line-height:1.03!important;letter-spacing:-.015em!important;padding-bottom:15px;border-bottom:1px solid var(--border)}
+.v5-card .v5-block{padding:16px 0!important}.v5-card .v5-block label{letter-spacing:.12em!important}.v5-card .v5-block div{font-size:15px!important;line-height:1.62!important}
+.v5-card .v5-tag{border-color:color-mix(in srgb,var(--gold) 36%,var(--border))!important;background:color-mix(in srgb,var(--gold) 4%,transparent)!important}
+/* Navigator as atlas instrument */
+#navPanel{transition:opacity .18s ease,box-shadow .18s ease,border-color .18s ease!important;border-color:color-mix(in srgb,var(--gold) 28%,var(--border))!important;box-shadow:0 14px 42px rgba(0,0,0,.25)!important}
+#navPanel:not(.collapsed)::before{content:'ATLAS NAVİGASYONU';display:block;font:8px var(--font-mono);letter-spacing:.18em;color:var(--gold);padding-bottom:7px;margin-bottom:6px;border-bottom:1px solid var(--border)}
+#navPanel.collapsed{box-shadow:0 8px 28px rgba(0,0,0,.28)!important}
+#navPanel.collapsed .nav-toggle{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--gold) 22%,transparent),0 4px 18px rgba(0,0,0,.22);transition:transform .18s ease,background .18s ease!important}
+#navPanel.collapsed .nav-toggle:hover{transform:rotate(8deg) scale(1.04);background:color-mix(in srgb,var(--gold) 8%,var(--card))!important}
+#navEras{position:relative;padding-bottom:7px!important;border-bottom:1px solid color-mix(in srgb,var(--gold) 18%,var(--border))}.nav-btn{transition:background .16s ease,border-color .16s ease,color .16s ease,transform .16s ease!important}.nav-btn:hover{transform:translateY(-1px)}
+.v5-overlay{animation:v5Fade .16s ease both}.v5-modal{animation:v5Rise .2s ease both}.v5-path{animation:v5Rise .2s ease both}
+@keyframes v5Fade{from{opacity:0}to{opacity:1}}@keyframes v5Rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.node,.v5-card,#navPanel,.nav-btn,.v5-overlay,.v5-modal,.v5-path{transition:none!important;animation:none!important}}
