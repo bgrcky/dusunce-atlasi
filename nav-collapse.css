@@ -1,0 +1,39 @@
+/* Desktop navigator can collapse to a compact compass button without covering IX–X cards. */
+@media (min-width:701px){
+  .nav-panel{position:fixed!important}
+  .nav-panel:not(.collapsed){padding-top:42px!important}
+  .nav-panel .nav-toggle{
+    display:flex!important;
+    position:absolute!important;
+    top:8px!important;
+    right:8px!important;
+    width:28px!important;
+    height:28px!important;
+    border-radius:50%!important;
+    background:var(--bg)!important;
+    z-index:3!important;
+  }
+  .nav-panel:not(.collapsed) .nav-toggle::after{
+    content:'×';
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font:16px/1 var(--font-mono);
+    color:var(--gold);
+    background:var(--bg);
+    border-radius:50%;
+  }
+  .nav-panel.collapsed{
+    width:auto!important;
+    max-width:none!important;
+    padding:6px!important;
+    border-radius:50%!important;
+  }
+  .nav-panel.collapsed .nav-toggle{
+    position:static!important;
+    width:42px!important;
+    height:42px!important;
+  }
+}
