@@ -5,7 +5,8 @@
     function paint(){
       const isEast=(new URLSearchParams(location.search).get('katman')==='dogu') || document.getElementById('eastBtn')?.classList.contains('active');
       const title=isEast?'Doğu Düşüncesi Haritasını Aç':'Batı Düşüncesi Haritasını Aç';
-      const sub=isEast?'Eserleri, dönemleri ve bağlantıları harita üzerinde keşfet.':'Eserleri, dönemleri ve bağlantıları harita üzerinde keşfet.';
+      const sub='Eserleri, dönemleri ve bağlantıları harita üzerinde keşfet.';
+      link.href='./harita.html?katman='+(isEast?'dogu':'western');
       link.innerHTML='<span class="cta-copy"><span class="cta-title">'+title+'</span><span class="cta-sub">'+sub+'</span></span>';
       link.setAttribute('aria-label',title);
     }
