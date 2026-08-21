@@ -1,13 +1,16 @@
 /* Legend + category badge cleanup. Visual-only; no atlas geometry changes. */
-/* First legend row is obsolete after card colors were unified. */
-.legend > div:first-of-type{display:none!important}
+/* The obsolete color guide is the first standalone .legend row. */
+header .legend:first-of-type{display:none!important}
 
-/* Category badges: FEL / TAR / SİY / PSİ / SAN all use one neutral-gold treatment. */
-.node .tag,
-.tag,
-[class*="tag-"]{
+/* Category badges: FEL / TAR / SİY / PSİ / SAN all use the same neutral-gold treatment. */
+.tag-felsefe,
+.tag-tarih,
+.tag-siyaset,
+.tag-davranis,
+.tag-sanat,
+.node .tag{
   color:var(--gold)!important;
   border-color:color-mix(in srgb,var(--gold) 58%,var(--border))!important;
-  background:color-mix(in srgb,var(--card) 94%,var(--gold) 6%)!important;
+  background:transparent!important;
   box-shadow:none!important;
 }
