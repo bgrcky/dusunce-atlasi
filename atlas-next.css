@@ -1,12 +1,20 @@
 /* Düşünce Atlası — timeline + personal atlas refinements */
-.atlas-timebar{position:fixed;left:0;right:0;top:0;z-index:58;height:34px;background:color-mix(in srgb,var(--bg) 92%,transparent);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);display:flex;align-items:center;padding:0 76px 0 22px;gap:12px;transition:opacity .18s}
-.atlas-timebar-label{font:8px var(--font-mono);letter-spacing:.12em;color:var(--gold);white-space:nowrap;text-transform:uppercase}
-.atlas-timebar-track{position:relative;flex:1;height:18px;display:grid;grid-template-columns:repeat(10,1fr);align-items:center}
-.atlas-timebar-track:before{content:"";position:absolute;left:0;right:0;top:8px;border-top:1px solid var(--border)}
-.atlas-time-seg{height:18px;position:relative;border:0;background:none;padding:0;cursor:pointer}
-.atlas-time-seg:after{content:"";position:absolute;width:5px;height:5px;border-radius:50%;background:var(--border);left:50%;top:6px;transform:translateX(-50%);transition:.18s}
-.atlas-time-seg.active:after{width:9px;height:9px;top:4px;background:var(--gold);box-shadow:0 0 0 4px color-mix(in srgb,var(--gold) 15%,transparent)}
-.atlas-time-seg span{position:absolute;top:17px;left:50%;transform:translateX(-50%);font:7px var(--font-mono);color:var(--text-sec);white-space:nowrap;opacity:0;transition:.15s}.atlas-time-seg.active span{opacity:1;color:var(--gold)}
-body.atlas-time-enabled header{top:34px}
+.atlas-timebar{position:fixed;left:0;right:0;top:0;z-index:58;height:26px;background:color-mix(in srgb,var(--bg) 94%,transparent);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);display:flex;align-items:center;padding:0 58px 0 18px;gap:10px;transition:opacity .18s}
+.atlas-timebar-label{font:7px var(--font-mono);letter-spacing:.12em;color:var(--gold);white-space:nowrap;text-transform:uppercase}
+.atlas-timebar-track{position:relative;flex:1;height:14px;display:grid;grid-template-columns:repeat(10,1fr);align-items:center}
+.atlas-timebar-track:before{content:"";position:absolute;left:0;right:0;top:6px;border-top:1px solid var(--border)}
+.atlas-time-seg{height:14px;position:relative;border:0;background:none;padding:0;cursor:pointer}
+.atlas-time-seg:after{content:"";position:absolute;width:4px;height:4px;border-radius:50%;background:var(--border);left:50%;top:4px;transform:translateX(-50%);transition:.18s}
+.atlas-time-seg.active:after{width:8px;height:8px;top:2px;background:var(--gold);box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 14%,transparent)}
+.atlas-time-seg span{position:absolute;top:13px;left:50%;transform:translateX(-50%);font:7px var(--font-mono);color:var(--text-sec);white-space:nowrap;opacity:0;transition:.15s}.atlas-time-seg.active span{opacity:1;color:var(--gold)}
+body.atlas-time-enabled header{top:26px}
+body.atlas-time-enabled .scroll{padding-top:34px}
+@media(min-width:701px){
+  body.atlas-time-enabled .nav-panel{top:38px!important;max-height:calc(100dvh - 54px)!important}
+  body.atlas-time-enabled .nav-body{max-height:calc(100dvh - 104px)!important}
+  body.atlas-time-enabled .nav-panel:not(.collapsed){padding-top:40px!important}
+  body.atlas-time-enabled .nav-panel .nav-toggle{top:7px!important;right:8px!important}
+  body.atlas-time-enabled .nav-panel.collapsed{top:38px!important}
+}
 .v5-personal-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0 18px}.v5-personal-stat{border:1px solid var(--border);background:var(--bg);padding:12px;border-radius:5px}.v5-personal-stat b{display:block;font:24px var(--font-display);color:var(--text)}.v5-personal-stat span{font:8px var(--font-mono);color:var(--text-sec);text-transform:uppercase;letter-spacing:.08em}.v5-personal-insight{margin:14px 0;padding:13px 15px;border-left:2px solid var(--gold);background:color-mix(in srgb,var(--gold) 6%,var(--bg));font:14px/1.55 var(--font-display);color:var(--text-sec)}
-@media(max-width:760px){.atlas-timebar{padding:0 12px;height:30px}.atlas-timebar-label{display:none}.atlas-time-seg span{display:none}body.atlas-time-enabled header{top:30px}.v5-personal-summary{grid-template-columns:1fr 1fr}.v5-personal-summary .v5-personal-stat:last-child{grid-column:1/-1}}
+@media(max-width:760px){.atlas-timebar{padding:0 10px;height:24px}.atlas-timebar-label{display:none}.atlas-time-seg span{display:none}body.atlas-time-enabled header{top:24px}body.atlas-time-enabled .scroll{padding-top:28px}.v5-personal-summary{grid-template-columns:1fr 1fr}.v5-personal-summary .v5-personal-stat:last-child{grid-column:1/-1}}
