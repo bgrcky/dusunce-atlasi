@@ -1,19 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-<meta name="description" content="Batı ve Doğu düşünce tarihini kronolojik, önkoşullu ve çok katmanlı bir yol haritasıyla keşfet — felsefe, tarih, müzik, mimari ve roman bir arada.">
-<title>Düşünce Atlası — Okuma Haritası</title>
-</head>
-<body>
-<script>
-const ATLAS_BUILD = '20260821-period-illustrations';
-fetch('./index-core.html?v='+ATLAS_BUILD).then(function(r){ if(!r.ok) throw new Error('core'); return r.text(); }).then(function(html){
-  html = html.replace('</head>', '<link rel="stylesheet" href="./mobile.css?v='+ATLAS_BUILD+'"><link rel="stylesheet" href="./mobile-v2.css?v='+ATLAS_BUILD+'"><link rel="stylesheet" href="./desktop-nav-fix.css?v='+ATLAS_BUILD+'"><link rel="stylesheet" href="./safe-visual.css?v='+ATLAS_BUILD+'"><link rel="stylesheet" href="./visual-v4-safe.css?v='+ATLAS_BUILD+'"><link rel="stylesheet" href="./legend-unify.css?v='+ATLAS_BUILD+'"><link rel="stylesheet" href="./nav-collapse.css?v='+ATLAS_BUILD+'"><link rel="stylesheet" href="./map-visual-v5.css?v='+ATLAS_BUILD+'"><link rel="stylesheet" href="./period-illustrations.css?v='+ATLAS_BUILD+'"></head>');
-  html = html.replace('</body>', '<script src="./features.js?v='+ATLAS_BUILD+'"><\/script><script src="./route-readability.js?v='+ATLAS_BUILD+'"><\/script><script src="./v7.js?v='+ATLAS_BUILD+'"><\/script><script src="./route-cleanup.js?v='+ATLAS_BUILD+'"><\/script><script src="./mobile-v2.js?v='+ATLAS_BUILD+'"><\/script><script src="./visual-v4-safe.js?v='+ATLAS_BUILD+'"><\/script><script src="./dogu-badges.js?v='+ATLAS_BUILD+'"><\/script><script src="./legend-static.js?v='+ATLAS_BUILD+'"><\/script><script src="./map-visual-v5.js?v='+ATLAS_BUILD+'"><\/script><script src="./period-illustrations.js?v='+ATLAS_BUILD+'"><\/script></body>');
-  document.open(); document.write(html); document.close();
-}).catch(function(){ document.body.innerHTML='<p style="font-family:system-ui;padding:24px">Düşünce Atlası yüklenemedi. Lütfen sayfayı yenile.</p>'; });
-</script>
-</body>
-</html>
+<html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="description" content="Batı ve Doğu düşünce tarihini kronolojik, önkoşullu ve çok katmanlı bir yol haritasıyla keşfet — felsefe, tarih, müzik, mimari ve roman bir arada."><title>Düşünce Atlası — Okuma Haritası</title></head><body><script>
+const ATLAS_BUILD='20260824-atlas-next';
+fetch('./index-core.html?v='+ATLAS_BUILD).then(r=>{if(!r.ok)throw new Error('core');return r.text()}).then(html=>{html=html.replace('</head>','<link rel="stylesheet" href="./mobile.css?v='+ATLAS_BUILD+'"><link rel="stylesheet" href="./mobile-v2.css?v='+ATLAS_BUILD+'"><link rel="stylesheet" href="./desktop-nav-fix.css?v='+ATLAS_BUILD+'"><link rel="stylesheet" href="./safe-visual.css?v='+ATLAS_BUILD+'"><link rel="stylesheet" href="./visual-v4-safe.css?v='+ATLAS_BUILD+'"><link rel="stylesheet" href="./legend-unify.css?v='+ATLAS_BUILD+'"><link rel="stylesheet" href="./nav-collapse.css?v='+ATLAS_BUILD+'"><link rel="stylesheet" href="./map-visual-v5.css?v='+ATLAS_BUILD+'"><link rel="stylesheet" href="./period-illustrations.css?v='+ATLAS_BUILD+'"><link rel="stylesheet" href="./atlas-next.css?v='+ATLAS_BUILD+'"></head>');html=html.replace('</body>','<script src="./features.js?v='+ATLAS_BUILD+'"><\/script><script src="./route-readability.js?v='+ATLAS_BUILD+'"><\/script><script src="./v7.js?v='+ATLAS_BUILD+'"><\/script><script src="./route-cleanup.js?v='+ATLAS_BUILD+'"><\/script><script src="./mobile-v2.js?v='+ATLAS_BUILD+'"><\/script><script src="./visual-v4-safe.js?v='+ATLAS_BUILD+'"><\/script><script src="./dogu-badges.js?v='+ATLAS_BUILD+'"><\/script><script src="./legend-static.js?v='+ATLAS_BUILD+'"><\/script><script src="./map-visual-v5.js?v='+ATLAS_BUILD+'"><\/script><script src="./period-illustrations.js?v='+ATLAS_BUILD+'"><\/script><script src="./atlas-next.js?v='+ATLAS_BUILD+'"><\/script></body>');document.open();document.write(html);document.close()}).catch(()=>{document.body.innerHTML='<p style="font-family:system-ui;padding:24px">Düşünce Atlası yüklenemedi. Lütfen sayfayı yenile.</p>'});
+</script></body></html>
