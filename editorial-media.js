@@ -12,16 +12,17 @@
   [fp('Daniel Kahneman (3283955327) (cropped).jpg'),'Kahneman · karar ve davranış'],
   [fp('John Berger-2009 (1).jpg'),'Berger · imge, temsil ve bakış']
  ];
+ // Doğu: dosya adları Commons üzerinde tek tek doğrulanmış 10 benzersiz görsel.
  const east=[
-  [fp('Confucius Tang Dynasty.jpg'),'Konfüçyüs · erdem ve toplumsal düzen'],
-  [fp('Zhuangzi Dreaming of a Butterfly.jpg'),'Zhuangzi · doğa, yol ve uyum'],
+  [fp('Portrait of Konfucius, 18th century.jpg'),'Konfüçyüs · erdem ve toplumsal düzen'],
+  [fp('Dschuang-Dsi-Schmetterlingstraum-Zhuangzi-Butterfly-Dream.jpg'),'Zhuangzi · doğa, yol ve uyum'],
   [fp('Gandhara Buddha (tnm).jpeg'),'Buda · benlik, acı ve kurtuluş'],
-  [fp('Baghdad 1237.jpg'),'Bağdat · akıl, vahiy ve tercüme'],
-  [fp('Dancing dervishes, Avicenna Mausoleum.jpg'),'Tasavvuf · içsel tecrübe'],
-  [fp('Ibn Khaldun.jpg'),'İbn Haldun · toplum, devlet ve tarih'],
-  [fp('Ottoman printing press.jpg'),'Matbaa · teknoloji ve modernleşme'],
+  [fp('Maqamat hariri.jpg'),'Bağdat · akıl, vahiy ve tercüme'],
+  [fp('Whirling dervishes in Galata Mawlawi House, 1870.png'),'Tasavvuf · içsel tecrübe'],
+  [fp('Bust of Ibn Khaldun (Casbah of Bejaia, Algeria) (cropped).jpg'),'İbn Haldun · toplum, devlet ve tarih'],
+  [fp('Omoumi Mamalik Mahrousi Shahani. (General map of the protected countries. Ottoman Empire). Istanbul. Matbaa-i Amire. 1312 (IA dr omoumi-mamalik-mahrousi-shahani-general-map-of-the-protected-countries-o-13186000).jpg'),'Matbaa · teknoloji ve modernleşme'],
   [fp('Rabindranath Tagore in 1909.jpg'),'Tagore · modernlik ve kimlik'],
-  [fp('Edward Said and Daniel Barenboim in Sevilla, 2002.jpg'),'Said · temsil ve sömürge sonrası düşünce'],
+  [fp('Edward Said and Daniel Barenboim in Sevilla, 2002 Crop.jpg'),'Said · temsil ve sömürge sonrası düşünce'],
   [fp('Shanghai skyline from the bund.jpg'),'Çok merkezli dünya · küresel düşünce']
  ];
  function current(){return document.getElementById('eastBtn')?.classList.contains('active')?east:west}
