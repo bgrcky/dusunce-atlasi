@@ -1,9 +1,11 @@
 {
-  "Sokrates'in Savunması": "atlas_sokratesin_son_gunleri_atlas.html",
-  "Kriton": "atlas_sokratesin_son_gunleri_atlas.html",
-  "Phaidon": "atlas_sokratesin_son_gunleri_atlas.html",
-  "Nikomakhos'a Etik": "atlas_nikomakhosa_etik.html",
-  "El Kitabı": "atlas_epiktetos_el_kitabi.html",
-  "Oidipus Kral": "atlas_kral_oidipus.html",
-  "Antigone": "atlas_antigone.html"
+  "Sokrates'in Savunması": "/atlas/sokratesin-son-gunleri.html",
+  "Kriton": "/atlas/sokratesin-son-gunleri.html",
+  "Phaidon": "/atlas/sokratesin-son-gunleri.html",
+  "Nikomakhos'a Etik": "/atlas/nikomakhosa-etik.html",
+  "El Kitabı": "/atlas/epiktetos-el-kitabi.html",
+  "Ahlak Mektupları": "/atlas/seneca-ahlak-mektuplari.html",
+  "Oidipus Kral": "/atlas/kral-oidipus.html",
+  "Antigone": "/atlas/antigone.html",
+  "Medea": "/atlas/medea.html"
 }
