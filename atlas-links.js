@@ -1,8 +1,8 @@
 (function(){
  const atlasLinks={
-  'Antigone':'/atlas_antigone.html','Kral Oidipus':'/atlas_kral_oidipus.html','Oidipus Kral':'/atlas_kral_oidipus.html','Medea':'/atlas_medea.html',
-  "Sokrates'in Son Günleri":'/atlas_sokratesin_son_gunleri_atlas.html',"Sokrates'in Savunması":'/atlas_sokratesin_son_gunleri_atlas.html','Kriton':'/atlas_sokratesin_son_gunleri_atlas.html','Phaidon':'/atlas_sokratesin_son_gunleri_atlas.html',
-  "Nikomakhos'a Etik":'/atlas_nikomakhosa_etik.html','El Kitabı':'/atlas_epiktetos_el_kitabi.html','Ahlak Mektupları':'/atlas_seneca_ahlak_mektuplari.html'
+  'Antigone':'/atlas/antigone.html','Kral Oidipus':'/atlas/kral-oidipus.html','Oidipus Kral':'/atlas/kral-oidipus.html','Medea':'/atlas/medea.html',
+  "Sokrates'in Son Günleri":'/atlas/sokratesin-son-gunleri.html',"Sokrates'in Savunması":'/atlas/sokratesin-son-gunleri.html','Kriton':'/atlas/sokratesin-son-gunleri.html','Phaidon':'/atlas/sokratesin-son-gunleri.html',
+  "Nikomakhos'a Etik":'/atlas/nikomakhosa-etik.html','El Kitabı':'/atlas/epiktetos-el-kitabi.html','Ahlak Mektupları':'/atlas/seneca-ahlak-mektuplari.html'
  };
  const norm=s=>String(s||'').toLocaleLowerCase('tr').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’‘`]/g,"'").replace(/[^a-z0-9çğıöşü']+/g,' ').trim();
  const resolved=new Map();
