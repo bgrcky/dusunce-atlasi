@@ -12,6 +12,8 @@
   rgba(71,82,93,.024) 80%,rgba(71,82,93,.024) 90%,
   rgba(63,76,88,.028) 90%,rgba(63,76,88,.028) 100%)}
 .node{transition:border-color .18s ease,box-shadow .18s ease,opacity .18s ease,filter .18s ease!important}.node:hover{border-color:color-mix(in srgb,var(--gold) 45%,var(--border))!important}
+/* Period headings are structural labels, not links */
+.col-title{cursor:default!important;text-decoration:none!important;pointer-events:none;user-select:none;color:color-mix(in srgb,var(--text) 88%,var(--text-sec))!important}
 /* Companion as collector page */
 .v5-card{background:linear-gradient(180deg,color-mix(in srgb,var(--gold) 4%,var(--card)),var(--card) 30%)!important;box-shadow:-22px 0 60px rgba(0,0,0,.26)!important;border-left-color:color-mix(in srgb,var(--gold) 55%,var(--border))!important;transition:transform .24s cubic-bezier(.2,.75,.25,1)!important}
 .v5-card::before{content:'DÜŞÜNCE ATLASI · COMPANION';display:block;font:8px var(--font-mono);letter-spacing:.18em;color:var(--gold);margin-bottom:16px}
