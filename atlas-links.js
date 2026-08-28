@@ -2,7 +2,7 @@
  const atlasLinks={
   'Antigone':'/atlas/antigone.html','Kral Oidipus':'/atlas/kral-oidipus.html','Oidipus Kral':'/atlas/kral-oidipus.html','Medea':'/atlas/medea.html',
   "Sokrates'in Son Günleri":'/atlas/sokratesin-son-gunleri.html',"Sokrates'in Savunması":'/atlas/sokratesin-son-gunleri.html','Kriton':'/atlas/sokratesin-son-gunleri.html','Phaidon':'/atlas/sokratesin-son-gunleri.html',
-  "Nikomakhos'a Etik":'/atlas/nikomakhosa-etik.html','El Kitabı':'/atlas/epiktetos-el-kitabi.html','Ahlak Mektupları':'/atlas/seneca-ahlak-mektuplari.html'
+  "Nikomakhos'a Etik":'/atlas/nikomakhosa-etik.html','Menoikeus\'a Mektup':'/atlas/epikuros-menoikeusa-mektup.html','Peloponez Savaşı Tarihi':'/atlas/thukydides-peloponnesos-savasi.html','Peloponnesos Savaşı Tarihi':'/atlas/thukydides-peloponnesos-savasi.html','El Kitabı':'/atlas/epiktetos-el-kitabi.html','Ahlak Mektupları':'/atlas/seneca-ahlak-mektuplari.html'
  };
  const norm=s=>String(s||'').toLocaleLowerCase('tr').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’‘`]/g,"'").replace(/[^a-z0-9çğıöşü']+/g,' ').trim();
  const resolved=new Map();
