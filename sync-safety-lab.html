@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Senkron Güvenliği Laboratuvarı — Düşünce Atlası</title>
+<style>body{font:15px/1.55 system-ui;background:#f1e8d5;color:#29251d;margin:0;padding:28px 16px}main{max-width:790px;margin:auto}h1{font:32px Georgia,serif}section{background:#faf6ec;border:1px solid #d7c9aa;padding:20px;margin:16px 0;border-radius:9px}button{background:#34483e;color:#fff;border:0;border-radius:6px;padding:11px 17px;cursor:pointer}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}strong{color:#2d493c}.warn{color:#785322}code{font-size:12px}</style></head><body><main><a href="./harita.html">← Haritaya dön</a><h1>Senkron güvenliği · İzole test</h1><p class="warn">Bu sayfa yalnızca örnek verilerle çalışır. Gerçek ilerlemeyi, tarayıcı depolamasını, Supabase'i veya mevcut senkron kodunu okumaz ya da değiştirmez. Henüz canlı senkronizasyonun yerine geçmez.</p><section><h2>Koruma ilkeleri</h2><p>Eski kodlar korunur. Boş bulut verisi yerel veriyi silmez. Farklı dolu kayıtlar sessizce birleştirilmez veya birbirinin üzerine yazılmaz; kullanıcı seçimi gerekir. Yeni kodlar güvenli rastgele sayı üretimiyle oluşturulur.</p><button id="run">Örnek testleri çalıştır</button><pre id="out" role="status" aria-live="polite">Testler henüz çalıştırılmadı.</pre></section><section><h2>Canlıya geçmeden önce</h2><p>Bu laboratuvar gerçek Supabase RLS izinlerini veya cihazlar arası eşzamanlı güncellemeleri doğrulamaz. Bunlar ayrıca test edilmelidir. Mevcut sistemin buluttan yerelin üzerine yazma davranışı bu sayfayla değiştirilmemiştir.</p></section></main>
+<script>
+(()=>{'use strict';
+const fields=['read','notes','goal','dates'];
+const obj=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
+const normalize=x=>{if(!obj(x))throw Error('Geçersiz kayıt');const y={};for(const k of fields){if(x[k]!==undefined&&!obj(x[k]))throw Error('Geçersiz alan: '+k);y[k]=x[k]||{}}return y};
+const filled=x=>fields.some(k=>Object.keys(x[k]).length>0);
+const same=(a,b)=>fields.every(k=>JSON.stringify(Object.entries(a[k]).sort(([x],[y])=>x.localeCompare(y)))===JSON.stringify(Object.entries(b[k]).sort(([x],[y])=>x.localeCompare(y))));
+function decide(local,cloud){const a=normalize(local);if(cloud===null)return 'local';const b=normalize(cloud);if(!filled(b))return 'local';if(!filled(a))return 'cloud';return same(a,b)?'same':'conflict'}
+function secureCode(){if(!globalThis.crypto?.getRandomValues)throw Error('Güvenli rastgelelik yok');const b=new Uint8Array(20);crypto.getRandomValues(b);return 'atlas-v2-'+Array.from(b,x=>x.toString(16).padStart(2,'0')).join('')}
+function validBackup(p){return obj(p)&&p.format==='dusunce-atlasi-progress'&&p.version===1&&obj(p.data)&&['okuma-durumu','notlar','hedef','okuma-tarihleri'].every(k=>obj(p.data[k]))}
+const empty={read:{},notes:{},goal:{},dates:{}},a={...empty,read:{book:true}},b={...empty,read:{other:true}};
+const tests=[
+['Bulut kaydı yoksa yerel korunur',()=>decide(a,null)==='local'],
+['Boş bulut yereli silmez',()=>decide(a,empty)==='local'],
+['Boş yerel dolu bulutu kabul eder',()=>decide(empty,a)==='cloud'],
+['Aynı kayıt çatışma değildir',()=>decide(a,{...a,read:{book:true}})==='same'],
+['Farklı kayıtlar açık çatışmadır',()=>decide(a,b)==='conflict'],
+['Not farklılığı da çatışmadır',()=>decide({...a,notes:{x:'bir'}},{...a,notes:{x:'iki'}})==='conflict'],
+['Bozuk alan reddedilir',()=>{try{decide({...a,notes:[]},null);return false}catch{return true}}],
+['Eski biçimli yedek tanınır',()=>validBackup({format:'dusunce-atlasi-progress',version:1,data:{'okuma-durumu':{},notlar:{},hedef:{},'okuma-tarihleri':{}}})],
+['Eksik yedek reddedilir',()=>!validBackup({format:'dusunce-atlasi-progress',version:1,data:{notlar:{}}})],
+['Yeni kod güçlü ve benzersizdir',()=>{const x=secureCode(),y=secureCode();return /^atlas-v2-[0-9a-f]{40}$/.test(x)&&x!==y}]
+];
+document.getElementById('run').onclick=()=>{const lines=[];let passed=0;for(const [name,fn] of tests){let ok=false;try{ok=!!fn()}catch(e){lines.push('HATA '+name+': '+e.message);continue}lines.push((ok?'✓ ':'✗ ')+name);if(ok)passed++}document.getElementById('out').textContent=passed+'/'+tests.length+' test başarılı\n\n'+lines.join('\n')};
+})();
+</script></body></html>
